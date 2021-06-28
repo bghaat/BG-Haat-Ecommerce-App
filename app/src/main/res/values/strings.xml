@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">BG Haat</string>
+
+    <string name="happy_shopping_at_bh_haat">Happy Shopping At BH Haat</string>
+    <string name="shop_description">BH Haat is one of the most reliable online platform. Our aim to providing hassle-free online shopping services for shopaholic people.</string>
+    <string name="pay_on_delivery">Pay On Delivery</string>
+    <string name="paymet_description">At BG Haat you can without any hassel. We support Bangladeshi and international payment system. You can also pay after received product</string>
+    <string name="fast_delivery">Fast Delivery</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="we_will_send_you_an_one_time_password_on_this_number">We will send you an One Time Password on this number</string>
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="_880">+880-</string>
+    <string name="_1834462681">1834462681</string>
+    <string name="get_otp">Get otp</string>
+</resources>
