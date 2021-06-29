@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-        logoImg = findViewById(R.id.iv_logo);
+        logoImg = findViewById(R.id.iv_splash);
 
         goToIntroActivity();
 

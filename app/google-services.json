@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "619757472193",
+    "project_id": "bg-haat",
+    "storage_bucket": "bg-haat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619757472193:android:ce7bf2dabb90e8fb4ec740",
+        "android_client_info": {
+          "package_name": "com.bgsourcingltd.bghaat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619757472193-pj0nhhkmsl6mlhe2o3gotanugktt15qc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bgsourcingltd.bghaat",
+            "certificate_hash": "0bfae2f0c4838ac24a75b9f6f77c2783ebb98827"
+          }
+        },
+        {
+          "client_id": "619757472193-dt620ot9rko8gk1u7f25jchcmn7si2oe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcgBPgX6D-K5CRVGsIxGaBJkwOZM0zZfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619757472193-dt620ot9rko8gk1u7f25jchcmn7si2oe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
