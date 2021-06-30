@@ -16,4 +16,10 @@
     <string name="resend_otp">Resend OTP</string>
     <string name="verify">Verify</string>
     <string name="we_deliverd_product_all_over_the_bangladesh_withing_an_hour">We Deliverd product all over the bangladesh within Short time.</string>
+    <string name="home">Home</string>
+    <string name="wish_list">Wish List</string>
+    <string name="cart">Cart</string>
+    <string name="account">Account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
