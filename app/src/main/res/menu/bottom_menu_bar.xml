@@ -3,23 +3,20 @@
 
     <item
         android:title="@string/home"
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/home"/>
 
     <item
         android:title="@string/wish_list"
-        android:id="@+id/wish_list"
+        android:id="@+id/wishListFragment"
         android:icon="@drawable/favorite"
         />
 
     <item
         android:title="@string/cart"
-        android:id="@+id/cart"
+        android:id="@+id/cartFragment"
         android:icon="@drawable/shopping_cart"/>
 
-    <item
-        android:title="@string/account"
-        android:id="@+id/account"
-        android:icon="@drawable/account"/>
+
 
 </menu>

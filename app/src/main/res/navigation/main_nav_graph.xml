@@ -19,4 +19,9 @@
         android:name="com.bgsourcingltd.bghaat.fragments.WishListFragment"
         android:label="fragment_wish_list"
         tools:layout="@layout/fragment_wish_list" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.bgsourcingltd.bghaat.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

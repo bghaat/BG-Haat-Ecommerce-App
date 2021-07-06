@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.userauth.UserAuthPreference;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -20,11 +23,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
+import static android.content.ContentValues.TAG;
+
 public class SendOTPActivity extends AppCompatActivity {
+    private UserAuthPreference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        preference = new UserAuthPreference(this);
+        if (preference.getLoginStatus()){
+            startActivity(new Intent(SendOTPActivity.this,MainActivity.class));
+            finish();
+        }
         setContentView(R.layout.activity_send_otpactivity);
 
         //Initialize Variable
@@ -37,7 +49,7 @@ public class SendOTPActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (inputMobile.getText().toString().trim().isEmpty()){
-                    Toast.makeText(SendOTPActivity.this, "Enter Mobile", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SendOTPActivity.this, "Enter Mobile Number", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
@@ -61,6 +73,7 @@ public class SendOTPActivity extends AppCompatActivity {
                                 public void onVerificationFailed(@NonNull @NotNull FirebaseException e) {
                                     progressBar.setVisibility(View.GONE);
                                     buttonGetOTP.setVisibility(View.VISIBLE);
+                                    Log.e(TAG, "onVerificationFailed: "+e.getLocalizedMessage());
                                     Toast.makeText(SendOTPActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
                                 }
