@@ -75,6 +75,8 @@ public class HomeFragment extends Fragment {
         sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         sliderView.startAutoCycle();
 
+
+
         setMainCategory();
 
 
@@ -103,14 +105,14 @@ public class HomeFragment extends Fragment {
 
         List<MainCategoryModel> mainCategoryModelList = new ArrayList<>();
         mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Kids",R.drawable.shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.logo));
+        /*mainCategoryModelList.add(new MainCategoryModel("Kids",R.drawable.shirt));
         mainCategoryModelList.add(new MainCategoryModel("Grocery",R.drawable.shirt));
         mainCategoryModelList.add(new MainCategoryModel("Cocking",R.drawable.shirt));
         mainCategoryModelList.add(new MainCategoryModel("Helath",R.drawable.shirt));
         mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.shirt));
         mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.shirt));*/
 
         MainCatAdapter adapter = new MainCatAdapter(context,mainCategoryModelList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);

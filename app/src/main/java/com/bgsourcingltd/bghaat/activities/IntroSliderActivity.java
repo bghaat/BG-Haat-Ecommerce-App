@@ -52,7 +52,7 @@ public class IntroSliderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setAppStartStatus(false);
-                startActivity(new Intent(IntroSliderActivity.this, SendOTPActivity.class));
+                startActivity(new Intent(IntroSliderActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -66,7 +66,7 @@ public class IntroSliderActivity extends AppCompatActivity {
                 }
                 else {
                     setAppStartStatus(false);
-                    startActivity(new Intent(IntroSliderActivity.this, SendOTPActivity.class));
+                    startActivity(new Intent(IntroSliderActivity.this, MainActivity.class));
                     finish();
                 }
             }

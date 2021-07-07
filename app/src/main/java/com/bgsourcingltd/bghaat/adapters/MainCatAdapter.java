@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
+import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -38,8 +39,7 @@ public class MainCatAdapter extends RecyclerView.Adapter<MainCatAdapter.MainCatV
     @Override
     public void onBindViewHolder(@NonNull @NotNull MainCatAdapter.MainCatViewHolder holder, int position) {
         holder.mainCatTv.setText(mainCategoryModelList.get(position).getCatName());
-        holder.mainCatIv.setImageResource(mainCategoryModelList.get(position).getCatImage());
-
+        Glide.with(context).load(mainCategoryModelList.get(position).getCatImage()).into(holder.mainCatIv);
     }
 
     @Override
@@ -48,14 +48,16 @@ public class MainCatAdapter extends RecyclerView.Adapter<MainCatAdapter.MainCatV
     }
 
     public class MainCatViewHolder extends RecyclerView.ViewHolder{
-        ImageView mainCatIv;
         TextView mainCatTv;
+        ImageView mainCatIv;
+
 
         public MainCatViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
-            mainCatIv = itemView.findViewById(R.id.iv_main_cat_raw);
             mainCatTv = itemView.findViewById(R.id.tv_main_cat_raw);
+            mainCatIv = itemView.findViewById(R.id.iv_main_cat_raw);
+
         }
     }
 }
