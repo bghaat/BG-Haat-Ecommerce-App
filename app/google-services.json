@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "619757472193",
-    "project_id": "bg-haat",
-    "storage_bucket": "bg-haat.appspot.com"
+    "project_number": "897450927520",
+    "project_id": "bg-haat-e5629",
+    "storage_bucket": "bg-haat-e5629.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:619757472193:android:ce7bf2dabb90e8fb4ec740",
+        "mobilesdk_app_id": "1:897450927520:android:fef016be5e4f3ba90370c5",
         "android_client_info": {
           "package_name": "com.bgsourcingltd.bghaat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "619757472193-pj0nhhkmsl6mlhe2o3gotanugktt15qc.apps.googleusercontent.com",
+          "client_id": "897450927520-3qp45on3udps3lh7uba0221it8meh9bn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.bgsourcingltd.bghaat",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "619757472193-dt620ot9rko8gk1u7f25jchcmn7si2oe.apps.googleusercontent.com",
+          "client_id": "897450927520-4bs0fpbfr6baecanhdjlakf4r105j2lv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCcgBPgX6D-K5CRVGsIxGaBJkwOZM0zZfA"
+          "current_key": "AIzaSyCSj6_uYneaZPJOhNYh4Zk6w1VWkhiQbv0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "619757472193-dt620ot9rko8gk1u7f25jchcmn7si2oe.apps.googleusercontent.com",
+              "client_id": "897450927520-4bs0fpbfr6baecanhdjlakf4r105j2lv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

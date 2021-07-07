@@ -37,11 +37,10 @@ public class IntroSliderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if (!isFirstTimeAppStart()){
             setAppStartStatus(false);
-            startActivity(new Intent(IntroSliderActivity.this, SendOTPActivity.class));
+            startActivity(new Intent(IntroSliderActivity.this, MainActivity.class));
             finish();
         }
         setContentView(R.layout.activity_intro_slider);
-
         viewPager = findViewById(R.id.intro_viewpager);
         linearLayout = findViewById(R.id.dots_layout);
         nextBtn = findViewById(R.id.btn_next);

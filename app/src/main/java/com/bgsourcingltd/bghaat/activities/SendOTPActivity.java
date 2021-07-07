@@ -16,6 +16,7 @@ import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.userauth.UserAuthPreference;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -27,6 +28,7 @@ import static android.content.ContentValues.TAG;
 
 public class SendOTPActivity extends AppCompatActivity {
     private UserAuthPreference preference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
