@@ -8,6 +8,8 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -34,11 +37,11 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
+    private DrawerLayout drawerLayout;
+    private ImageView menuIv;
     SliderView sliderView;
 
     int[] images = {R.drawable.one,R.drawable.two,R.drawable.three};
-
-
     private RecyclerView rvMainCategory;
     private Context context;
 
@@ -67,6 +70,8 @@ public class HomeFragment extends Fragment {
 
         sliderView = view.findViewById(R.id.image_slider);
         rvMainCategory = view.findViewById(R.id.rv_main_category);
+        drawerLayout = view.findViewById(R.id.drawer_layout);
+        menuIv = view.findViewById(R.id.iv_menu);
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
 
@@ -75,6 +80,13 @@ public class HomeFragment extends Fragment {
         sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         sliderView.startAutoCycle();
 
+
+        menuIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNavigationDrawer();
+            }
+        });
 
 
         setMainCategory();
@@ -101,18 +113,20 @@ public class HomeFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(getActivity(), backPressedCallback);
     }
 
-    private void setMainCategory() {
+    private void setNavigationDrawer() {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
 
+    private void setMainCategory() {
         List<MainCategoryModel> mainCategoryModelList = new ArrayList<>();
-        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.logo));
-        /*mainCategoryModelList.add(new MainCategoryModel("Kids",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Grocery",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Cocking",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Helath",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.shirt));*/
+
+        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
 
         MainCatAdapter adapter = new MainCatAdapter(context,mainCategoryModelList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);

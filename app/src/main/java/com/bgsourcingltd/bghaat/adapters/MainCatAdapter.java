@@ -39,7 +39,10 @@ public class MainCatAdapter extends RecyclerView.Adapter<MainCatAdapter.MainCatV
     @Override
     public void onBindViewHolder(@NonNull @NotNull MainCatAdapter.MainCatViewHolder holder, int position) {
         holder.mainCatTv.setText(mainCategoryModelList.get(position).getCatName());
-        Glide.with(context).load(mainCategoryModelList.get(position).getCatImage()).into(holder.mainCatIv);
+        holder.mainCatIv.setImageResource(mainCategoryModelList.get(position).getCatImage());
+        /*Glide.with(context).
+                load(mainCategoryModelList.get(position).getCatImage())
+                .into(holder.mainCatIv);*/
     }
 
     @Override

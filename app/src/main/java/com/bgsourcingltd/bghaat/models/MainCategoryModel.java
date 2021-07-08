@@ -1,6 +1,5 @@
 package com.bgsourcingltd.bghaat.models;
 
-import android.graphics.drawable.Drawable;
 
 public class MainCategoryModel {
     private String catName;
