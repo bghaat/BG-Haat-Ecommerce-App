@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.SliderAdapter;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
+import com.google.android.material.navigation.NavigationView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -40,6 +42,7 @@ public class HomeFragment extends Fragment {
     private DrawerLayout drawerLayout;
     private ImageView menuIv;
     SliderView sliderView;
+    private NavigationView navigationView;
 
     int[] images = {R.drawable.one,R.drawable.two,R.drawable.three};
     private RecyclerView rvMainCategory;
@@ -71,6 +74,7 @@ public class HomeFragment extends Fragment {
         sliderView = view.findViewById(R.id.image_slider);
         rvMainCategory = view.findViewById(R.id.rv_main_category);
         drawerLayout = view.findViewById(R.id.drawer_layout);
+        navigationView = view.findViewById(R.id.navigation_view);
         menuIv = view.findViewById(R.id.iv_menu);
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
@@ -81,15 +85,10 @@ public class HomeFragment extends Fragment {
         sliderView.startAutoCycle();
 
 
-        menuIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setNavigationDrawer();
-            }
-        });
 
 
         setMainCategory();
+        setNavigationDrawer();
 
 
         //Fragment OnBack Pressed
@@ -114,7 +113,25 @@ public class HomeFragment extends Fragment {
     }
 
     private void setNavigationDrawer() {
-        drawerLayout.openDrawer(GravityCompat.START);
+        menuIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        Toast.makeText(context, "Home", Toast.LENGTH_SHORT).show();
+                    case R.id.wish_list:
+                        Toast.makeText(context, "wishList", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
     }
 
     private void setMainCategory() {
