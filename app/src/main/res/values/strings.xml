@@ -23,5 +23,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="category">Category:</string>
+    <string name="category">All Category:</string>
+    <string name="viewall">ViewAll</string>
+    <string name="_200_tk"><strike> 200 </strike>TK</string>
 </resources>
