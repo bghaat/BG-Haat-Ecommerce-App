@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:src="@drawable/deshi_chesse"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="250 TK"
-            android:textColor="@color/black"
+            android:textColor="@color/red"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/tv_product_name_new_arrival"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -54,6 +54,22 @@
             app:layout_constraintTop_toTopOf="@id/tv_price_new_arrival"
             app:layout_constraintBottom_toBottomOf="@id/tv_price_new_arrival"
             android:layout_marginStart="8sp"/>
+
+        <TextView
+            android:id="@+id/tv_add_new_arrival"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Add"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:padding="2dp"
+            android:background="@drawable/orange_button_background"
+            app:layout_constraintTop_toBottomOf="@id/tv_strike_new_arrival"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
 
 

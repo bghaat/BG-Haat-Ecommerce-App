@@ -25,8 +25,10 @@ import android.widget.Toast;
 import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
+import com.bgsourcingltd.bghaat.adapters.NewArrivalCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.SliderAdapter;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
+import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.google.android.material.navigation.NavigationView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -44,8 +46,10 @@ public class HomeFragment extends Fragment {
     SliderView sliderView;
     private NavigationView navigationView;
 
+
     int[] images = {R.drawable.one,R.drawable.two,R.drawable.three};
     private RecyclerView rvMainCategory;
+    private RecyclerView rvNewArrivalCategory;
     private Context context;
 
 
@@ -73,6 +77,7 @@ public class HomeFragment extends Fragment {
 
         sliderView = view.findViewById(R.id.image_slider);
         rvMainCategory = view.findViewById(R.id.rv_main_category);
+        rvNewArrivalCategory = view.findViewById(R.id.rv_new_arrival);
         drawerLayout = view.findViewById(R.id.drawer_layout);
         navigationView = view.findViewById(R.id.navigation_view);
         menuIv = view.findViewById(R.id.iv_menu);
@@ -85,10 +90,12 @@ public class HomeFragment extends Fragment {
         sliderView.startAutoCycle();
 
 
-
-
         setMainCategory();
+        setNewArrivalCategory();
+
         setNavigationDrawer();
+
+
 
 
         //Fragment OnBack Pressed
@@ -111,6 +118,8 @@ public class HomeFragment extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getActivity(), backPressedCallback);
     }
+
+
 
     private void setNavigationDrawer() {
         menuIv.setOnClickListener(new View.OnClickListener() {
@@ -137,13 +146,11 @@ public class HomeFragment extends Fragment {
     private void setMainCategory() {
         List<MainCategoryModel> mainCategoryModelList = new ArrayList<>();
 
-        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.cotton_polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.cotton_polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Kids",R.drawable.cotton_polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Food",R.drawable.cotton_polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Beauti",R.drawable.cotton_polo_shirt));
 
         MainCatAdapter adapter = new MainCatAdapter(context,mainCategoryModelList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
@@ -151,5 +158,24 @@ public class HomeFragment extends Fragment {
         rvMainCategory.setLayoutManager(linearLayoutManager);
         rvMainCategory.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    private void setNewArrivalCategory() {
+        List<NewArrivalModel> newArrivalModelList = new ArrayList<>();
+
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular","150","100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Mozarella cheese","150","100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Oil Regular","150","100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Garlic Muri","150","100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular","150","100"));
+
+
+        NewArrivalCatAdapter adapter = new NewArrivalCatAdapter(context,newArrivalModelList);
+        LinearLayoutManager manager = new LinearLayoutManager(context);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rvNewArrivalCategory.setLayoutManager(manager);
+        rvNewArrivalCategory.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
     }
 }
