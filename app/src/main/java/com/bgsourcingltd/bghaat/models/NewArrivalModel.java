@@ -1,17 +1,28 @@
 package com.bgsourcingltd.bghaat.models;
 
-public class NewArrivalModel {
+import java.io.Serializable;
+
+public class NewArrivalModel implements Serializable {
 
     private int imageUrl;
     private String foodTitle;
     private String price;
     private String strikePrice;
+    private int numberInCart;
 
     public NewArrivalModel(int imageUrl, String foodTitle, String price, String strikePrice) {
         this.imageUrl = imageUrl;
         this.foodTitle = foodTitle;
         this.price = price;
         this.strikePrice = strikePrice;
+    }
+
+    public NewArrivalModel(int imageUrl, String foodTitle, String price, String strikePrice, int numberInCart) {
+        this.imageUrl = imageUrl;
+        this.foodTitle = foodTitle;
+        this.price = price;
+        this.strikePrice = strikePrice;
+        this.numberInCart = numberInCart;
     }
 
     public int getImageUrl() {
@@ -44,5 +55,13 @@ public class NewArrivalModel {
 
     public void setStrikePrice(String strikePrice) {
         this.strikePrice = strikePrice;
+    }
+
+    public int getNumberInCart() {
+        return numberInCart;
+    }
+
+    public void setNumberInCart(int numberInCart) {
+        this.numberInCart = numberInCart;
     }
 }

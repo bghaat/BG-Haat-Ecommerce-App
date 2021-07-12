@@ -1,6 +1,7 @@
 package com.bgsourcingltd.bghaat.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.activities.ShowDetailsActivity;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 
 import org.jetbrains.annotations.NotNull;
@@ -42,6 +44,17 @@ public class NewArrivalCatAdapter extends RecyclerView.Adapter<NewArrivalCatAdap
         holder.productTitleTv.setText(newArrivalModelList.get(position).getFoodTitle());
         holder.productPriceTv.setText(newArrivalModelList.get(position).getPrice()+ "TK");
         holder.productStrikeTv.setText(newArrivalModelList.get(position).getStrikePrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewArrivalModel object = newArrivalModelList.get(position);
+                Intent intent = new Intent(context, ShowDetailsActivity.class);
+                intent.putExtra("object",object);
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 

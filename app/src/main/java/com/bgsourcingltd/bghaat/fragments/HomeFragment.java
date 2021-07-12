@@ -164,9 +164,9 @@ public class HomeFragment extends Fragment {
         List<NewArrivalModel> newArrivalModelList = new ArrayList<>();
 
         newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular","150","100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Mozarella cheese","150","100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Oil Regular","150","100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Garlic Muri","150","100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Mozarella cheese","250","100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Oil Regular","350","100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Garlic Muri","450","100"));
         newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular","150","100"));
 
 
