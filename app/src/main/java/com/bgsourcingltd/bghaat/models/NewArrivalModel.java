@@ -6,18 +6,18 @@ public class NewArrivalModel implements Serializable {
 
     private int imageUrl;
     private String foodTitle;
-    private String price;
+    private Double price;
     private String strikePrice;
     private int numberInCart;
 
-    public NewArrivalModel(int imageUrl, String foodTitle, String price, String strikePrice) {
+    public NewArrivalModel(int imageUrl, String foodTitle, Double price, String strikePrice) {
         this.imageUrl = imageUrl;
         this.foodTitle = foodTitle;
         this.price = price;
         this.strikePrice = strikePrice;
     }
 
-    public NewArrivalModel(int imageUrl, String foodTitle, String price, String strikePrice, int numberInCart) {
+    public NewArrivalModel(int imageUrl, String foodTitle, Double price, String strikePrice, int numberInCart) {
         this.imageUrl = imageUrl;
         this.foodTitle = foodTitle;
         this.price = price;
@@ -41,11 +41,11 @@ public class NewArrivalModel implements Serializable {
         this.foodTitle = foodTitle;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

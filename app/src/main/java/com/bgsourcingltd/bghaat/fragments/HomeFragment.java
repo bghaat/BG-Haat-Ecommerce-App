@@ -2,6 +2,7 @@ package com.bgsourcingltd.bghaat.fragments;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.NewArrivalCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.SliderAdapter;
@@ -42,7 +44,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     private DrawerLayout drawerLayout;
-    private ImageView menuIv;
+    private ImageView menuIv,cartIv;
     SliderView sliderView;
     private NavigationView navigationView;
 
@@ -81,6 +83,7 @@ public class HomeFragment extends Fragment {
         drawerLayout = view.findViewById(R.id.drawer_layout);
         navigationView = view.findViewById(R.id.navigation_view);
         menuIv = view.findViewById(R.id.iv_menu);
+        cartIv = view.findViewById(R.id.iv_cart);
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
 
@@ -94,6 +97,15 @@ public class HomeFragment extends Fragment {
         setNewArrivalCategory();
 
         setNavigationDrawer();
+
+        cartIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context, CartListActivity.class));
+            }
+        });
+
+
 
 
 
@@ -163,11 +175,11 @@ public class HomeFragment extends Fragment {
     private void setNewArrivalCategory() {
         List<NewArrivalModel> newArrivalModelList = new ArrayList<>();
 
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular","150","100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Mozarella cheese","250","100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Oil Regular","350","100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Garlic Muri","450","100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular","150","100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular",150.00,"100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Mozarella cheese",250.0,"100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Oil Regular",250.0,"100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Garlic Muri",250.0,"100"));
+        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular",250.0,"100"));
 
 
         NewArrivalCatAdapter adapter = new NewArrivalCatAdapter(context,newArrivalModelList);
