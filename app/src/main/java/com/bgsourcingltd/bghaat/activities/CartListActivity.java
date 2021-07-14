@@ -32,12 +32,13 @@ public class CartListActivity extends AppCompatActivity {
         managementCart = new ManagementCart(this);
         initView();
         initList();
+        calculateCard();
     }
 
     private void initList() {
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerViewList.setLayoutManager(linearLayoutManager);
-
         adapter = new CartListAdapter(managementCart.getListCard(), this, new ChangeNumberItemsListener() {
             @Override
             public void changed() {

@@ -14,6 +14,7 @@ public class ManagementCart {
 
     public ManagementCart(Context context) {
         this.context = context;
+        this.tinyDB = new TinyDB(context);
 
     }
 
@@ -47,8 +48,8 @@ public class ManagementCart {
     }
 
     public void plusNumberFood(ArrayList<NewArrivalModel> listfood, int position, ChangeNumberItemsListener changeNumberItemsListener){
-        listfood.get(position).setNumberInCart(listfood.get(position).getNumberInCart()+1);
-        tinyDB.putObject("CardList", listfood);
+        listfood.get(position).setNumberInCart(listfood.get(position).getNumberInCart() + 1);
+        tinyDB.putListObject("CardList", listfood);
         changeNumberItemsListener.changed();
     }
 
