@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="My Card"
+                android:text="@string/my_cart"
                 android:textAlignment="center"
                 android:textColor="#ff3d00"
                 android:textSize="20sp"

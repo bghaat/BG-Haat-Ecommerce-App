@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
+import com.bgsourcingltd.bghaat.adapters.BestSellingCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.NewArrivalCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.SliderAdapter;
@@ -50,8 +51,7 @@ public class HomeFragment extends Fragment {
 
 
     int[] images = {R.drawable.one,R.drawable.two,R.drawable.three};
-    private RecyclerView rvMainCategory;
-    private RecyclerView rvNewArrivalCategory;
+    private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling;
     private Context context;
 
 
@@ -80,6 +80,7 @@ public class HomeFragment extends Fragment {
         sliderView = view.findViewById(R.id.image_slider);
         rvMainCategory = view.findViewById(R.id.rv_main_category);
         rvNewArrivalCategory = view.findViewById(R.id.rv_new_arrival);
+        rvBestSelling = view.findViewById(R.id.rv_best_selling);
         drawerLayout = view.findViewById(R.id.drawer_layout);
         navigationView = view.findViewById(R.id.navigation_view);
         menuIv = view.findViewById(R.id.iv_menu);
@@ -95,6 +96,7 @@ public class HomeFragment extends Fragment {
 
         setMainCategory();
         setNewArrivalCategory();
+        setBestSelling();
 
         setNavigationDrawer();
 
@@ -130,7 +132,6 @@ public class HomeFragment extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getActivity(), backPressedCallback);
     }
-
 
 
     private void setNavigationDrawer() {
@@ -187,6 +188,25 @@ public class HomeFragment extends Fragment {
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvNewArrivalCategory.setLayoutManager(manager);
         rvNewArrivalCategory.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+    }
+    private void setBestSelling() {
+
+        List<NewArrivalModel> list = new ArrayList<>();
+
+        list.add(new NewArrivalModel(R.drawable.muri,"Demo Product Name",150.00,"100"));
+        list.add(new NewArrivalModel(R.drawable.deshi_chesse,"Demo Product Name",250.0,"100"));
+        list.add(new NewArrivalModel(R.drawable.muri,"Demo Product Name",250.0,"100"));
+        list.add(new NewArrivalModel(R.drawable.deshi_chesse,"Demo Product Name",250.0,"100"));
+        list.add(new NewArrivalModel(R.drawable.deshi_chesse,"Demo Product Name",250.0,"100"));
+
+
+        BestSellingCatAdapter adapter = new BestSellingCatAdapter(list,context);
+        LinearLayoutManager manager = new LinearLayoutManager(context);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rvBestSelling.setLayoutManager(manager);
+        rvBestSelling.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
     }

@@ -29,6 +29,12 @@ public class ShowDetailsActivity extends AppCompatActivity {
         managementCart = new ManagementCart(this);
         initView();
         getBundle();
+
+        /*Check what object come from
+        object = (NewArrivalModel) getIntent().getSerializableExtra("object");
+        if (object instanceof NewArrivalModel)
+
+        }*/
     }
 
 
@@ -75,7 +81,6 @@ public class ShowDetailsActivity extends AppCompatActivity {
                 object.setNumberInCart(numberOrder);
                 managementCart.insertFood(object);
 
-                
             }
         });
 
