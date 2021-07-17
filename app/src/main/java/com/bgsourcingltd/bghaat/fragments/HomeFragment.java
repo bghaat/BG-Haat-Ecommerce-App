@@ -44,11 +44,8 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
-    private DrawerLayout drawerLayout;
-    private ImageView menuIv,cartIv;
-    SliderView sliderView;
-    private NavigationView navigationView;
 
+    SliderView sliderView;
 
     int[] images = {R.drawable.one,R.drawable.two,R.drawable.three};
     private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling;
@@ -81,10 +78,7 @@ public class HomeFragment extends Fragment {
         rvMainCategory = view.findViewById(R.id.rv_main_category);
         rvNewArrivalCategory = view.findViewById(R.id.rv_new_arrival);
         rvBestSelling = view.findViewById(R.id.rv_best_selling);
-        drawerLayout = view.findViewById(R.id.drawer_layout);
-        navigationView = view.findViewById(R.id.navigation_view);
-        menuIv = view.findViewById(R.id.iv_menu);
-        cartIv = view.findViewById(R.id.iv_cart);
+
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
 
@@ -97,19 +91,6 @@ public class HomeFragment extends Fragment {
         setMainCategory();
         setNewArrivalCategory();
         setBestSelling();
-
-        setNavigationDrawer();
-
-        cartIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(context, CartListActivity.class));
-            }
-        });
-
-
-
-
 
 
         //Fragment OnBack Pressed
@@ -134,27 +115,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    private void setNavigationDrawer() {
-        menuIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        Toast.makeText(context, "Home", Toast.LENGTH_SHORT).show();
-                    case R.id.wish_list:
-                        Toast.makeText(context, "wishList", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-        });
-    }
 
     private void setMainCategory() {
         List<MainCategoryModel> mainCategoryModelList = new ArrayList<>();
