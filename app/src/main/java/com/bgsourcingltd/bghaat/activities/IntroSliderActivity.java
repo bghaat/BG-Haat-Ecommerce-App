@@ -9,8 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+
 import android.text.Html;
 import android.view.View;
 import android.view.Window;
@@ -19,7 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bgsourcingltd.bghaat.MainActivity;
+
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.adapters.MyAdapter;
 
