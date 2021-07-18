@@ -27,7 +27,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:alpha=".5"
         android:background="@color/white"
         android:layout_above="@id/dots_layout"

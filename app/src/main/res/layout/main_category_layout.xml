@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="75dp"
     android:layout_height="75dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
     app:cardCornerRadius="8dp"
-    android:elevation="3dp">
+    android:elevation="6dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/yellow">
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/iv_main_cat_raw"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/cotton_polo_shirt"
+            android:src="@drawable/men"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="4dp"/>
 
         <TextView
             android:id="@+id/tv_main_cat_raw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gents"
-            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/iv_main_cat_raw"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:textStyle="bold"/>
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

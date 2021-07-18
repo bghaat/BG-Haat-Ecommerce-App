@@ -12,6 +12,7 @@ import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.helper.ManagementCart;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ShowDetailsActivity extends AppCompatActivity {
     private TextView addToCardBtn ;
@@ -80,6 +81,17 @@ public class ShowDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 object.setNumberInCart(numberOrder);
                 managementCart.insertFood(object);
+
+                Snackbar snackbar = Snackbar.make(v,"You have added new Product in Cart",Snackbar.LENGTH_LONG);
+                snackbar.setDuration(5000);
+                snackbar.setAnchorView(addToCardBtn);
+                snackbar.setAction("View", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(ShowDetailsActivity.this,CartListActivity.class));
+                    }
+                });
+                snackbar.show();
 
             }
         });

@@ -2,11 +2,14 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="150dp"
-    android:layout_height="220dp"
+    android:layout_height="215dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="4dp"
     app:cardElevation="5dp"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,9 +21,11 @@
             android:layout_height="130dp"
             android:src="@drawable/deshi_chesse"
             android:scaleType="centerCrop"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
             />
 
         <TextView
@@ -32,6 +37,7 @@
             app:layout_constraintTop_toBottomOf="@id/iv_product_new_arrival"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="6dp"
             android:textSize="16sp"
             android:textColor="@color/black"
             />
@@ -43,6 +49,7 @@
             android:text="@string/_250_tk"
             android:textColor="@color/red"
             android:textSize="18sp"
+            android:layout_marginStart="6dp"
             app:layout_constraintTop_toBottomOf="@id/tv_product_name_new_arrival"
             app:layout_constraintStart_toStartOf="parent"/>
 

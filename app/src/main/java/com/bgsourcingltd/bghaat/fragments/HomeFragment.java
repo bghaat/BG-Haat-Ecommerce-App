@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.MainActivity;
@@ -51,6 +52,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling;
     private Context context;
 
+    private TextView mainCatTv;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -78,6 +81,7 @@ public class HomeFragment extends Fragment {
         rvMainCategory = view.findViewById(R.id.rv_main_category);
         rvNewArrivalCategory = view.findViewById(R.id.rv_new_arrival);
         rvBestSelling = view.findViewById(R.id.rv_best_selling);
+        mainCatTv =  view.findViewById(R.id.tv_main_cat_viewAll);
 
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
@@ -92,39 +96,27 @@ public class HomeFragment extends Fragment {
         setNewArrivalCategory();
         setBestSelling();
 
+        //click view all category
 
-        //Fragment OnBack Pressed
-        OnBackPressedCallback backPressedCallback = new OnBackPressedCallback(true) {
+        mainCatTv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void handleOnBackPressed() {
-
-                new AlertDialog.Builder(getContext())
-                        .setMessage("Are you sure you want to exit?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                getActivity().finish();
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-                //getActivity().finish();
+            public void onClick(View v) {
+                Toast.makeText(context, "main cat", Toast.LENGTH_SHORT).show();
             }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(getActivity(), backPressedCallback);
+        });
+
+
     }
-
-
 
 
     private void setMainCategory() {
         List<MainCategoryModel> mainCategoryModelList = new ArrayList<>();
 
         mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.cotton_polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.cotton_polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Kids",R.drawable.cotton_polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Food",R.drawable.cotton_polo_shirt));
-        mainCategoryModelList.add(new MainCategoryModel("Beauti",R.drawable.cotton_polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.women));
+        mainCategoryModelList.add(new MainCategoryModel("Grocery",R.drawable.grocery));
+        mainCategoryModelList.add(new MainCategoryModel("Kids",R.drawable.kids));
+        mainCategoryModelList.add(new MainCategoryModel("Electronic",R.drawable.device));
 
         MainCatAdapter adapter = new MainCatAdapter(context,mainCategoryModelList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);

@@ -5,12 +5,14 @@ import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.Interface.ChangeNumberItemsListener;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
 public class ManagementCart {
     private Context context;
     private TinyDB tinyDB;
+
 
     public ManagementCart(Context context) {
         this.context = context;
@@ -39,7 +41,8 @@ public class ManagementCart {
         }
 
         tinyDB.putListObject("CardList", listFood);
-        Toast.makeText(context, "Added To Your Card", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Added To Your Card", Toast.LENGTH_SHORT).show();
+
 
     }
 
