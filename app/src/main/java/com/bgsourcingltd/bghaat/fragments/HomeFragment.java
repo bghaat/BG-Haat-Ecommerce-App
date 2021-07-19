@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.adapters.BestSellingCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
@@ -101,10 +102,10 @@ public class HomeFragment extends Fragment {
         mainCatTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "main cat", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(context, AllCategoryActivity.class));
+
             }
         });
-
 
     }
 
@@ -116,7 +117,7 @@ public class HomeFragment extends Fragment {
         mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.women));
         mainCategoryModelList.add(new MainCategoryModel("Grocery",R.drawable.grocery));
         mainCategoryModelList.add(new MainCategoryModel("Kids",R.drawable.kids));
-        mainCategoryModelList.add(new MainCategoryModel("Electronic",R.drawable.device));
+        mainCategoryModelList.add(new MainCategoryModel("Electronics",R.drawable.device));
 
         MainCatAdapter adapter = new MainCatAdapter(context,mainCategoryModelList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);

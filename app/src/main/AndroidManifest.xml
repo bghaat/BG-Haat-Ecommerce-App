@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BGHaat">
-        <activity android:name=".activities.CartListActivity"></activity>
+        <activity android:name=".activities.AllCategoryActivity"></activity>
+        <activity android:name=".activities.CartListActivity" />
         <activity android:name=".activities.ShowDetailsActivity" />
         <activity
             android:name=".activities.VerifyOTPActivity"
