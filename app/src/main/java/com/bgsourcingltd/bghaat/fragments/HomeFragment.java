@@ -32,8 +32,10 @@ import com.bgsourcingltd.bghaat.adapters.BestSellingCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.NewArrivalCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.SliderAdapter;
+import com.bgsourcingltd.bghaat.adapters.TopBrandsAdapter;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bgsourcingltd.bghaat.models.TopBrandsModel;
 import com.google.android.material.navigation.NavigationView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -50,7 +52,7 @@ public class HomeFragment extends Fragment {
     SliderView sliderView;
 
     int[] images = {R.drawable.one,R.drawable.two,R.drawable.three};
-    private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling;
+    private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling,rvTopBrands;
     private Context context;
 
     private TextView mainCatTv;
@@ -82,6 +84,7 @@ public class HomeFragment extends Fragment {
         rvMainCategory = view.findViewById(R.id.rv_main_category);
         rvNewArrivalCategory = view.findViewById(R.id.rv_new_arrival);
         rvBestSelling = view.findViewById(R.id.rv_best_selling);
+        rvTopBrands = view.findViewById(R.id.rv_top_brands);
         mainCatTv =  view.findViewById(R.id.tv_main_cat_viewAll);
 
 
@@ -96,6 +99,7 @@ public class HomeFragment extends Fragment {
         setMainCategory();
         setNewArrivalCategory();
         setBestSelling();
+        setTopBrands();
 
         //click view all category
 
@@ -108,6 +112,8 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
+
 
 
     private void setMainCategory() {
@@ -162,6 +168,23 @@ public class HomeFragment extends Fragment {
         rvBestSelling.setLayoutManager(manager);
         rvBestSelling.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+    }
+
+    private void setTopBrands() {
+
+        List<TopBrandsModel> topBrandsModelList = new ArrayList<>();
+        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
+        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
+        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
+        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
+        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
+
+        TopBrandsAdapter adapter = new TopBrandsAdapter(topBrandsModelList,context);
+        LinearLayoutManager manager = new LinearLayoutManager(context);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rvTopBrands.setLayoutManager(manager);
+        rvTopBrands.setAdapter(adapter);
 
     }
 }

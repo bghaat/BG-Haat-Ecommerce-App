@@ -32,4 +32,6 @@
     <string name="deshi_chesee_regular">Deshi chesee Regular</string>
     <string name="my_cart">My Cart</string>
     <string name="gents">Gents</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>

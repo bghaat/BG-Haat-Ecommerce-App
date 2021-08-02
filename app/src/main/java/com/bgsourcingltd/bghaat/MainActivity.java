@@ -1,6 +1,7 @@
 package com.bgsourcingltd.bghaat;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ImageView menuIv,cartIv;
     private NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +42,11 @@ public class MainActivity extends AppCompatActivity {
         menuIv = findViewById(R.id.iv_menu);
         cartIv = findViewById(R.id.iv_cart);
 
+
         setBottomNavigation();
         setNavigationDrawer();
+
+
 
         cartIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, CartListActivity.class));
             }
         });
+
+        menuIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNavigationDrawer();
+            }
+        });
+
     }
 
     private void setBottomNavigation() {
@@ -58,25 +73,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setNavigationDrawer() {
-        menuIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+
                 switch (item.getItemId()){
                     case R.id.home:
                         Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                     case R.id.wish_list:
                         Toast.makeText(MainActivity.this, "wishList", Toast.LENGTH_SHORT).show();
+                    case R.id.category:
+                        startActivity(new Intent(MainActivity.this, AllCategoryActivity.class));
                 }
                 return true;
             }
         });
+
+        //Show shared preference data from login info
     }
 
     /*@Override
@@ -93,4 +110,14 @@ public class MainActivity extends AppCompatActivity {
                 .show();
         //getActivity().finish();
     }*/
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
 }
