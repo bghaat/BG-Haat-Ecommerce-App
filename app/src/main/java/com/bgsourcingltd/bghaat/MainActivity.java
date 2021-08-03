@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -27,9 +28,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
-    private ImageView menuIv,cartIv;
+    private ImageView cartIv;
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
+    private Toolbar toolbar;
 
 
     @Override
@@ -39,13 +41,18 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
-        menuIv = findViewById(R.id.iv_menu);
         cartIv = findViewById(R.id.iv_cart);
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
 
-        setBottomNavigation();
         setNavigationDrawer();
-
+        setBottomNavigation();
 
 
         cartIv.setOnClickListener(new View.OnClickListener() {
@@ -55,12 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        menuIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setNavigationDrawer();
-            }
-        });
 
     }
 
@@ -73,21 +74,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setNavigationDrawer() {
-        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
 
+                drawerLayout.closeDrawer(GravityCompat.START);
+
                 switch (item.getItemId()){
-                    case R.id.home:
-                        Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
-                    case R.id.wish_list:
-                        Toast.makeText(MainActivity.this, "wishList", Toast.LENGTH_SHORT).show();
+
                     case R.id.category:
                         startActivity(new Intent(MainActivity.this, AllCategoryActivity.class));
+                        break;
+                    case R.id.cart:
+                        startActivity(new Intent(MainActivity.this,CartListActivity.class));
+                        break;
+
+                    case R.id.contact:
+                        startActivity(new Intent(MainActivity.this,CartListActivity.class));
+                        break;
                 }
                 return true;
             }
@@ -118,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             super.onBackPressed();
+
         }
     }
 }

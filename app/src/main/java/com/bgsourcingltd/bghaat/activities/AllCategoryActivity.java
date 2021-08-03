@@ -1,10 +1,12 @@
 package com.bgsourcingltd.bghaat.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.adapters.AllCategoryAdapter;
@@ -12,18 +14,27 @@ import com.bgsourcingltd.bghaat.models.MainCategoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AllCategoryActivity extends AppCompatActivity {
     private RecyclerView catAllRv;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_category);
         catAllRv = findViewById(R.id.rv_cat_all);
+        toolbar = findViewById(R.id.all_cat_toolbar);
+
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setCategoryRv();
     }
+
+
 
     private void setCategoryRv() {
         List<MainCategoryModel> list = new ArrayList<>();
@@ -41,5 +52,11 @@ public class AllCategoryActivity extends AppCompatActivity {
         catAllRv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

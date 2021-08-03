@@ -4,11 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/BGHaat/app/src/main/res/drawable/shopping_cart.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/activity_all_category.xml" value="0.19814814814814816" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/activity_contact_us.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/fragment_home.xml" value="0.20102564102564102" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/layout_navigation_header.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/main_category_layout.xml" value="0.20102564102564102" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/slide_one.xml" value="0.1962962962962963" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/top_brands_layout.xml" value="0.22" />
+        <entry key="..\:/BGHaat/app/src/main/res/menu/bottom_menu_bar.xml" value="0.1962962962962963" />
         <entry key="..\:/BGHaat/app/src/main/res/menu/drawer_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
