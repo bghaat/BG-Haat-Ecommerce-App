@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
+import com.bgsourcingltd.bghaat.activities.ContactUsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.contact:
-                        startActivity(new Intent(MainActivity.this,CartListActivity.class));
+                        startActivity(new Intent(MainActivity.this, ContactUsActivity.class));
                         break;
                 }
                 return true;
