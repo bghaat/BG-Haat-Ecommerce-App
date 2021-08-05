@@ -15,8 +15,5 @@
     <item
         android:title="@string/cart"
         android:id="@+id/cartFragment"
-        android:icon="@drawable/shopping_cart"/>
-
-
-
+        android:icon="@drawable/account"/>
 </menu>

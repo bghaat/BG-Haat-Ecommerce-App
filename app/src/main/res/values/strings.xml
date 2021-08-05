@@ -18,7 +18,7 @@
     <string name="we_deliverd_product_all_over_the_bangladesh_withing_an_hour">We Deliverd product all over the bangladesh within Short time.</string>
     <string name="home">Home</string>
     <string name="wish_list">Wish List</string>
-    <string name="cart">Cart</string>
+    <string name="cart">Profile</string>
     <string name="account">Account</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -37,4 +37,8 @@
     <string name="office_address">Road #7, House #47. Nikunja-1, Khilkhet, Dhaka-1229.</string>
     <string name="office_phone_no">01787663280</string>
     <string name="info_bghaat_com">info@bghaat.com</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="all_category">All Category</string>
+    <string name="cart_drawer">Cart</string>
+    <string name="rate_us">Rate Us</string>
 </resources>

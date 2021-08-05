@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -94,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.contact:
                         startActivity(new Intent(MainActivity.this, ContactUsActivity.class));
                         break;
+
+                    case R.id.rate:
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
+                        break;
+
+
                 }
                 return true;
             }
