@@ -1,5 +1,6 @@
 package com.bgsourcingltd.bghaat.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull CartListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull CartListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.title.setText(newArrivalModelArrayList.get(position).getFoodTitle());
         holder.feeEachItem.setText(String.valueOf(newArrivalModelArrayList.get(position).getPrice()));

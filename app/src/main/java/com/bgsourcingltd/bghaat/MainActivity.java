@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
                         break;
 
-
                 }
                 return true;
             }

@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
 
     SliderView sliderView;
 
-    int[] images = {R.drawable.one,R.drawable.two,R.drawable.three};
+    int[] images = {R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.app};
     private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling,rvTopBrands;
     private Context context;
 

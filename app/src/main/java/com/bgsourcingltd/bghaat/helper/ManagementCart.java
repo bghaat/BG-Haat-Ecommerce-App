@@ -56,6 +56,7 @@ public class ManagementCart {
 
     public void MinusNumberFood(ArrayList<NewArrivalModel> listfood, int position, ChangeNumberItemsListener changeNumberItemsListener){
         if (listfood.get(position).getNumberInCart() == 1) {
+            //Here check value is zero or not
             listfood.remove(position);
         } else {
             listfood.get(position).setNumberInCart(listfood.get(position).getNumberInCart() - 1);
