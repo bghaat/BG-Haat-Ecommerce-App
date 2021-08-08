@@ -11,30 +11,44 @@ import android.widget.ImageView;
 
 import com.bgsourcingltd.bghaat.R;
 
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.DialogPropertiesPendulum;
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum;
+
+
 public class SplashActivity extends AppCompatActivity {
     private ImageView logoImg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_splash);
+
+
 
         logoImg = findViewById(R.id.iv_splash);
 
+
         goToIntroActivity();
 
+
     }
+
+
     private void goToIntroActivity(){
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 startActivity(new Intent(SplashActivity.this, IntroSliderActivity.class));
                 finish();
             }
         }, 3000);
     }
+
+
+
 
 
 }
