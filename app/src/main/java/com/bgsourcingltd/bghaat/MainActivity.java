@@ -22,8 +22,10 @@ import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.activities.ContactUsActivity;
 
+import com.bgsourcingltd.bghaat.activities.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.onesignal.OneSignal;
 
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.DialogPropertiesPendulum;
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum;
@@ -31,12 +33,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
-    private ImageView cartIv;
+    private ImageView cartIv,searchIv;
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private Toolbar toolbar;
 
-
+    private static final String ONESIGNAL_APP_ID = "4866250c-552e-4db2-97b4-70030ededc27";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,17 +69,24 @@ public class MainActivity extends AppCompatActivity {
         builder.build();
 
 
-
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         cartIv = findViewById(R.id.iv_cart);
         toolbar = findViewById(R.id.toolbar);
+        searchIv = findViewById(R.id.iv_search);
 
         setSupportActionBar(toolbar);
 
         toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        // Enable verbose OneSignal logging to debug issues if needed.
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
 
 
 
@@ -89,6 +98,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, CartListActivity.class));
+            }
+        });
+
+        searchIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
             }
         });
 

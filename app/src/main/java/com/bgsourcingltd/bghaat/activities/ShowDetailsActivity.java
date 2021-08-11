@@ -83,9 +83,8 @@ public class ShowDetailsActivity extends AppCompatActivity {
                 object.setNumberInCart(numberOrder);
                 managementCart.insertFood(object);
 
-
                 Snackbar snackbar = Snackbar.make(v,"You have added new Product in Cart",Snackbar.LENGTH_LONG);
-                snackbar.setDuration(5000);
+                snackbar.setDuration(3000);
                 snackbar.setAnchorView(addToCardBtn);
                 snackbar.setAction("View", new View.OnClickListener() {
                     @Override
