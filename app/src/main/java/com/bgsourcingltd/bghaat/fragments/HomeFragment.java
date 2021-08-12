@@ -1,5 +1,6 @@
 package com.bgsourcingltd.bghaat.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -54,6 +55,7 @@ public class HomeFragment extends Fragment {
     int[] images = {R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.app};
     private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling,rvTopBrands;
     private Context context;
+    private ProgressDialog progressDialog;
 
     private TextView mainCatTv;
 
@@ -86,7 +88,7 @@ public class HomeFragment extends Fragment {
         rvBestSelling = view.findViewById(R.id.rv_best_selling);
         rvTopBrands = view.findViewById(R.id.rv_top_brands);
         mainCatTv =  view.findViewById(R.id.tv_main_cat_viewAll);
-
+        progressDialog = new ProgressDialog(context);
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
 
@@ -172,6 +174,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void setTopBrands() {
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         List<TopBrandsModel> topBrandsModelList = new ArrayList<>();
         topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
@@ -185,6 +190,7 @@ public class HomeFragment extends Fragment {
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvTopBrands.setLayoutManager(manager);
         rvTopBrands.setAdapter(adapter);
+        progressDialog.dismiss();
 
     }
 }

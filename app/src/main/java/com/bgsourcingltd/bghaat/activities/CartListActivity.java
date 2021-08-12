@@ -37,14 +37,12 @@ public class CartListActivity extends AppCompatActivity {
         initList();
         calculateCard();
 
-
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkOutButtonClicked();
             }
         });
-
 
     }
 

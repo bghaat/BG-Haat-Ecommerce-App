@@ -45,28 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // No Internet Dialog: Pendulum
-        NoInternetDialogPendulum.Builder builder = new NoInternetDialogPendulum.Builder(
-                this,
-                getLifecycle()
-        );
-        DialogPropertiesPendulum properties = builder.getDialogProperties();
-
-        properties.setCancelable(false); // Optional
-        properties.setNoInternetConnectionTitle("No Internet"); // Optional
-        properties.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
-        properties.setShowInternetOnButtons(true); // Optional
-        properties.setPleaseTurnOnText("Please turn on"); // Optional
-        properties.setWifiOnButtonText("Wifi"); // Optional
-        properties.setMobileDataOnButtonText("Mobile data"); // Optional
-
-        properties.setOnAirplaneModeTitle("No Internet"); // Optional
-        properties.setOnAirplaneModeMessage("You have turned on the airplane mode."); // Optional
-        properties.setPleaseTurnOffText("Please turn off"); // Optional
-        properties.setAirplaneModeOffButtonText("Airplane mode"); // Optional
-        properties.setShowAirplaneModeOffButtons(true); // Optional
-
-        builder.build();
+        noInternetCheck();
 
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -110,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
     private void setBottomNavigation() {
 
@@ -176,6 +157,31 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
 
         }
+    }
+
+    private void noInternetCheck() {
+        // No Internet Dialog: Pendulum
+        NoInternetDialogPendulum.Builder builder = new NoInternetDialogPendulum.Builder(
+                this,
+                getLifecycle()
+        );
+        DialogPropertiesPendulum properties = builder.getDialogProperties();
+
+        properties.setCancelable(false); // Optional
+        properties.setNoInternetConnectionTitle("No Internet"); // Optional
+        properties.setNoInternetConnectionMessage("Check your Internet connection and try again"); // Optional
+        properties.setShowInternetOnButtons(true); // Optional
+        properties.setPleaseTurnOnText("Please turn on"); // Optional
+        properties.setWifiOnButtonText("Wifi"); // Optional
+        properties.setMobileDataOnButtonText("Mobile data"); // Optional
+
+        properties.setOnAirplaneModeTitle("No Internet"); // Optional
+        properties.setOnAirplaneModeMessage("You have turned on the airplane mode."); // Optional
+        properties.setPleaseTurnOffText("Please turn off"); // Optional
+        properties.setAirplaneModeOffButtonText("Airplane mode"); // Optional
+        properties.setShowAirplaneModeOffButtons(true); // Optional
+
+        builder.build();
     }
 
 
