@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
@@ -23,6 +24,7 @@ import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.activities.ContactUsActivity;
 
 import com.bgsourcingltd.bghaat.activities.SearchActivity;
+import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.onesignal.OneSignal;
@@ -30,6 +32,9 @@ import com.onesignal.OneSignal;
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.DialogPropertiesPendulum;
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -74,9 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         cartIv.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, CartListActivity.class));
+
             }
         });
 

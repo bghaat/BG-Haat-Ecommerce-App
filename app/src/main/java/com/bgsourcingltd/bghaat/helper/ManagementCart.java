@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 import com.bgsourcingltd.bghaat.Interface.ChangeNumberItemsListener;
+import com.bgsourcingltd.bghaat.cartcounter.CartCounter;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -15,11 +16,13 @@ import java.util.ArrayList;
 public class ManagementCart {
     private Context context;
     private TinyDB tinyDB;
+    private CartCounter cartCounter;
 
 
     public ManagementCart(Context context) {
         this.context = context;
         this.tinyDB = new TinyDB(context);
+        cartCounter = new CartCounter(context);
 
     }
 
@@ -41,6 +44,9 @@ public class ManagementCart {
         }
         else {
             listFood.add(item);
+            cartCounter.increaseCartValue();
+            Toast.makeText(context, " "+ cartCounter.getCartValue(), Toast.LENGTH_SHORT).show();
+
         }
 
         tinyDB.putListObject("CardList", listFood);
@@ -61,8 +67,12 @@ public class ManagementCart {
         if (listfood.get(position).getNumberInCart() == 1) {
             //Here check value is zero or not
             listfood.remove(position);
+
+            cartCounter.decreaseCartValue();
+            Toast.makeText(context, " "+ cartCounter.getCartValue(), Toast.LENGTH_SHORT).show();
         } else {
             listfood.get(position).setNumberInCart(listfood.get(position).getNumberInCart() - 1);
+
         }
         tinyDB.putListObject("CardList", listfood);
         changeNumberItemsListener.changed();

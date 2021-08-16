@@ -32,11 +32,6 @@ public class ShowDetailsActivity extends AppCompatActivity {
         initView();
         getBundle();
 
-        /*Check what object come from
-        object = (NewArrivalModel) getIntent().getSerializableExtra("object");
-        if (object instanceof NewArrivalModel)
-
-        }*/
     }
 
 
@@ -84,7 +79,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
                 managementCart.insertFood(object);
 
                 Snackbar snackbar = Snackbar.make(v,"You have added new Product in Cart",Snackbar.LENGTH_LONG);
-                snackbar.setDuration(3000);
+                snackbar.setDuration(4000);
                 snackbar.setAnchorView(addToCardBtn);
                 snackbar.setAction("View", new View.OnClickListener() {
                     @Override
