@@ -69,7 +69,7 @@ public class ManagementCart {
             listfood.remove(position);
 
             cartCounter.decreaseCartValue();
-            Toast.makeText(context, " "+ cartCounter.getCartValue(), Toast.LENGTH_SHORT).show();
+
         } else {
             listfood.get(position).setNumberInCart(listfood.get(position).getNumberInCart() - 1);
 

@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -24,6 +25,7 @@ import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.activities.ContactUsActivity;
 
 import com.bgsourcingltd.bghaat.activities.SearchActivity;
+import com.bgsourcingltd.bghaat.cartcounter.CartCounter;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
     private Toolbar toolbar;
+    private TextView cartCounter;
 
     private static final String ONESIGNAL_APP_ID = "4866250c-552e-4db2-97b4-70030ededc27";
 
@@ -50,14 +53,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        noInternetCheck();
-
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         cartIv = findViewById(R.id.iv_cart);
         toolbar = findViewById(R.id.toolbar);
         searchIv = findViewById(R.id.iv_search);
+        cartCounter = findViewById(R.id.cart_counter);
 
         setSupportActionBar(toolbar);
 
@@ -73,9 +75,10 @@ public class MainActivity extends AppCompatActivity {
         OneSignal.setAppId(ONESIGNAL_APP_ID);
 
 
-
+        noInternetCheck();
         setNavigationDrawer();
         setBottomNavigation();
+
 
 
         cartIv.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
     private void setBottomNavigation() {
@@ -192,4 +194,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        CartCounter cartCounterObj = new CartCounter(this);
+        cartCounter.setText(String.valueOf(cartCounterObj.getCartValue()));
+        super.onResume();
+    }
 }
