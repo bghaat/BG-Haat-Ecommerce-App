@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,10 +23,13 @@ public class ShowDetailsActivity extends AppCompatActivity {
     private NewArrivalModel object;
     private ManagementCart managementCart;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_details);
+
 
         managementCart = new ManagementCart(this);
         initView();
@@ -44,6 +47,8 @@ public class ShowDetailsActivity extends AppCompatActivity {
         plusBtn = findViewById(R.id.plusBtn);
         minusBtn = findViewById(R.id.minusBtn);
         picFood = findViewById(R.id.foodPic);
+
+
     }
 
     private void getBundle() {

@@ -16,7 +16,6 @@ public class WishListPref {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private static final String WISH_LIST = "wish_list";
-    private String key = "Key";
 
 
     public WishListPref(Context context){
@@ -29,7 +28,6 @@ public class WishListPref {
         String json = gson.toJson(modelList);
         editor.putString(key, json);
         editor.apply();
-
 
     }
 
