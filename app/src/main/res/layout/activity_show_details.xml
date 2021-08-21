@@ -7,7 +7,6 @@
     tools:context=".activities.ShowDetailsActivity">
 
 
-
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
@@ -28,6 +27,7 @@
                 android:textColor="#373b54"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
 
             <TextView
                 android:id="@+id/priceTxt"
@@ -75,7 +75,6 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/plus" />
 
-
             </LinearLayout>
 
             <TextView
@@ -106,5 +105,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/favorite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

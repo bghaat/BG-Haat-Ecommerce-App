@@ -23,7 +23,7 @@ public class WishListPref {
         editor = preferences.edit();
     }
 
-    private void setWishList(List<NewArrivalModel> modelList,String key){
+    public void setWishList(List<NewArrivalModel> modelList,String key){
         Gson gson = new Gson();
         String json = gson.toJson(modelList);
         editor.putString(key, json);
@@ -31,7 +31,7 @@ public class WishListPref {
 
     }
 
-    private ArrayList<NewArrivalModel> getWishList(String key){
+    public ArrayList<NewArrivalModel> getWishList(String key){
 
         Gson gson = new Gson();
         String json = preferences.getString(key, null);

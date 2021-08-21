@@ -8,17 +8,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.helper.ManagementCart;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bgsourcingltd.bghaat.wishlistpreference.WishListPref;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShowDetailsActivity extends AppCompatActivity {
     private TextView addToCardBtn ;
     private TextView titleTxt,feeTxt,descriptionTxt,numberOrderTxt;
-    private ImageView plusBtn, minusBtn, picFood;
+    private ImageView plusBtn, minusBtn, picFood,favIv;
     private int numberOrder = 1;
     private NewArrivalModel object;
     private ManagementCart managementCart;
@@ -35,6 +40,21 @@ public class ShowDetailsActivity extends AppCompatActivity {
         initView();
         getBundle();
 
+        favIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ShowDetailsActivity.this, "fav clicked", Toast.LENGTH_SHORT).show();
+                setFav(object);
+            }
+        });
+
+    }
+
+    private void setFav(NewArrivalModel object) {
+        List<NewArrivalModel> favList = new ArrayList<>();
+        favList.add(object);
+        WishListPref wishListPref = new WishListPref(this);
+        wishListPref.setWishList(favList,"wish_list");
     }
 
 
@@ -47,6 +67,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
         plusBtn = findViewById(R.id.plusBtn);
         minusBtn = findViewById(R.id.minusBtn);
         picFood = findViewById(R.id.foodPic);
+        favIv = findViewById(R.id.iv_fav);
 
 
     }
