@@ -29,7 +29,6 @@ public class ShowDetailsActivity extends AppCompatActivity {
     private ManagementCart managementCart;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +51,9 @@ public class ShowDetailsActivity extends AppCompatActivity {
 
     private void setFav(NewArrivalModel object) {
         List<NewArrivalModel> favList = new ArrayList<>();
-        favList.add(object);
+        for (int i = 0; i<= favList.size(); i++){
+            favList.add(object);
+        }
         WishListPref wishListPref = new WishListPref(this);
         wishListPref.setWishList(favList,"wish_list");
     }
