@@ -50,14 +50,14 @@ public class ShowDetailsActivity extends AppCompatActivity {
     }
 
     private void setFav(NewArrivalModel object) {
-        List<NewArrivalModel> favList = new ArrayList<>();
-        for (int i = 0; i<= favList.size(); i++){
-            favList.add(object);
-        }
-        WishListPref wishListPref = new WishListPref(this);
-        wishListPref.setWishList(favList,"wish_list");
-    }
 
+        WishListPref wishListPref = new WishListPref(this);
+
+        List<NewArrivalModel> favList = new ArrayList<>();
+            favList.add(object);
+            wishListPref.setWishList(favList,"wish_list");
+
+    }
 
     private void initView() {
         addToCardBtn = findViewById(R.id.addToCardBtn);

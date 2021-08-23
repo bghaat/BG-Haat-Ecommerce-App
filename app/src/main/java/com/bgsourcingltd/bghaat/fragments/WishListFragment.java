@@ -63,7 +63,7 @@ public class WishListFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(context);
         wishListRv.setLayoutManager(manager);
         wishListRv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        adapter.notifyItemInserted(list.size());
         Toast.makeText(context, ""+list.size(), Toast.LENGTH_SHORT).show();
         super.onResume();
     }
