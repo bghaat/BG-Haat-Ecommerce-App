@@ -20,12 +20,13 @@ import com.bgsourcingltd.bghaat.adapters.WishListAdapter;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.wishlistpreference.WishListPref;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class WishListFragment extends Fragment {
 
-    private WishListPref wishListPref;
+
     private Context context;
     private RecyclerView wishListRv;
 
@@ -50,21 +51,20 @@ public class WishListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        wishListPref = new WishListPref(context);
+
 
         wishListRv = view.findViewById(R.id.rv_wish_list);
     }
 
     @Override
     public void onResume() {
+        WishListPref wishListPref = new WishListPref();
 
-        List<NewArrivalModel> list = wishListPref.getWishList("wish_list");
+        List<NewArrivalModel> list = wishListPref.getFavorites(context);
         WishListAdapter adapter = new WishListAdapter(list,context);
         LinearLayoutManager manager = new LinearLayoutManager(context);
         wishListRv.setLayoutManager(manager);
         wishListRv.setAdapter(adapter);
-        adapter.notifyItemInserted(list.size());
-        Toast.makeText(context, ""+list.size(), Toast.LENGTH_SHORT).show();
         super.onResume();
     }
 }

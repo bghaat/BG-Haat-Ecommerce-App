@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.adapters.WishListAdapter;
 import com.bgsourcingltd.bghaat.helper.ManagementCart;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.wishlistpreference.WishListPref;
@@ -42,22 +43,22 @@ public class ShowDetailsActivity extends AppCompatActivity {
         favIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                WishListPref wishListPref = new WishListPref();
+                wishListPref.addFavorite(ShowDetailsActivity.this,object);
                 Toast.makeText(ShowDetailsActivity.this, "fav clicked", Toast.LENGTH_SHORT).show();
-                setFav(object);
+
             }
         });
 
     }
 
-    private void setFav(NewArrivalModel object) {
-
-        WishListPref wishListPref = new WishListPref(this);
+    /*private void setFav(NewArrivalModel object) {
 
         List<NewArrivalModel> favList = new ArrayList<>();
             favList.add(object);
-            wishListPref.setWishList(favList,"wish_list");
+            WishListPref.setSharedPreferenceStringList(this,"wish_list",favList);
 
-    }
+    }*/
 
     private void initView() {
         addToCardBtn = findViewById(R.id.addToCardBtn);
