@@ -115,9 +115,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-
-
     private void setMainCategory() {
         List<MainCategoryModel> mainCategoryModelList = new ArrayList<>();
 
@@ -153,6 +150,7 @@ public class HomeFragment extends Fragment {
         adapter.notifyDataSetChanged();
 
     }
+
     private void setBestSelling() {
 
         List<NewArrivalModel> list = new ArrayList<>();

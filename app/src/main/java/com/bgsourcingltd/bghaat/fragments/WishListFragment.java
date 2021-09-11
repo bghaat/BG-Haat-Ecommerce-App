@@ -54,17 +54,24 @@ public class WishListFragment extends Fragment {
 
 
         wishListRv = view.findViewById(R.id.rv_wish_list);
+
+        WishListPref wishListPref = new WishListPref();
+
+        List<NewArrivalModel> list = wishListPref.getFavorites(context);
+        if (list.size() == 0){
+            Toast.makeText(context, "empty wish list", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            WishListAdapter adapter = new WishListAdapter(list, context);
+            LinearLayoutManager manager = new LinearLayoutManager(context);
+            wishListRv.setLayoutManager(manager);
+            wishListRv.setAdapter(adapter);
+        }
     }
 
     @Override
     public void onResume() {
-        WishListPref wishListPref = new WishListPref();
 
-        List<NewArrivalModel> list = wishListPref.getFavorites(context);
-        WishListAdapter adapter = new WishListAdapter(list,context);
-        LinearLayoutManager manager = new LinearLayoutManager(context);
-        wishListRv.setLayoutManager(manager);
-        wishListRv.setAdapter(adapter);
         super.onResume();
     }
 }

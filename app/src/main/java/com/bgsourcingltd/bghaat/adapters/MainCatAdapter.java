@@ -1,6 +1,8 @@
 package com.bgsourcingltd.bghaat.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.activities.CategoryDetailsActivity;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
 import com.bumptech.glide.Glide;
 
@@ -37,12 +40,23 @@ public class MainCatAdapter extends RecyclerView.Adapter<MainCatAdapter.MainCatV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull MainCatAdapter.MainCatViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull MainCatAdapter.MainCatViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.mainCatTv.setText(mainCategoryModelList.get(position).getCatName());
         holder.mainCatIv.setImageResource(mainCategoryModelList.get(position).getCatImage());
         /*Glide.with(context).
                 load(mainCategoryModelList.get(position).getCatImage())
                 .into(holder.mainCatIv);*/
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CategoryDetailsActivity.class);
+                String catTitle = mainCategoryModelList.get(position).getCatName();
+                intent.putExtra("catName",catTitle);
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override

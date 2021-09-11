@@ -40,6 +40,8 @@ public class AllCategoryAdapter extends RecyclerView.Adapter<AllCategoryAdapter.
 
         Glide.with(context).load(list.get(position).getCatImage()).into(holder.allCatIv);
         holder.allCatTv.setText(list.get(position).getCatName());
+
+
     }
 
     @Override
