@@ -76,10 +76,10 @@ public class ShowDetailsActivity extends AppCompatActivity {
 
     private void getBundle() {
         object = (NewArrivalModel) getIntent().getSerializableExtra("object");
-        Glide.with(this).load(object.getImageUrl()).into(picFood);
-        titleTxt.setText(object.getFoodTitle());
+        Glide.with(this).load(object.getImage()).into(picFood);
+        titleTxt.setText(object.getTitle());
         feeTxt.setText("$" + object.getPrice());
-        //descriptionTxt.setText(object.getDescription());
+        descriptionTxt.setText(removeHtml(object.getDes()));
         numberOrderTxt.setText(String.valueOf(numberOrder));
 
         plusBtn.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +119,16 @@ public class ShowDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private String removeHtml(String html){
+        html = html.replaceAll("<(.*?)\\>"," ");
+        html = html.replaceAll("<(.*?)\\\n"," ");
+        html = html.replaceAll("(.*?)\\>"," ");
+        html = html.replaceAll("&nbsp"," ");
+        html = html.replaceAll("&amp"," ");
+        return html;
 
     }
 }

@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment {
 
         setMainCategory();
         setNewArrivalCategory();
-        setBestSelling();
+        //setBestSelling();
         setTopBrands();
 
         //click view all category
@@ -135,11 +135,8 @@ public class HomeFragment extends Fragment {
     private void setNewArrivalCategory() {
         List<NewArrivalModel> newArrivalModelList = new ArrayList<>();
 
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular",150.00,"100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Mozarella cheese",250.0,"100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Oil Regular",250.0,"100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Garlic Muri",250.0,"100"));
-        newArrivalModelList.add(new NewArrivalModel(R.drawable.deshi_chesse,"Deshi Chesee Regular",250.0,"100"));
+        newArrivalModelList.add(new NewArrivalModel("","t Shirt","10","A very good t shirt"));
+
 
 
         NewArrivalCatAdapter adapter = new NewArrivalCatAdapter(context,newArrivalModelList);
@@ -151,7 +148,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void setBestSelling() {
+    /*private void setBestSelling() {
 
         List<NewArrivalModel> list = new ArrayList<>();
 
@@ -169,7 +166,7 @@ public class HomeFragment extends Fragment {
         rvBestSelling.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-    }
+    }*/
 
     private void setTopBrands() {
         progressDialog.show();

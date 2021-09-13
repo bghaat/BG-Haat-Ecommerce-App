@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginStart="16dp"
+    android:layout_marginStart="12dp"
     android:layout_marginTop="10dp"
-    android:layout_marginEnd="16dp"
+    android:layout_marginEnd="12dp"
     android:layout_marginBottom="10dp"
     android:background="@drawable/card_background"
     android:elevation="3dp">
@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/title2Txt"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -37,7 +37,8 @@
         android:textColor="#373b54"
         android:singleLine="true"
         app:layout_constraintStart_toEndOf="@+id/picCard"
-        app:layout_constraintTop_toTopOf="@+id/picCard" />
+        app:layout_constraintTop_toTopOf="@+id/picCard"
+        app:layout_constraintEnd_toEndOf="@+id/textView19"/>
 
     <ImageView
         android:id="@+id/minusCardBtn"
@@ -89,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:text="$"
+        android:text="৳"
         android:textColor="#ff3d00"
         app:layout_constraintBottom_toBottomOf="@+id/feeEachItem"
         app:layout_constraintEnd_toStartOf="@+id/feeEachItem"
@@ -112,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:text="$"
+        android:text="৳"
         android:textColor="#ff3d00"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/totalEachItem"

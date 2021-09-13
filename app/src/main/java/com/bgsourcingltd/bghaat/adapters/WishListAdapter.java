@@ -34,7 +34,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
 
     @Override
     public void onBindViewHolder(@NonNull WishListViewHolder holder, int position) {
-        holder.productTitle.setText(modelList.get(position).getFoodTitle());
+        holder.productTitle.setText(modelList.get(position).getTitle());
 
     }
 

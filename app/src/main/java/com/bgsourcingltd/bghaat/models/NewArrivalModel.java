@@ -1,61 +1,61 @@
 package com.bgsourcingltd.bghaat.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class NewArrivalModel implements Serializable {
 
-    private int imageUrl;
-    private String foodTitle;
-    private Double price;
-    private String strikePrice;
+    @SerializedName("image")
+    private String image;
+    @SerializedName("title")
+    private String title;
+    @SerializedName("price")
+    private String price;
+    @SerializedName("des")
+    private String des;
     private int numberInCart;
 
-    public NewArrivalModel(int imageUrl, String foodTitle, Double price, String strikePrice) {
-        this.imageUrl = imageUrl;
-        this.foodTitle = foodTitle;
+    public NewArrivalModel(String image, String title, String price, String des) {
+        this.image = image;
+        this.title = title;
         this.price = price;
-        this.strikePrice = strikePrice;
+        this.des = des;
+
     }
 
-    public NewArrivalModel(int imageUrl, String foodTitle, Double price, String strikePrice, int numberInCart) {
-        this.imageUrl = imageUrl;
-        this.foodTitle = foodTitle;
+    public NewArrivalModel(String image, String title, String price, int numberInCart,String des) {
+        this.image = image;
+        this.title = title;
         this.price = price;
-        this.strikePrice = strikePrice;
         this.numberInCart = numberInCart;
+        this.des = des;
     }
 
-    public int getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageUrl(int imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(String imageUrl) {
+        this.image = image;
     }
 
-    public String getFoodTitle() {
-        return foodTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setFoodTitle(String foodTitle) {
-        this.foodTitle = foodTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public String getStrikePrice() {
-        return strikePrice;
-    }
-
-    public void setStrikePrice(String strikePrice) {
-        this.strikePrice = strikePrice;
-    }
 
     public int getNumberInCart() {
         return numberInCart;
@@ -63,5 +63,13 @@ public class NewArrivalModel implements Serializable {
 
     public void setNumberInCart(int numberInCart) {
         this.numberInCart = numberInCart;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
     }
 }

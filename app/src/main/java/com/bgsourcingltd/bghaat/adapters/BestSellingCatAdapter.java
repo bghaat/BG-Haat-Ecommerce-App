@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.activities.ShowDetailsActivity;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -41,10 +42,14 @@ public class BestSellingCatAdapter extends RecyclerView.Adapter<BestSellingCatAd
     @Override
     public void onBindViewHolder(@NonNull @NotNull BestSellingCatAdapter.BestSellingViewHolder holder, int position) {
 
-        holder.productIv.setImageResource(modelList.get(position).getImageUrl());
-        holder.productTitleTv.setText(modelList.get(position).getFoodTitle());
+
+        holder.productTitleTv.setText(modelList.get(position).getTitle());
         holder.productPriceTv.setText(modelList.get(position).getPrice()+ "TK");
-        holder.productStrikeTv.setText(modelList.get(position).getStrikePrice());
+        //holder.productStrikeTv.setText(modelList.get(position).getStrikePrice());
+
+        Glide.with(context).
+                load(modelList.get(position).getImage()).
+                into(holder.productIv);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

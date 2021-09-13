@@ -32,7 +32,7 @@ public class ManagementCart {
         boolean existAlready = false;
         int n = 0;
         for (int i = 0; i < listFood.size(); i++) {
-            if (listFood.get(i).getFoodTitle().equals(item.getFoodTitle())) {
+            if (listFood.get(i).getTitle().equals(item.getTitle())) {
                 existAlready = true;
                 n = i;
                 break;
@@ -82,7 +82,7 @@ public class ManagementCart {
         ArrayList<NewArrivalModel> listFood2 = getListCard();
         double fee = 0;
         for (int i = 0; i < listFood2.size(); i++) {
-            fee = fee + (listFood2.get(i).getPrice() * listFood2.get(i).getNumberInCart());
+            fee = fee + (Double.parseDouble(listFood2.get(i).getPrice()) * listFood2.get(i).getNumberInCart());
         }
         return fee;
     }

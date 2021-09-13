@@ -1,5 +1,6 @@
 package com.bgsourcingltd.bghaat.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.activities.ShowDetailsActivity;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -38,12 +40,17 @@ public class NewArrivalCatAdapter extends RecyclerView.Adapter<NewArrivalCatAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull NewArrivalCatAdapter.NewArrivalViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull NewArrivalCatAdapter.NewArrivalViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.productIv.setImageResource(newArrivalModelList.get(position).getImageUrl());
-        holder.productTitleTv.setText(newArrivalModelList.get(position).getFoodTitle());
-        holder.productPriceTv.setText(newArrivalModelList.get(position).getPrice()+ "TK");
-        holder.productStrikeTv.setText(newArrivalModelList.get(position).getStrikePrice());
+
+        holder.productTitleTv.setText(newArrivalModelList.get(position).getTitle());
+        holder.productPriceTv.setText(newArrivalModelList.get(position).getPrice()+" ৳");
+
+        //holder.productStrikeTv.setText(newArrivalModelList.get(position).getStrikePrice());
+
+        Glide.with(context).
+                load(newArrivalModelList.get(position).getImage()).
+                into(holder.productIv);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -43,14 +43,14 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull @NotNull CartListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.title.setText(newArrivalModelArrayList.get(position).getFoodTitle());
+        holder.title.setText(newArrivalModelArrayList.get(position).getTitle());
         holder.feeEachItem.setText(String.valueOf(newArrivalModelArrayList.get(position).getPrice()));
-        holder.totalEachItem.setText(String.valueOf(Math.round((newArrivalModelArrayList.get(position).getNumberInCart() * newArrivalModelArrayList.get(position).getPrice()) * 100.0) / 100.0));
+        holder.totalEachItem.setText(String.valueOf(Math.round((newArrivalModelArrayList.get(position).getNumberInCart() * Double.parseDouble(newArrivalModelArrayList.get(position).getPrice())) * 100.0) / 100.0));
         holder.num.setText(String.valueOf(newArrivalModelArrayList.get(position).getNumberInCart()));
 
         Glide.with(holder.itemView.getContext())
                 .load(newArrivalModelArrayList
-                        .get(position).getImageUrl())
+                        .get(position).getImage())
                 .into(holder.pic);
 
 
