@@ -123,6 +123,7 @@ public class HomeFragment extends Fragment {
         mainCategoryModelList.add(new MainCategoryModel("Grocery",R.drawable.grocery));
         mainCategoryModelList.add(new MainCategoryModel("Kids",R.drawable.kids));
         mainCategoryModelList.add(new MainCategoryModel("Electronics",R.drawable.device));
+        mainCategoryModelList.add(new MainCategoryModel("Health & Beauty",R.drawable.women));
 
         MainCatAdapter adapter = new MainCatAdapter(context,mainCategoryModelList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);

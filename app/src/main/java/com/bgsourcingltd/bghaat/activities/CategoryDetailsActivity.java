@@ -1,12 +1,15 @@
 package com.bgsourcingltd.bghaat.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.R;
@@ -28,6 +31,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
     private RecyclerView catDetailsRv;
     private ProgressDialog progressDialog;
     private String catTitle;
+    private CatDetailsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,75 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         else if (catTitle.equals("Grocery")){
             callGroceryAPI();
         }
+        else if (catTitle.equals("Electronics")){
+            callElectronicsAPI();
+        }
+        else if (catTitle.equals("Health & Beauty")){
+            callHealthBeautyAPI();
+
+        }
+        else {
+            Toast.makeText(this, "No Data Found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void callHealthBeautyAPI() {
+
+        Call<List<NewArrivalModel>> healthBeautyList = apiService.getHeathBeauty();
+
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        healthBeautyList.enqueue(new Callback<List<NewArrivalModel>>() {
+            @Override
+            public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
+                if (response.isSuccessful()){
+                    List<NewArrivalModel> list = response.body();
+                    adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
+                    GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
+                    catDetailsRv.setLayoutManager(manager);
+                    catDetailsRv.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<NewArrivalModel>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void callElectronicsAPI() {
+
+        Call<List<NewArrivalModel>> electronicsList = apiService.getElectronicsProduct();
+
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        electronicsList.enqueue(new Callback<List<NewArrivalModel>>() {
+            @Override
+            public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
+                if (response.isSuccessful()){
+                    List<NewArrivalModel> list = response.body();
+                    adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
+                    GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
+                    catDetailsRv.setLayoutManager(manager);
+                    catDetailsRv.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<NewArrivalModel>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void callGroceryAPI() {
@@ -70,7 +143,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
                 if (response.isSuccessful()){
                     List<NewArrivalModel> list = response.body();
-                    CatDetailsAdapter adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
+                    adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
                     GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
                     catDetailsRv.setLayoutManager(manager);
                     catDetailsRv.setAdapter(adapter);
@@ -98,7 +171,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
                 if (response.isSuccessful()){
                     List<NewArrivalModel> list = response.body();
-                    CatDetailsAdapter adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
+                    adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
                     GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
                     catDetailsRv.setLayoutManager(manager);
                     catDetailsRv.setAdapter(adapter);
@@ -127,7 +200,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
 
                     List<NewArrivalModel> list = response.body();
 
-                    CatDetailsAdapter adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
+                    adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
                     GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
                     catDetailsRv.setLayoutManager(manager);
                     catDetailsRv.setAdapter(adapter);
@@ -142,6 +215,28 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+        MenuItem menuItem = menu.findItem(R.id.search_product);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText.toString());
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

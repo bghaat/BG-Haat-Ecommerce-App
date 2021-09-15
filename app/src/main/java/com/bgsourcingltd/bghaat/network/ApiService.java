@@ -17,4 +17,10 @@ public interface ApiService {
 
     @GET("catproduct/?cat=groceries-food")
     Call<List<NewArrivalModel>> getGroceryProduct();
+
+    @GET("catproduct/?cat=electronic")
+    Call<List<NewArrivalModel>> getElectronicsProduct();
+
+    @GET("catproduct/?cat=health-beauty")
+    Call<List<NewArrivalModel>> getHeathBeauty();
 }

@@ -11,7 +11,9 @@
         <entry key="..\:/BGHaat/app/src/main/res/drawable/favorite.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/ic_baseline_add_shopping_cart_24.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/round_bg.xml" value="0.25" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable/search_background.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/shopping_cart.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_all_category.xml" value="0.19814814814814816" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_cart_list.xml" value="0.22" />
@@ -27,7 +29,7 @@
         <entry key="..\:/BGHaat/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/fragment_wish_list.xml" value="0.20102564102564102" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/layout_navigation_header.xml" value="0.20416666666666666" />
-        <entry key="..\:/BGHaat/app/src/main/res/layout/main_category_layout.xml" value="0.20102564102564102" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/main_category_layout.xml" value="0.25" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/new_arrival_layout.xml" value="0.20102564102564102" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/show_dialog_layout.xml" value="0.33" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/slide_one.xml" value="0.1962962962962963" />
@@ -37,6 +39,7 @@
         <entry key="..\:/BGHaat/app/src/main/res/menu/bottom_menu_bar.xml" value="0.1962962962962963" />
         <entry key="..\:/BGHaat/app/src/main/res/menu/drawer_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/menu/favorites_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/BGHaat/app/src/main/res/menu/search_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

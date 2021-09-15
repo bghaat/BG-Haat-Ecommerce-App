@@ -16,6 +16,9 @@ import com.bgsourcingltd.bghaat.Interface.ChangeNumberItemsListener;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.adapters.CartListAdapter;
 import com.bgsourcingltd.bghaat.helper.ManagementCart;
+import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+
+import java.util.List;
 
 public class CartListActivity extends AppCompatActivity {
 
@@ -75,10 +78,10 @@ public class CartListActivity extends AppCompatActivity {
         double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100.0) / 100.0;
         double itemTotal = Math.round(managementCart.getTotalFee() * 100.0) / 100.0;
 
-        totalFeeTxt.setText("$" + itemTotal);
-        taxTxt.setText("$" + tax);
-        deliveryTxt.setText("$" + delivery);
-        totalTxt.setText("$" + total);
+        totalFeeTxt.setText("৳" + itemTotal);
+        taxTxt.setText("৳" + tax);
+        deliveryTxt.setText("৳" + delivery);
+        totalTxt.setText("৳" + total);
     }
 
 
@@ -95,5 +98,7 @@ public class CartListActivity extends AppCompatActivity {
 
     private void checkOutButtonClicked(){
         Toast.makeText(this, "Check Out Button Click", Toast.LENGTH_SHORT).show();
+
+
     }
 }

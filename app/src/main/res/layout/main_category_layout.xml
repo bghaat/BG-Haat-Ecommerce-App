@@ -29,15 +29,18 @@
 
         <TextView
             android:id="@+id/tv_main_cat_raw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:text="Gents"
             android:textSize="12sp"
+            android:gravity="center"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/iv_main_cat_raw"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="5dp"
             android:textStyle="bold"/>
 
 
