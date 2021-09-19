@@ -78,7 +78,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
         object = (NewArrivalModel) getIntent().getSerializableExtra("object");
         Glide.with(this).load(object.getImage()).into(picFood);
         titleTxt.setText(object.getTitle());
-        feeTxt.setText("$" + object.getPrice());
+        feeTxt.setText("৳" + object.getPrice());
         descriptionTxt.setText(removeHtml(object.getDes()));
         numberOrderTxt.setText(String.valueOf(numberOrder));
 

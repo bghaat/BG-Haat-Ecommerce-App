@@ -86,7 +86,7 @@ public class CatDetailsAdapter extends RecyclerView.Adapter<CatDetailsAdapter.Ca
             }
             else {
                 for (NewArrivalModel items : listFull){
-                    //if i query with multiple condition put login here
+                    //if you want to query with multiple condition put logic here
                     if (items.getTitle().toLowerCase().contains(searchText)){
                         tempList.add(items);
                     }

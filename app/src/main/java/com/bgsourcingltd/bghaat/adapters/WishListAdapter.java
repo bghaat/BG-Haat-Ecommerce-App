@@ -48,7 +48,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
 
         public WishListViewHolder(@NonNull View itemView) {
             super(itemView);
-            productTitle = itemView.findViewById(R.id.productTtle);
+            productTitle = itemView.findViewById(R.id.tv_product_title);
         }
     }
 }
