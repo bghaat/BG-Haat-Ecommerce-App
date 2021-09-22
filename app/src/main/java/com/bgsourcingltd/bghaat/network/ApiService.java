@@ -24,6 +24,6 @@ public interface ApiService {
     @GET("catproduct/?cat=health-beauty")
     Call<List<NewArrivalModel>> getHeathBeauty();
 
-    @GET("productapi/")
+    @GET("allproductapi")
     Call<List<NewArrivalModel>> getAllProduct();
 }

@@ -15,7 +15,7 @@
 
 
         <EditText
-            android:id="@+id/et_search_all_product"
+            android:id="@+id/et_search_all_products"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,90 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="150dp"
-android:layout_height="215dp"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_gravity="center_horizontal"
-android:layout_margin="10dp"
-app:cardCornerRadius="4dp"
-app:cardElevation="5dp"
-android:foreground="?android:attr/selectableItemBackground"
-android:clickable="true"
-android:focusable="true">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="215dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="5dp">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/iv_product_cat_details"
-        android:layout_width="0dp"
-        android:layout_height="130dp"
-        android:src="@drawable/deshi_chesse"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        <ImageView
+            android:id="@+id/iv_product_search_details"
+            android:layout_width="0dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/deshi_chesse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-        />
+            />
 
-    <TextView
-        android:id="@+id/tv_product_name_cat_details"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/deshi_chesee_regular"
-        android:singleLine="true"
-        app:layout_constraintTop_toBottomOf="@id/iv_product_cat_details"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="6dp"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        />
+        <TextView
+            android:id="@+id/tv_product_name_search_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:singleLine="true"
+            android:text="@string/deshi_chesee_regular"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_product_search_details" />
 
-    <TextView
-        android:id="@+id/tv_price_cat_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_250_tk"
-        android:textColor="@color/red"
-        android:textSize="18sp"
-        android:layout_marginStart="6dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_product_name_cat_details"
-        app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tv_price_search_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/_250_tk"
+            android:textColor="@color/red"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name_search_details" />
 
-    <TextView
-        android:id="@+id/tv_strike_cat_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_200_tk"
-        app:layout_constraintStart_toEndOf="@id/tv_price_cat_details"
-        app:layout_constraintTop_toTopOf="@id/tv_price_cat_details"
-        app:layout_constraintBottom_toBottomOf="@id/tv_price_cat_details"
-        android:layout_marginStart="8sp"/>
+        <TextView
+            android:id="@+id/tv_strike_search_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8sp"
+            android:text="@string/_200_tk"
+            app:layout_constraintBottom_toBottomOf="@id/tv_price_search_details"
+            app:layout_constraintStart_toEndOf="@id/tv_price_search_details"
+            app:layout_constraintTop_toTopOf="@id/tv_price_search_details" />
 
-    <TextView
-        android:id="@+id/tv_add_new_arrival"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_margin="8dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:background="@drawable/orange_button_background"
-        app:layout_constraintTop_toBottomOf="@id/tv_strike_cat_details"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        <TextView
+            android:id="@+id/tv_add_new_arrival"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/orange_button_background"
+            android:paddingStart="10dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="3dp"
+            android:text="@string/add"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_strike_search_details" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.cardview.widget.CardView>
