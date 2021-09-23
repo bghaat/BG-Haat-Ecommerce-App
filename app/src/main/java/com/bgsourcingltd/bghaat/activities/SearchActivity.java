@@ -122,7 +122,7 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         searchRv.setAdapter(new AllProductAdapter(filterList,SearchActivity.this));
-        adapter.notifyDataSetChanged();
+
 
 
     }
