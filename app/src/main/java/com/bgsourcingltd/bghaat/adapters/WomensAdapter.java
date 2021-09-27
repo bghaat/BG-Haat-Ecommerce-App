@@ -18,71 +18,70 @@ import com.bgsourcingltd.bghaat.activities.ShowDetailsActivity;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bumptech.glide.Glide;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
-public class BestSellingCatAdapter extends RecyclerView.Adapter<BestSellingCatAdapter.BestSellingViewHolder> {
-
-    private List<NewArrivalModel> modelList;
+public class WomensAdapter extends RecyclerView.Adapter<WomensAdapter.WomensViewHoloder> {
     private Context context;
+    private List<NewArrivalModel> newArrivalModelList;
 
-    public BestSellingCatAdapter(List<NewArrivalModel> modelList, Context context) {
-        this.modelList = modelList;
+
+    public WomensAdapter(Context context,List<NewArrivalModel> newArrivalModelList) {
         this.context = context;
+        this.newArrivalModelList = newArrivalModelList;
     }
 
     @NonNull
-    @NotNull
     @Override
-    public BestSellingViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.best_selling_layout,parent,false);
-        return new BestSellingViewHolder(view);
+    public WomensViewHoloder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.womens_cat_layout,parent,false);
+        return new WomensViewHoloder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull BestSellingCatAdapter.BestSellingViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull WomensViewHoloder holder, @SuppressLint("RecyclerView") int position) {
 
-
-        holder.productTitleTv.setText(modelList.get(position).getTitle());
-        holder.productPriceTv.setText(modelList.get(position).getPrice()+ "TK");
+        holder.productTitleTv.setText(newArrivalModelList.get(position).getTitle());
+        holder.productPriceTv.setText(newArrivalModelList.get(position).getPrice()+ "TK");
         //holder.productStrikeTv.setText(modelList.get(position).getStrikePrice());
 
         Glide.with(context).
-                load(modelList.get(position).getImage()).
+                load(newArrivalModelList.get(position).getImage()).
                 into(holder.productIv);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewArrivalModel object = modelList.get(position);
+                NewArrivalModel object = newArrivalModelList.get(position);
                 Intent intent = new Intent(context, ShowDetailsActivity.class);
                 intent.putExtra("object",object);
                 context.startActivity(intent);
 
             }
         });
+
     }
 
     @Override
     public int getItemCount() {
-        return (modelList.size() > 20 ? 20 : modelList.size());
+        return (newArrivalModelList.size() > 20 ? 20 : newArrivalModelList.size());
     }
 
-    public class BestSellingViewHolder extends RecyclerView.ViewHolder {
+    public class WomensViewHoloder extends RecyclerView.ViewHolder{
         ImageView productIv;
         TextView productTitleTv;
         TextView productPriceTv,productStrikeTv;
 
-        public BestSellingViewHolder(@NonNull @NotNull View itemView) {
+        public WomensViewHoloder(@NonNull View itemView) {
             super(itemView);
 
-            productIv = itemView.findViewById(R.id.iv_product_best_selling);
-            productTitleTv = itemView.findViewById(R.id.tv_product_name_best_selling);
-            productPriceTv = itemView.findViewById(R.id.tv_price_best_selling);
-            productStrikeTv = itemView.findViewById(R.id.tv_strike_best_selling);
+            productIv = itemView.findViewById(R.id.iv_womens_new_arrival);
+            productTitleTv = itemView.findViewById(R.id.tv_product_name_womens);
+            productPriceTv = itemView.findViewById(R.id.tv_price_womens);
+            productStrikeTv = itemView.findViewById(R.id.tv_strike_womens);
 
             productStrikeTv.setPaintFlags(productStrikeTv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
     }
+
+
 }

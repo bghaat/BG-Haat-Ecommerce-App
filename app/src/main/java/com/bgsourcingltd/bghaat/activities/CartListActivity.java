@@ -19,6 +19,7 @@ import com.bgsourcingltd.bghaat.adapters.CartListAdapter;
 import com.bgsourcingltd.bghaat.helper.ManagementCart;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class CartListActivity extends AppCompatActivity {
@@ -98,7 +99,9 @@ public class CartListActivity extends AppCompatActivity {
     }
 
     private void checkOutButtonClicked(){
-        startActivity(new Intent(this,CustomerDetailsActivity.class));
+        Intent intent = new Intent(CartListActivity.this,CustomerDetailsActivity.class);
+        intent.putExtra("order",managementCart.getListCard());
+        startActivity(intent);
 
     }
 }

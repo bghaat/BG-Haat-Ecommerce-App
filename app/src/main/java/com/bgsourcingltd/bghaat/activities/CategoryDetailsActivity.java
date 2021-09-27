@@ -18,6 +18,8 @@ import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.network.ApiClient;
 import com.bgsourcingltd.bghaat.network.ApiService;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -84,7 +86,8 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
                 if (response.isSuccessful()){
                     List<NewArrivalModel> list = response.body();
-                    adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
+                    Collections.reverse(list);
+                    adapter = new CatDetailsAdapter(CategoryDetailsActivity.this, list);
                     GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
                     catDetailsRv.setLayoutManager(manager);
                     catDetailsRv.setAdapter(adapter);
@@ -113,6 +116,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
                 if (response.isSuccessful()){
                     List<NewArrivalModel> list = response.body();
+                    Collections.reverse(list);
                     adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
                     GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
                     catDetailsRv.setLayoutManager(manager);
@@ -143,6 +147,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
                 if (response.isSuccessful()){
                     List<NewArrivalModel> list = response.body();
+                    Collections.reverse(list);
                     adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
                     GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
                     catDetailsRv.setLayoutManager(manager);
@@ -165,12 +170,14 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         progressDialog.setContentView(R.layout.show_dialog_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
+
         Call<List<NewArrivalModel>> gentsList = apiService.getGentsProduct();
         gentsList.enqueue(new Callback<List<NewArrivalModel>>() {
             @Override
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
                 if (response.isSuccessful()){
                     List<NewArrivalModel> list = response.body();
+                    Collections.reverse(list);
                     adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
                     GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
                     catDetailsRv.setLayoutManager(manager);
@@ -199,7 +206,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
 
                     List<NewArrivalModel> list = response.body();
-
+                    Collections.reverse(list);
                     adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
                     GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
                     catDetailsRv.setLayoutManager(manager);

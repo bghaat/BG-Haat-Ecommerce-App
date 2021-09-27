@@ -67,7 +67,7 @@ public class NewArrivalCatAdapter extends RecyclerView.Adapter<NewArrivalCatAdap
 
     @Override
     public int getItemCount() {
-        return newArrivalModelList.size();
+        return (newArrivalModelList.size() > 20 ? 20 : newArrivalModelList.size());
     }
 
     public class NewArrivalViewHolder extends RecyclerView.ViewHolder{

@@ -34,9 +34,12 @@ import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.NewArrivalCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.SliderAdapter;
 import com.bgsourcingltd.bghaat.adapters.TopBrandsAdapter;
+import com.bgsourcingltd.bghaat.adapters.WomensAdapter;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.models.TopBrandsModel;
+import com.bgsourcingltd.bghaat.network.ApiClient;
+import com.bgsourcingltd.bghaat.network.ApiService;
 import com.google.android.material.navigation.NavigationView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -45,7 +48,12 @@ import com.smarteist.autoimageslider.SliderView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class HomeFragment extends Fragment {
@@ -53,9 +61,10 @@ public class HomeFragment extends Fragment {
     SliderView sliderView;
 
     int[] images = {R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.app};
-    private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling,rvTopBrands;
+    private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling,rvWomensCat,rvTopBrands;
     private Context context;
     private ProgressDialog progressDialog;
+    private ApiService apiService;
 
     private TextView mainCatTv;
 
@@ -86,9 +95,14 @@ public class HomeFragment extends Fragment {
         rvMainCategory = view.findViewById(R.id.rv_main_category);
         rvNewArrivalCategory = view.findViewById(R.id.rv_new_arrival);
         rvBestSelling = view.findViewById(R.id.rv_best_selling);
-        rvTopBrands = view.findViewById(R.id.rv_top_brands);
+        rvWomensCat = view.findViewById(R.id.rv_womens_fashion);
+        //rvTopBrands = view.findViewById(R.id.rv_top_brands);
         mainCatTv =  view.findViewById(R.id.tv_main_cat_viewAll);
         progressDialog = new ProgressDialog(context);
+
+
+        apiService = ApiClient.getRetrofit().create(ApiService.class);
+
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
 
@@ -98,10 +112,12 @@ public class HomeFragment extends Fragment {
         sliderView.startAutoCycle();
 
 
+
         setMainCategory();
         setNewArrivalCategory();
-        //setBestSelling();
-        setTopBrands();
+        setBestSelling();
+        setWomensFasion();
+        //setTopBrands();
 
         //click view all category
 
@@ -114,6 +130,8 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
+
 
     private void setMainCategory() {
         List<MainCategoryModel> mainCategoryModelList = new ArrayList<>();
@@ -134,42 +152,98 @@ public class HomeFragment extends Fragment {
     }
 
     private void setNewArrivalCategory() {
-        List<NewArrivalModel> newArrivalModelList = new ArrayList<>();
 
-        newArrivalModelList.add(new NewArrivalModel("","t Shirt","10","A very good t shirt"));
+        Call<List<NewArrivalModel>> listCall = apiService.getAllProduct();
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        listCall.enqueue(new Callback<List<NewArrivalModel>>() {
+            @Override
+            public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
+                if (response.isSuccessful()){
+
+                    List<NewArrivalModel> newArrivalModelList = response.body();
+                    Collections.reverse(newArrivalModelList);
+                    NewArrivalCatAdapter adapter = new NewArrivalCatAdapter(context,newArrivalModelList);
+                    LinearLayoutManager manager = new LinearLayoutManager(context);
+                    manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    rvNewArrivalCategory.setLayoutManager(manager);
+                    rvNewArrivalCategory.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<NewArrivalModel>> call, Throwable t) {
+
+            }
+        });
 
 
-
-        NewArrivalCatAdapter adapter = new NewArrivalCatAdapter(context,newArrivalModelList);
-        LinearLayoutManager manager = new LinearLayoutManager(context);
-        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rvNewArrivalCategory.setLayoutManager(manager);
-        rvNewArrivalCategory.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
     }
 
-    /*private void setBestSelling() {
+    private void setBestSelling() {
 
-        List<NewArrivalModel> list = new ArrayList<>();
+        Call<List<NewArrivalModel>> listCall = apiService.getGroceryProduct();
+        listCall.enqueue(new Callback<List<NewArrivalModel>>() {
+            @Override
+            public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
+                if (response.isSuccessful()){
+                    List<NewArrivalModel> list = response.body();
+                    Collections.reverse(list);
+                    BestSellingCatAdapter adapter = new BestSellingCatAdapter(list,context);
+                    LinearLayoutManager manager = new LinearLayoutManager(context);
+                    manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    rvBestSelling.setLayoutManager(manager);
+                    rvBestSelling.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
 
-        list.add(new NewArrivalModel(R.drawable.muri,"Demo Product Name",150.00,"100"));
-        list.add(new NewArrivalModel(R.drawable.deshi_chesse,"Demo Product Name",250.0,"100"));
-        list.add(new NewArrivalModel(R.drawable.muri,"Demo Product Name",250.0,"100"));
-        list.add(new NewArrivalModel(R.drawable.deshi_chesse,"Demo Product Name",250.0,"100"));
-        list.add(new NewArrivalModel(R.drawable.deshi_chesse,"Demo Product Name",250.0,"100"));
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<NewArrivalModel>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void setWomensFasion() {
+        Call<List<NewArrivalModel>> listCall = apiService.getWomenProduct();
+
+        listCall.enqueue(new Callback<List<NewArrivalModel>>() {
+            @Override
+            public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
+                if (response.isSuccessful()){
+
+                    List<NewArrivalModel> list = response.body();
+                    Collections.reverse(list);
+                    WomensAdapter adapter = new WomensAdapter(context,list);
+                    LinearLayoutManager manager = new LinearLayoutManager(context);
+                    manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    rvWomensCat.setLayoutManager(manager);
+                    rvWomensCat.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<NewArrivalModel>> call, Throwable t) {
+
+            }
+        });
 
 
-        BestSellingCatAdapter adapter = new BestSellingCatAdapter(list,context);
-        LinearLayoutManager manager = new LinearLayoutManager(context);
-        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rvBestSelling.setLayoutManager(manager);
-        rvBestSelling.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+    }
 
-    }*/
-
-    private void setTopBrands() {
+    /*private void setTopBrands() {
         progressDialog.show();
         progressDialog.setContentView(R.layout.show_dialog_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -188,5 +262,5 @@ public class HomeFragment extends Fragment {
         rvTopBrands.setAdapter(adapter);
         progressDialog.dismiss();
 
-    }
+    }*/
 }
