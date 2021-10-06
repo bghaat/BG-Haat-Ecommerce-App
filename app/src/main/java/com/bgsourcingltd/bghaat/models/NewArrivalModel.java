@@ -12,15 +12,18 @@ public class NewArrivalModel implements Serializable {
     private String title;
     @SerializedName("price")
     private String price;
+    @SerializedName("regular price")
+    private String regularPrice;
     @SerializedName("des")
     private String des;
     private int numberInCart;
 
-    public NewArrivalModel(String image, String title, String price, String des) {
+    public NewArrivalModel(String image, String title, String price, String des,String regularPrice) {
         this.image = image;
         this.title = title;
         this.price = price;
         this.des = des;
+        this.regularPrice = regularPrice;
 
     }
 
@@ -71,5 +74,13 @@ public class NewArrivalModel implements Serializable {
 
     public void setDes(String des) {
         this.des = des;
+    }
+
+    public String getRegularPrice() {
+        return regularPrice;
+    }
+
+    public void setRegularPrice(String regularPrice) {
+        this.regularPrice = regularPrice;
     }
 }

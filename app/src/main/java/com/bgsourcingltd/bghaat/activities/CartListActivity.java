@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -18,6 +20,9 @@ import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.adapters.CartListAdapter;
 import com.bgsourcingltd.bghaat.helper.ManagementCart;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 
 import java.io.Serializable;
 import java.util.List;
@@ -30,6 +35,8 @@ public class CartListActivity extends AppCompatActivity {
     private ManagementCart managementCart;
     private double tax;
     private ScrollView scrollView;
+    private Gson gson;
+    //private List<NewArrivalModel> orders;
 
 
     @Override
@@ -41,6 +48,9 @@ public class CartListActivity extends AppCompatActivity {
         initView();
         initList();
         calculateCard();
+
+        //orders = managementCart.getListCard();
+        gson = new GsonBuilder().setPrettyPrinting().create();
 
         checkOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +110,10 @@ public class CartListActivity extends AppCompatActivity {
 
     private void checkOutButtonClicked(){
         Intent intent = new Intent(CartListActivity.this,CustomerDetailsActivity.class);
-        intent.putExtra("order",managementCart.getListCard());
+        //intent.putExtra("order", (Serializable) orders);
+        String json = gson.toJson(managementCart.getListCard());
+        intent.putExtra("cart",json);
+        Log.d("json", "json "+json);
         startActivity(intent);
 
     }

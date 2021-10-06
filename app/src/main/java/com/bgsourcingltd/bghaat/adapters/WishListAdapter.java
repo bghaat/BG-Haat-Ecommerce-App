@@ -1,16 +1,23 @@
 package com.bgsourcingltd.bghaat.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.activities.ShowDetailsActivity;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bgsourcingltd.bghaat.wishlistpreference.WishListPref;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -18,6 +25,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
 
     private List<NewArrivalModel> modelList;
     private Context context;
+    WishListPref wishListPref = new WishListPref();
 
     public WishListAdapter(List<NewArrivalModel> modelList, Context context) {
         this.modelList = modelList;
@@ -33,10 +41,38 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull WishListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WishListViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.productTitle.setText(modelList.get(position).getTitle());
+        holder.productPrice.setText(modelList.get(position).getPrice()+ "TK");
+        //holder.productStrikeTv.setText(modelList.get(position).getStrikePrice());
 
+        Glide.with(context).
+                load(modelList.get(position).getImage()).
+                into(holder.productIv);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewArrivalModel object = modelList.get(position);
+                Intent intent = new Intent(context, ShowDetailsActivity.class);
+                intent.putExtra("object",object);
+                context.startActivity(intent);
+
+            }
+        });
+
+        holder.deleteIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewArrivalModel model = modelList.get(position);
+                wishListPref.removeFavorite(context, model);
+                Toast.makeText(context, "Wish clicked", Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
+            }
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -44,11 +80,18 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
     }
 
     public class WishListViewHolder extends RecyclerView.ViewHolder {
-        TextView productTitle;
+        TextView productTitle,productPrice;
+        ImageView productIv,deleteIv;
+
+
 
         public WishListViewHolder(@NonNull View itemView) {
             super(itemView);
-            productTitle = itemView.findViewById(R.id.tv_product_title);
+            productIv = itemView.findViewById(R.id.picCard);
+            deleteIv = itemView.findViewById(R.id.iv_delete);
+            productTitle = itemView.findViewById(R.id.tv_wishList_product_title);
+            productPrice = itemView.findViewById(R.id.tv_price_wish_list);
+
         }
     }
 }

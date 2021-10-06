@@ -43,8 +43,8 @@ public class AllCategoryActivity extends AppCompatActivity {
         list.add(new MainCategoryModel("Women",R.drawable.women));
         list.add(new MainCategoryModel("Grocery",R.drawable.grocery));
         list.add(new MainCategoryModel("Kids",R.drawable.kids));
-        list.add(new MainCategoryModel("Electronics Device",R.drawable.device));
-        list.add(new MainCategoryModel("Cooking",R.drawable.cooking));
+        list.add(new MainCategoryModel("Electronics",R.drawable.device));
+        list.add(new MainCategoryModel("Health & Beauty",R.drawable.women));
 
         AllCategoryAdapter adapter = new AllCategoryAdapter(this,list);
         GridLayoutManager layoutManager = new GridLayoutManager(this,2);

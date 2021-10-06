@@ -58,7 +58,7 @@ public class WishListFragment extends Fragment {
         WishListPref wishListPref = new WishListPref();
 
         List<NewArrivalModel> list = wishListPref.getFavorites(context);
-        if (list.size() == 0){
+        if (list.isEmpty()){
             Toast.makeText(context, "empty wish list", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -66,12 +66,9 @@ public class WishListFragment extends Fragment {
             LinearLayoutManager manager = new LinearLayoutManager(context);
             wishListRv.setLayoutManager(manager);
             wishListRv.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
     }
 
-    @Override
-    public void onResume() {
 
-        super.onResume();
-    }
 }

@@ -29,6 +29,7 @@ import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
+import com.bgsourcingltd.bghaat.activities.CategoryDetailsActivity;
 import com.bgsourcingltd.bghaat.adapters.BestSellingCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.NewArrivalCatAdapter;
@@ -66,7 +67,7 @@ public class HomeFragment extends Fragment {
     private ProgressDialog progressDialog;
     private ApiService apiService;
 
-    private TextView mainCatTv;
+    private TextView mainCatTv,newArrivalTv,healthBeautyTv,womensViewAllTv;
 
 
     public HomeFragment() {
@@ -98,6 +99,9 @@ public class HomeFragment extends Fragment {
         rvWomensCat = view.findViewById(R.id.rv_womens_fashion);
         //rvTopBrands = view.findViewById(R.id.rv_top_brands);
         mainCatTv =  view.findViewById(R.id.tv_main_cat_viewAll);
+        newArrivalTv = view.findViewById(R.id.tv_new_arrival_viewall);
+        healthBeautyTv = view.findViewById(R.id.tv_best_selling_view_all);
+        womensViewAllTv = view.findViewById(R.id.tv_womens_fasion_view_all);
         progressDialog = new ProgressDialog(context);
 
 
@@ -129,6 +133,33 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        newArrivalTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CategoryDetailsActivity.class);
+                intent.putExtra("catName","Gents");
+                startActivity(intent);
+            }
+        });
+
+        healthBeautyTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CategoryDetailsActivity.class);
+                intent.putExtra("catName","Health & Beauty");
+                startActivity(intent);
+            }
+        });
+
+        womensViewAllTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CategoryDetailsActivity.class);
+                intent.putExtra("catName","Women");
+                startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -153,10 +184,12 @@ public class HomeFragment extends Fragment {
 
     private void setNewArrivalCategory() {
 
-        Call<List<NewArrivalModel>> listCall = apiService.getAllProduct();
+        Call<List<NewArrivalModel>> listCall = apiService.getGentsProduct();
+
         progressDialog.show();
         progressDialog.setContentView(R.layout.show_dialog_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
 
         listCall.enqueue(new Callback<List<NewArrivalModel>>() {
             @Override
@@ -187,7 +220,7 @@ public class HomeFragment extends Fragment {
 
     private void setBestSelling() {
 
-        Call<List<NewArrivalModel>> listCall = apiService.getGroceryProduct();
+        Call<List<NewArrivalModel>> listCall = apiService.getHeathBeauty();
         listCall.enqueue(new Callback<List<NewArrivalModel>>() {
             @Override
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
@@ -200,7 +233,6 @@ public class HomeFragment extends Fragment {
                     rvBestSelling.setLayoutManager(manager);
                     rvBestSelling.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-
 
                 }
 
@@ -230,6 +262,7 @@ public class HomeFragment extends Fragment {
                     rvWomensCat.setLayoutManager(manager);
                     rvWomensCat.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
+
 
                 }
             }

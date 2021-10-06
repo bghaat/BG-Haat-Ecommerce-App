@@ -1,6 +1,8 @@
 package com.bgsourcingltd.bghaat.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.activities.CategoryDetailsActivity;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
 import com.bumptech.glide.Glide;
 
@@ -36,10 +39,20 @@ public class AllCategoryAdapter extends RecyclerView.Adapter<AllCategoryAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull AllCategoryAdapter.AllCategoryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull AllCategoryAdapter.AllCategoryViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Glide.with(context).load(list.get(position).getCatImage()).into(holder.allCatIv);
         holder.allCatTv.setText(list.get(position).getCatName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CategoryDetailsActivity.class);
+                String catTitle = list.get(position).getCatName();
+                intent.putExtra("catName",catTitle);
+                context.startActivity(intent);
+            }
+        });
 
 
     }

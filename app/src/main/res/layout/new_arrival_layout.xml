@@ -57,7 +57,7 @@
             android:id="@+id/tv_strike_new_arrival"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/_200_tk"
+            android:text=""
             app:layout_constraintStart_toEndOf="@id/tv_price_new_arrival"
             app:layout_constraintTop_toTopOf="@id/tv_price_new_arrival"
             app:layout_constraintBottom_toBottomOf="@id/tv_price_new_arrival"

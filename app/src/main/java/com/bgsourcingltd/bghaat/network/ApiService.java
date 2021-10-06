@@ -1,13 +1,19 @@
 package com.bgsourcingltd.bghaat.network;
 
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bgsourcingltd.bghaat.models.OrderResponse;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface ApiService {
+
 
     @GET("catproduct/?cat=womens-fashion")
     Call<List<NewArrivalModel>> getWomenProduct();
@@ -26,4 +32,18 @@ public interface ApiService {
 
     @GET("allproductapi")
     Call<List<NewArrivalModel>> getAllProduct();
+
+    @GET("catproduct/?cat=kids-fashion")
+    Call<List<NewArrivalModel>> getKidsProduct();
+
+    @FormUrlEncoded
+    @POST("postdatas/")
+    Call<OrderResponse> postOrder(
+            @Field("username") String username,
+            @Field("phone") String phone,
+            @Field("homeaddress") String homeaddress,
+            @Field("orderlist") String orderlist
+
+    );
+
 }

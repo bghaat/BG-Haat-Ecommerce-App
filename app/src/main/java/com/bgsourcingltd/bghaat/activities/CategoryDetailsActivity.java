@@ -68,6 +68,10 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             callHealthBeautyAPI();
 
         }
+        else if (catTitle.equals("Kids")){
+            callKidsAPI();
+
+        }
         else {
             Toast.makeText(this, "No Data Found", Toast.LENGTH_SHORT).show();
         }
@@ -222,6 +226,34 @@ public class CategoryDetailsActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void callKidsAPI(){
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        Call<List<NewArrivalModel>> listCall = apiService.getKidsProduct();
+        listCall.enqueue(new Callback<List<NewArrivalModel>>() {
+            @Override
+            public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
+                if (response.isSuccessful()){
+
+                    List<NewArrivalModel> list = response.body();
+                    Collections.reverse(list);
+                    adapter = new CatDetailsAdapter(CategoryDetailsActivity.this,list);
+                    GridLayoutManager manager = new GridLayoutManager(CategoryDetailsActivity.this,2);
+                    catDetailsRv.setLayoutManager(manager);
+                    catDetailsRv.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<NewArrivalModel>> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
