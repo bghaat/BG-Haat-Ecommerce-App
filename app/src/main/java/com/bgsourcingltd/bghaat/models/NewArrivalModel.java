@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public class NewArrivalModel implements Serializable {
 
+    @SerializedName("id")
+    private String id;
     @SerializedName("image")
     private String image;
     @SerializedName("title")
@@ -18,12 +20,13 @@ public class NewArrivalModel implements Serializable {
     private String des;
     private int numberInCart;
 
-    public NewArrivalModel(String image, String title, String price, String des,String regularPrice) {
+    public NewArrivalModel(String image, String title, String price, String des,String regularPrice,String id) {
         this.image = image;
         this.title = title;
         this.price = price;
         this.des = des;
         this.regularPrice = regularPrice;
+        this.id = id;
 
     }
 
@@ -82,5 +85,13 @@ public class NewArrivalModel implements Serializable {
 
     public void setRegularPrice(String regularPrice) {
         this.regularPrice = regularPrice;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

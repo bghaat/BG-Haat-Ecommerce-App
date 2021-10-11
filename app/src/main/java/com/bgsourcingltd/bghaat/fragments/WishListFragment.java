@@ -1,5 +1,6 @@
 package com.bgsourcingltd.bghaat.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bgsourcingltd.bghaat.Interface.DeleteWishListListener;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.adapters.WishListAdapter;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
@@ -24,11 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class WishListFragment extends Fragment {
+public class WishListFragment extends Fragment implements DeleteWishListListener {
 
 
     private Context context;
     private RecyclerView wishListRv;
+    WishListAdapter adapter;
+    WishListPref wishListPref;
+    List<NewArrivalModel> list;
 
 
     public WishListFragment() {
@@ -54,15 +59,14 @@ public class WishListFragment extends Fragment {
 
 
         wishListRv = view.findViewById(R.id.rv_wish_list);
+        wishListPref = new WishListPref();
 
-        WishListPref wishListPref = new WishListPref();
-
-        List<NewArrivalModel> list = wishListPref.getFavorites(context);
+        list = wishListPref.getFavorites(context);
         if (list.isEmpty()){
             Toast.makeText(context, "empty wish list", Toast.LENGTH_SHORT).show();
         }
         else {
-            WishListAdapter adapter = new WishListAdapter(list, context);
+            adapter = new WishListAdapter(list, context,this);
             LinearLayoutManager manager = new LinearLayoutManager(context);
             wishListRv.setLayoutManager(manager);
             wishListRv.setAdapter(adapter);
@@ -71,4 +75,9 @@ public class WishListFragment extends Fragment {
     }
 
 
+    @Override
+    public void deleteItem(List<NewArrivalModel> list, int position,NewArrivalModel model) {
+        WishListPref wishListPref = new WishListPref();
+        wishListPref.removeFavorite(context,model);
+    }
 }

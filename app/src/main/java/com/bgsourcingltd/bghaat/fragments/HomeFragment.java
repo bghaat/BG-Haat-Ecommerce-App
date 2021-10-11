@@ -10,6 +10,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -68,6 +69,7 @@ public class HomeFragment extends Fragment {
     private ApiService apiService;
 
     private TextView mainCatTv,newArrivalTv,healthBeautyTv,womensViewAllTv;
+    private ConstraintLayout offerLayout;
 
 
     public HomeFragment() {
@@ -102,6 +104,7 @@ public class HomeFragment extends Fragment {
         newArrivalTv = view.findViewById(R.id.tv_new_arrival_viewall);
         healthBeautyTv = view.findViewById(R.id.tv_best_selling_view_all);
         womensViewAllTv = view.findViewById(R.id.tv_womens_fasion_view_all);
+        offerLayout = view.findViewById(R.id.cv_offer);
         progressDialog = new ProgressDialog(context);
 
 
@@ -157,6 +160,13 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(context, CategoryDetailsActivity.class);
                 intent.putExtra("catName","Women");
                 startActivity(intent);
+            }
+        });
+
+        offerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Go Offer Page", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bgsourcingltd.bghaat.Interface.DeleteWishListListener;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.activities.ShowDetailsActivity;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
@@ -25,11 +26,14 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
 
     private List<NewArrivalModel> modelList;
     private Context context;
-    WishListPref wishListPref = new WishListPref();
+    private DeleteWishListListener listListener;
 
-    public WishListAdapter(List<NewArrivalModel> modelList, Context context) {
+
+    public WishListAdapter(List<NewArrivalModel> modelList, Context context,DeleteWishListListener listListener) {
         this.modelList = modelList;
         this.context = context;
+        this.listListener = listListener;
+
     }
 
     @NonNull
@@ -65,13 +69,11 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
             @Override
             public void onClick(View v) {
                 NewArrivalModel model = modelList.get(position);
-                wishListPref.removeFavorite(context, model);
-                Toast.makeText(context, "Wish clicked", Toast.LENGTH_SHORT).show();
-                notifyDataSetChanged();
+                listListener.deleteItem(modelList,position,model);
+
             }
         });
     }
-
 
 
     @Override

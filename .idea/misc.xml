@@ -12,6 +12,7 @@
         <entry key="..\:/BGHaat/app/src/main/res/drawable/ic_baseline_add_shopping_cart_24.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable/offer_banner.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/round_bg.xml" value="0.25" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/search_background.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/search_bg.xml" value="0.25" />
@@ -20,7 +21,7 @@
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_cart_list.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_category_details.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_contact_us.xml" value="0.22" />
-        <entry key="..\:/BGHaat/app/src/main/res/layout/activity_customer_details.xml" value="0.22" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/activity_customer_details.xml" value="0.25" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_search.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_show_details.xml" value="0.22" />
@@ -36,6 +37,7 @@
         <entry key="..\:/BGHaat/app/src/main/res/layout/new_arrival_layout.xml" value="0.20102564102564102" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/show_dialog_layout.xml" value="0.33" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/slide_one.xml" value="0.1962962962962963" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/slider_item.xml" value="0.19972826086956522" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/top_brands_layout.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/viewholder_card.xml" value="0.2" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/wish_list_layout.xml" value="0.2" />

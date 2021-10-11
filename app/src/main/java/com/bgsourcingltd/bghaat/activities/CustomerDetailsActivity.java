@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.R;
@@ -36,6 +38,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     private ApiService apiService;
     private String json;
     private ProgressDialog progressDialog;
+    RadioButton cashRb,onlineRb;
 
 
     @Override
@@ -49,6 +52,8 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         locationEt = findViewById(R.id.et_phone);
         submitBtn = findViewById(R.id.btn_submit);
         progressDialog = new ProgressDialog(this);
+        cashRb = findViewById(R.id.rg_cash_on);
+        onlineRb = findViewById(R.id.rg_online_payment);
 
         //json = new Gson().toJson(managementCart.getListCard());
 
@@ -65,19 +70,24 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         Log.d("catchjson", " "+json);
         apiService = ApiClient.getRetrofit().create(ApiService.class);
 
+        RadioGroup radioGroup = findViewById(R.id.rg);
+
+
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                 String name = nameEt.getText().toString();
-                 String phone = phoneEt.getText().toString();
-                 String location = locationEt.getText().toString();
+                if (cashRb.isChecked()){
 
-                 Log.d("list", "onCreate: "+json);
+                String name = nameEt.getText().toString();
+                String phone = phoneEt.getText().toString();
+                String location = locationEt.getText().toString();
+
+                Log.d("list", "onCreate: " + json);
 
 
-                Call<OrderResponse> orderResponseCall = apiService.postOrder(name, phone, location,json);
+                Call<OrderResponse> orderResponseCall = apiService.postOrder(name, phone, location, json);
 
                 progressDialog.show();
                 progressDialog.setContentView(R.layout.show_dialog_layout);
@@ -86,21 +96,31 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                 orderResponseCall.enqueue(new Callback<OrderResponse>() {
                     @Override
                     public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
-                            OrderResponse orderResponse = response.body();
-                            Toast.makeText(CustomerDetailsActivity.this, ""+orderResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        OrderResponse orderResponse = response.body();
+                        Toast.makeText(CustomerDetailsActivity.this, "" + orderResponse.getMessage(), Toast.LENGTH_SHORT).show();
 
-                            progressDialog.dismiss();
+                        progressDialog.dismiss();
                     }
 
                     @Override
                     public void onFailure(Call<OrderResponse> call, Throwable t) {
-                        Log.e("order", "onFailure "+t.getLocalizedMessage());
+                        Log.e("order", "onFailure " + t.getLocalizedMessage());
 
                     }
                 });
 
             }
+                else if (onlineRb.isChecked()){
+                    Toast.makeText(CustomerDetailsActivity.this, "Go to payment activity", Toast.LENGTH_SHORT).show();
+                }
+                else if (radioGroup.getCheckedRadioButtonId() == -1){
+                    Toast.makeText(CustomerDetailsActivity.this, "Select Payment Method", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
         });
+
     }
 
     @Override

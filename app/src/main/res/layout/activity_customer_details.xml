@@ -99,6 +99,38 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+           <TextView
+               android:id="@+id/tv_select_payment"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Select payment Method"
+               android:textSize="18sp"
+               android:layout_marginStart="16dp"
+               android:textColor="@color/yellow"/>
+
+            <RadioGroup
+                android:id="@+id/rg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                >
+
+                <RadioButton
+                    android:id="@+id/rg_cash_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cash On Delivery"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/rg_online_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Online Payment"
+                    android:textColor="@color/black"
+                    />
+            </RadioGroup>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_submit"
                 android:layout_width="match_parent"

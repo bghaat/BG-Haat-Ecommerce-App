@@ -32,7 +32,7 @@ public class ManagementCart {
         boolean existAlready = false;
         int n = 0;
         for (int i = 0; i < listFood.size(); i++) {
-            if (listFood.get(i).getTitle().equals(item.getTitle())) {
+            if (listFood.get(i).getId().equals(item.getId())) {
                 existAlready = true;
                 n = i;
                 break;
