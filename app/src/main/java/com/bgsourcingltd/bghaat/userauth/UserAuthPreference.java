@@ -25,5 +25,14 @@ public class UserAuthPreference {
 
     }
 
+    public void setPhoneNumber(String phoneNumber){
+        editor.putString(LOGIN_STATUS,phoneNumber);
+        editor.commit();
+    }
+
+    public String getPhoneNumber(){
+        return sharedPreferences.getString(LOGIN_STATUS,null);
+    }
+
 
 }

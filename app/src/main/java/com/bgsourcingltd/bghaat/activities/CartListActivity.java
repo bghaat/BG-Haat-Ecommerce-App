@@ -36,6 +36,7 @@ public class CartListActivity extends AppCompatActivity {
     private double tax;
     private ScrollView scrollView;
     private Gson gson;
+    private double total;
     //private List<NewArrivalModel> orders;
 
 
@@ -86,13 +87,13 @@ public class CartListActivity extends AppCompatActivity {
         double percentTax = 0.02;
         double delivery = 10;
 
-        tax = Math.round((managementCart.getTotalFee() * percentTax) * 100.0) / 100.0;
-        double total = Math.round((managementCart.getTotalFee() + tax + delivery) * 100.0) / 100.0;
+        //tax = Math.round((managementCart.getTotalFee() * percentTax) * 100.0) / 100.0;
+        total = Math.round((managementCart.getTotalFee()) * 100.0) / 100.0;
         double itemTotal = Math.round(managementCart.getTotalFee() * 100.0) / 100.0;
 
         totalFeeTxt.setText("৳" + itemTotal);
-        taxTxt.setText("৳" + tax);
-        deliveryTxt.setText("৳" + delivery);
+        /*taxTxt.setText("৳" + tax);
+        deliveryTxt.setText("৳" + delivery);*/
         totalTxt.setText("৳" + total);
     }
 
@@ -100,8 +101,8 @@ public class CartListActivity extends AppCompatActivity {
     private void initView() {
         recyclerViewList = findViewById(R.id.recyclerview);
         totalFeeTxt = findViewById(R.id.totalFeeTxt);
-        taxTxt = findViewById(R.id.taxTxt);
-        deliveryTxt = findViewById(R.id.deliveryTxt);
+        /*taxTxt = findViewById(R.id.taxTxt);
+        deliveryTxt = findViewById(R.id.deliveryTxt);*/
         totalTxt = findViewById(R.id.totalTxt);
         emptyTxt = findViewById(R.id.emptyTxt);
         scrollView = findViewById(R.id.scrollView4);
@@ -113,6 +114,7 @@ public class CartListActivity extends AppCompatActivity {
         //intent.putExtra("order", (Serializable) orders);
         String json = gson.toJson(managementCart.getListCard());
         intent.putExtra("cart",json);
+        intent.putExtra("totalAmount",total);
         Log.d("json", "json "+json);
         startActivity(intent);
 

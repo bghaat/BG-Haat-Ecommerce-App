@@ -49,6 +49,7 @@ public class CatDetailsAdapter extends RecyclerView.Adapter<CatDetailsAdapter.Ca
     public void onBindViewHolder(@NonNull CatDetailsViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.productTitle.setText(catList.get(position).getTitle());
         holder.productPrice.setText(catList.get(position).getPrice()+" ৳");
+        holder.productStrikeTv.setText(catList.get(position).getRegularPrice());
 
         Glide.with(context).load(catList.get(position).
                 getImage()).

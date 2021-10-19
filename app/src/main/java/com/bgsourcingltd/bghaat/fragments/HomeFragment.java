@@ -39,6 +39,7 @@ import com.bgsourcingltd.bghaat.adapters.TopBrandsAdapter;
 import com.bgsourcingltd.bghaat.adapters.WomensAdapter;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bgsourcingltd.bghaat.models.SliderModel;
 import com.bgsourcingltd.bghaat.models.TopBrandsModel;
 import com.bgsourcingltd.bghaat.network.ApiClient;
 import com.bgsourcingltd.bghaat.network.ApiService;
@@ -62,7 +63,6 @@ public class HomeFragment extends Fragment {
 
     SliderView sliderView;
 
-    int[] images = {R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.app};
     private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling,rvWomensCat,rvTopBrands;
     private Context context;
     private ProgressDialog progressDialog;
@@ -111,15 +111,7 @@ public class HomeFragment extends Fragment {
         apiService = ApiClient.getRetrofit().create(ApiService.class);
 
 
-        SliderAdapter sliderAdapter = new SliderAdapter(images);
-
-        sliderView.setSliderAdapter(sliderAdapter);
-        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
-        sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
-        sliderView.startAutoCycle();
-
-
-
+        setSlider();
         setMainCategory();
         setNewArrivalCategory();
         setBestSelling();
@@ -166,12 +158,42 @@ public class HomeFragment extends Fragment {
         offerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Go Offer Page", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Flash Sale Coming soon", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
+    private void setSlider() {
+        Call<List<SliderModel>> listCall = apiService.getSlider();
+
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+
+        listCall.enqueue(new Callback<List<SliderModel>>() {
+            @Override
+            public void onResponse(Call<List<SliderModel>> call, Response<List<SliderModel>> response) {
+                List<SliderModel> sliderModelList = response.body();
+
+                SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList,context);
+                sliderView.setSliderAdapter(sliderAdapter);
+                progressDialog.dismiss();
+                sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+                sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
+                sliderView.startAutoCycle();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<SliderModel>> call, Throwable t) {
+
+            }
+        });
+
+
+    }
 
 
     private void setMainCategory() {
@@ -196,9 +218,6 @@ public class HomeFragment extends Fragment {
 
         Call<List<NewArrivalModel>> listCall = apiService.getGentsProduct();
 
-        progressDialog.show();
-        progressDialog.setContentView(R.layout.show_dialog_layout);
-        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
 
         listCall.enqueue(new Callback<List<NewArrivalModel>>() {
@@ -214,7 +233,8 @@ public class HomeFragment extends Fragment {
                     rvNewArrivalCategory.setLayoutManager(manager);
                     rvNewArrivalCategory.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-                    progressDialog.dismiss();
+
+
                 }
             }
 
@@ -272,7 +292,6 @@ public class HomeFragment extends Fragment {
                     rvWomensCat.setLayoutManager(manager);
                     rvWomensCat.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-
 
                 }
             }

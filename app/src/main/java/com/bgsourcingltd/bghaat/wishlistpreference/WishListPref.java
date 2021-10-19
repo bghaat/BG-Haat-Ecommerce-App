@@ -3,6 +3,7 @@ package com.bgsourcingltd.bghaat.wishlistpreference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.google.gson.Gson;
@@ -31,22 +32,26 @@ public class WishListPref {
 
         editor.putString(FAVORITES, jsonFavorites);
 
-        editor.commit();
+
+        editor.apply();
     }
 
     public void addFavorite(Context context, NewArrivalModel product) {
+        SharedPreferences.Editor editor;
         ArrayList<NewArrivalModel> favorites = getFavorites(context);
         if (favorites == null)
             favorites = new ArrayList<NewArrivalModel>();
         favorites.add(product);
         saveFavorites(context, favorites);
+
     }
 
-    public void removeFavorite(Context context, NewArrivalModel product) {
+    public void removeFavorite(Context context, NewArrivalModel model) {
         ArrayList<NewArrivalModel> favorites = getFavorites(context);
         if (favorites != null) {
-            favorites.remove(product);
+            favorites.remove(model);
             saveFavorites(context, favorites);
+            Toast.makeText(context, "remove", Toast.LENGTH_SHORT).show();
         }
     }
 

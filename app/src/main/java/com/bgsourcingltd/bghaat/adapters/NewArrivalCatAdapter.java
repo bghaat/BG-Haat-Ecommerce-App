@@ -44,7 +44,7 @@ public class NewArrivalCatAdapter extends RecyclerView.Adapter<NewArrivalCatAdap
 
 
         holder.productTitleTv.setText(newArrivalModelList.get(position).getTitle());
-        holder.productPriceTv.setText(newArrivalModelList.get(position).getPrice()+" ৳");
+        holder.productPriceTv.setText(newArrivalModelList.get(position).getPrice()+"৳");
 
         holder.productStrikeTv.setText(newArrivalModelList.get(position).getRegularPrice());
 

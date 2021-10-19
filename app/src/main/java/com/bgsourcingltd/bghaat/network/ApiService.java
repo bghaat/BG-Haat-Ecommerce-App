@@ -2,6 +2,7 @@ package com.bgsourcingltd.bghaat.network;
 
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.models.OrderResponse;
+import com.bgsourcingltd.bghaat.models.SliderModel;
 
 import java.util.List;
 
@@ -36,13 +37,22 @@ public interface ApiService {
     @GET("catproduct/?cat=kids-fashion")
     Call<List<NewArrivalModel>> getKidsProduct();
 
+    @GET("getslider/")
+    Call<List<SliderModel>> getSlider();
+
     @FormUrlEncoded
     @POST("postdatas/")
     Call<OrderResponse> postOrder(
             @Field("username") String username,
             @Field("phone") String phone,
-            @Field("homeaddress") String homeaddress,
-            @Field("orderlist") String orderlist
+            @Field("address") String homeaddress,
+            @Field("orderlist") String orderlist,
+            @Field("customer_email") String customerEmail,
+            @Field("customer_city") String customerCity,
+            @Field("customer_country") String customerCountry,
+            @Field("payment_status") String paymentStatus,
+            @Field("total_price") String totalPrice
+
 
     );
 

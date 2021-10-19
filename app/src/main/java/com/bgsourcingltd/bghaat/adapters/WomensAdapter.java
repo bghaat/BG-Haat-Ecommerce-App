@@ -41,8 +41,8 @@ public class WomensAdapter extends RecyclerView.Adapter<WomensAdapter.WomensView
     public void onBindViewHolder(@NonNull WomensViewHoloder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.productTitleTv.setText(newArrivalModelList.get(position).getTitle());
-        holder.productPriceTv.setText(newArrivalModelList.get(position).getPrice()+ "TK");
-        //holder.productStrikeTv.setText(modelList.get(position).getStrikePrice());
+        holder.productPriceTv.setText(newArrivalModelList.get(position).getPrice()+ "৳");
+        holder.productStrikeTv.setText(newArrivalModelList.get(position).getRegularPrice());
 
         Glide.with(context).
                 load(newArrivalModelList.get(position).getImage()).

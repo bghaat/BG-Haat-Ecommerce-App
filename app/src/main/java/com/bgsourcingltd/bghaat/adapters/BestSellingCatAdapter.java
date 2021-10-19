@@ -45,8 +45,8 @@ public class BestSellingCatAdapter extends RecyclerView.Adapter<BestSellingCatAd
 
 
         holder.productTitleTv.setText(modelList.get(position).getTitle());
-        holder.productPriceTv.setText(modelList.get(position).getPrice()+ "TK");
-        //holder.productStrikeTv.setText(modelList.get(position).getStrikePrice());
+        holder.productPriceTv.setText(modelList.get(position).getPrice()+ "৳");
+        holder.productStrikeTv.setText(modelList.get(position).getRegularPrice());
 
         Glide.with(context).
                 load(modelList.get(position).getImage()).

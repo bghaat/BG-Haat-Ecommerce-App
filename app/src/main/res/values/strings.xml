@@ -42,4 +42,10 @@
     <string name="cart_drawer">Cart</string>
     <string name="rate_us">Rate Us</string>
     <string name="health_beauty"><![CDATA[Health & Beauty]]></string>
+
+    <string name="okey">Okey</string>
+    <string name="title">This the title</string>
+    <string name="success">Shipping Cost</string>
+
+
 </resources>

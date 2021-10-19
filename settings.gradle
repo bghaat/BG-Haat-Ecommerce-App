@@ -1,2 +1,3 @@
 rootProject.name = "BG Haat"
 include ':app'
+

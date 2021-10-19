@@ -26,13 +26,14 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
 
     private List<NewArrivalModel> modelList;
     private Context context;
-    private DeleteWishListListener listListener;
+    private WishListPref wishListPref;
 
 
-    public WishListAdapter(List<NewArrivalModel> modelList, Context context,DeleteWishListListener listListener) {
+
+    public WishListAdapter(List<NewArrivalModel> modelList, Context context) {
         this.modelList = modelList;
         this.context = context;
-        this.listListener = listListener;
+        this.wishListPref = new WishListPref();
 
     }
 
@@ -66,15 +67,16 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
         });
 
         holder.deleteIv.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-                NewArrivalModel model = modelList.get(position);
-                listListener.deleteItem(modelList,position,model);
+                modelList.remove(position);
+                wishListPref.saveFavorites(context,modelList);
+                notifyDataSetChanged();
 
             }
         });
     }
-
 
     @Override
     public int getItemCount() {

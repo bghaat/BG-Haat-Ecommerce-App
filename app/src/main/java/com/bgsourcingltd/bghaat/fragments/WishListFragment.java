@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class WishListFragment extends Fragment implements DeleteWishListListener {
+public class WishListFragment extends Fragment {
 
 
     private Context context;
@@ -53,20 +53,22 @@ public class WishListFragment extends Fragment implements DeleteWishListListener
         return inflater.inflate(R.layout.fragment_wish_list, container, false);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
+        list = new ArrayList<>();
         wishListRv = view.findViewById(R.id.rv_wish_list);
         wishListPref = new WishListPref();
 
         list = wishListPref.getFavorites(context);
-        if (list.isEmpty()){
+        if (list == null){
             Toast.makeText(context, "empty wish list", Toast.LENGTH_SHORT).show();
         }
         else {
-            adapter = new WishListAdapter(list, context,this);
+            adapter = new WishListAdapter(list, context);
             LinearLayoutManager manager = new LinearLayoutManager(context);
             wishListRv.setLayoutManager(manager);
             wishListRv.setAdapter(adapter);
@@ -75,9 +77,5 @@ public class WishListFragment extends Fragment implements DeleteWishListListener
     }
 
 
-    @Override
-    public void deleteItem(List<NewArrivalModel> list, int position,NewArrivalModel model) {
-        WishListPref wishListPref = new WishListPref();
-        wishListPref.removeFavorite(context,model);
-    }
+
 }

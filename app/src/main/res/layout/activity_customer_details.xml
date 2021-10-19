@@ -31,7 +31,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 app:endIconMode="clear_text"
                 app:helperText="Mandatory*"
                 app:helperTextTextColor="@color/red"
@@ -51,16 +51,17 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
             <com.google.android.material.textfield.TextInputLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginTop="8dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="11"
                 app:endIconMode="clear_text"
                 app:helperText="Mandatory*"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/call"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
@@ -80,9 +81,10 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 app:endIconMode="clear_text"
                 app:helperText="Mandatory*"
+                android:hint="Shipping Address"
                 app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/home_address"
                 android:layout_margin="16dp"
@@ -93,10 +95,23 @@
                     android:id="@+id/et_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Your Home Address"
                     android:imeOptions="actionNext"
                     android:inputType="textPersonName"/>
 
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:hint="Select Your City"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/auto_complete"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:inputType="none"/>
             </com.google.android.material.textfield.TextInputLayout>
 
            <TextView
@@ -106,6 +121,7 @@
                android:text="Select payment Method"
                android:textSize="18sp"
                android:layout_marginStart="16dp"
+               android:layout_marginTop="8dp"
                android:textColor="@color/yellow"/>
 
             <RadioGroup
@@ -131,17 +147,20 @@
                     />
             </RadioGroup>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_submit"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Submit"
-                android:layout_margin="16dp"/>
+
+
 
         </LinearLayout>
 
     </ScrollView>
 
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Submit"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
