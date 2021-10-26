@@ -193,7 +193,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/tv_offer_until"
                     app:layout_constraintStart_toStartOf="@id/tv_offer_until"
-                    android:text="10 October-09 November"
+                    android:text="21 October-21 November"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     />

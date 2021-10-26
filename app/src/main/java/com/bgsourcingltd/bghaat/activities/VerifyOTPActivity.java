@@ -33,6 +33,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
     private EditText inputCode1,inputCode2,inputCode3,inputCode4,inputCode5,inputCode6;
     private String verificationId;
     private UserAuthPreference preference;
+    private String number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class VerifyOTPActivity extends AppCompatActivity {
         textMobile.setText(String.format(
                 "+880-%s",getIntent().getStringExtra("mobile")
         ));
+
+        number = getIntent().getStringExtra("mobile");
 
         inputCode1 = findViewById(R.id.inputCode1);
         inputCode2 = findViewById(R.id.inputCode2);
@@ -100,6 +103,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         //save user info
                                         preference.setLoginStatus(true);
+                                        preference.setPhoneNumber(number);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                     }

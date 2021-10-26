@@ -282,6 +282,5 @@ public class CategoryDetailsActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
-
     }
 }

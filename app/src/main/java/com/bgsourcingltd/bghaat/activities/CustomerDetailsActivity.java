@@ -48,7 +48,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CustomerDetailsActivity extends AppCompatActivity {
-    private EditText nameEt,phoneEt,locationEt;
+    private EditText nameEt,phoneEt,locationEt,emailEt;
     private MaterialButton submitBtn;
     private List<NewArrivalModel> orderList;
     private ApiService apiService;
@@ -60,9 +60,13 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     private static final String SIGNATURE_KEY = "707a3642a524f2c753d02f651c98c742";
     private AlertDialog alertDialog;
     private DialogBuilder dialogBuilder;
-    private double totalPrice;
+    private double totalPrice,deliveryAndTotalPrice;
+
+    private String name,phone,address,email,city;
+
     private AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItem;
+    private String paymentStatus = "";
     private String [] item =
             {"Brahmanbaria","Bogra","Bandarban","Borguna","Barisal","Bagerhat","Bhola","Chandpur",
                     "Chittagong", "Chuadanga", "Comilla", "Cox's Bazar", "Dhaka", "Dinajpur",
@@ -76,7 +80,6 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
             };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,11 +90,13 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         nameEt = findViewById(R.id.et_name);
         phoneEt = findViewById(R.id.et_phone);
         locationEt = findViewById(R.id.et_location);
+        emailEt = findViewById(R.id.et_email);
         submitBtn = findViewById(R.id.btn_submit);
         progressDialog = new ProgressDialog(this);
         cashRb = findViewById(R.id.rg_cash_on);
         onlineRb = findViewById(R.id.rg_online_payment);
         autoCompleteTextView = findViewById(R.id.auto_complete);
+        RadioGroup radioGroup = findViewById(R.id.rg);
 
         aamarPay = new AamarPay(this,STORE_ID,SIGNATURE_KEY);
         aamarPay.testMode(false);
@@ -116,7 +121,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         Log.d("catchjson", ""+json);
         apiService = ApiClient.getRetrofit().create(ApiService.class);
 
-        RadioGroup radioGroup = findViewById(R.id.rg);
+
         locationEt.setText("");
         locationEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -135,16 +140,15 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
+                city = parent.getItemAtPosition(position).toString();
                 String amountDhaka = "60";
                 String amountOutSideDhaka = "130";
-                if (item.equals("Dhaka")){
+                if (city.equals("Dhaka")){
                     showDeliverDialog(amountDhaka);
                 }
                 else {
                     showDeliverDialog(amountOutSideDhaka);
                 }
-
 
             }
         });
@@ -154,16 +158,18 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                name = nameEt.getText().toString();
+                phone = phoneEt.getText().toString();
+                address = locationEt.getText().toString();
+                email = emailEt.getText().toString();
+
                 if (cashRb.isChecked()){
-
-                String name = nameEt.getText().toString();
-                String phone = phoneEt.getText().toString();
-                String address = locationEt.getText().toString();
-
                 Log.d("list", "onCreate: " + json);
+                    paymentStatus = cashRb.getText().toString();
+                    Log.e("paymentStatus", "onClick: "+paymentStatus );
 
 
-                Call<OrderResponse> orderResponseCall = apiService.postOrder(name, phone, address, json,"nazmul@gmail.com","Dhaka","Bangladesh","cash on delivery","300");
+                Call<OrderResponse> orderResponseCall = apiService.postOrder(name, phone, address, json,email,city,"Bangladesh",paymentStatus,String.valueOf(deliveryAndTotalPrice));
 
                 progressDialog.show();
                 progressDialog.setContentView(R.layout.show_dialog_layout);
@@ -187,9 +193,12 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
             }
                 else if (onlineRb.isChecked()){
+                    paymentStatus = onlineRb.getText().toString();
+                    Log.e("paymentStatus", "onClick: "+paymentStatus );
                     dialogBuilder.showLoading();
-                    aamarPay.setTransactionParameter(String.valueOf(totalPrice),"BDT","BGHaat Shopping");
-                    aamarPay.setCustomerDetails("Nazmul","nazmulhoque247@gmail.com","01834462681","51/A/11","Dhaka","Bangladesh");
+                    aamarPay.setTransactionParameter(String.valueOf(deliveryAndTotalPrice),"BDT","BGHaat Shopping");
+                    aamarPay.setCustomerDetails(name,email,phone,address,city,"Bangladesh");
+
                     aamarPay.initPGW(new AamarPay.onInitListener() {
                         @Override
                         public void onInitFailure(Boolean error, String message) {
@@ -202,6 +211,22 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                             Log.d("TEST_PS", jsonObject.toString());
                             dialogBuilder.dismissDialog();
                             //if payment is successful send data with server
+
+                            Call<OrderResponse> orderResponseCall = apiService.postOrder(name, phone, address, json,email,city,"Bangladesh",paymentStatus,String.valueOf(deliveryAndTotalPrice));
+
+                            orderResponseCall.enqueue(new Callback<OrderResponse>() {
+                                @Override
+                                public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
+
+                                    OrderResponse orderResponse = response.body();
+                                    Toast.makeText(CustomerDetailsActivity.this, "" + orderResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure(Call<OrderResponse> call, Throwable t) {
+
+                                }
+                            });
 
                         }
 
@@ -236,12 +261,13 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
     private void showDeliverDialog(String item) {
 
+        deliveryAndTotalPrice = Double.parseDouble(item)+totalPrice;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(CustomerDetailsActivity.this,R.style.AlertDialogTheme);
         View view = LayoutInflater.from(this).inflate(R.layout.layout_success_dialog,(ConstraintLayout) findViewById(R.id.layout_dialog_container));
         builder.setView(view);
         ((TextView) view.findViewById(R.id.textTitle)).setText(getResources().getString(R.string.success));
-        ((TextView) view.findViewById(R.id.textMessage)).setText("Delivery Charge will be applicable " + item + " tk");
+        ((TextView) view.findViewById(R.id.textMessage)).setText("Delivery Charge will be applicable " + item + " tk" + "Total cost "+ deliveryAndTotalPrice);
         ((Button) view.findViewById(R.id.btnAction)).setText(getResources().getString(R.string.okey));
         ((ImageView) view.findViewById(R.id.img_icon)).setImageResource(R.drawable.shipping);
 

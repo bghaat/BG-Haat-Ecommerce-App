@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,17 +21,20 @@ import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.AllProductViewHolder> {
+public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.AllProductViewHolder> implements Filterable {
 
     private List<NewArrivalModel> list;
     private Context context;
+    private List<NewArrivalModel> listFull;
 
 
     public AllProductAdapter(List<NewArrivalModel> list, Context context) {
         this.list = list;
         this.context = context;
+        this.listFull = new ArrayList<>(list);
 
     }
 
@@ -68,38 +72,41 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Al
         return list.size();
     }
 
-    /*public Filter getFilter(){
+    @Override
+    public Filter getFilter() {
+        return filterUser;
+    }
 
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                String key = constraint.toString().toLowerCase();
-                if (key.isEmpty()){
-                    filterDataList = list;
-                }
-                else {
-                    List<NewArrivalModel> lstFiltered = new ArrayList<>();
-                    for (NewArrivalModel row : list){
-                        if (row.getTitle().toLowerCase().contains(key.toLowerCase())){
-                            lstFiltered.add(row);
-                        }
+    private Filter filterUser = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String searchText = constraint.toString().toLowerCase();
+            List<NewArrivalModel> tempList = new ArrayList<>();
+            if (searchText.length()==0 || searchText.isEmpty()){
+                tempList.addAll(listFull);
+            }
+            else {
+                for (NewArrivalModel items : listFull){
+                    //if you want to query with multiple condition put logic here
+                    if (items.getTitle().toLowerCase().contains(searchText)){
+                        tempList.add(items);
                     }
-                    filterDataList = lstFiltered;
                 }
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = filterDataList;
-                return filterResults;
             }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = tempList;
+            return filterResults;
+        }
 
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
 
-                filterDataList = (List<NewArrivalModel>) results.values;
-                notifyDataSetChanged();
+            list.clear();
+            list.addAll((Collection<? extends NewArrivalModel>) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
-            }
-        };
-    }*/
 
     public class AllProductViewHolder extends RecyclerView.ViewHolder{
         ImageView productIv;
@@ -116,6 +123,8 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Al
             productStrikeTv.setPaintFlags(productStrikeTv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         }
     }
+
+
 
 
 }

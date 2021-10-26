@@ -31,6 +31,7 @@ import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.activities.CategoryDetailsActivity;
+import com.bgsourcingltd.bghaat.activities.OfferActivty;
 import com.bgsourcingltd.bghaat.adapters.BestSellingCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.NewArrivalCatAdapter;
@@ -112,12 +113,13 @@ public class HomeFragment extends Fragment {
 
 
         setSlider();
-        setMainCategory();
         setNewArrivalCategory();
+        setMainCategory();
         setBestSelling();
         setWomensFasion();
-        //setTopBrands();
 
+
+        //setTopBrands();
         //click view all category
 
         mainCatTv.setOnClickListener(new View.OnClickListener() {
@@ -158,13 +160,15 @@ public class HomeFragment extends Fragment {
         offerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Flash Sale Coming soon", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, OfferActivty.class);
+                startActivity(intent);
             }
         });
 
     }
 
     private void setSlider() {
+
         Call<List<SliderModel>> listCall = apiService.getSlider();
 
         progressDialog.show();
@@ -179,7 +183,6 @@ public class HomeFragment extends Fragment {
 
                 SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList,context);
                 sliderView.setSliderAdapter(sliderAdapter);
-                progressDialog.dismiss();
                 sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
                 sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
                 sliderView.startAutoCycle();
@@ -192,11 +195,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
     }
 
 
     private void setMainCategory() {
+
         List<MainCategoryModel> mainCategoryModelList = new ArrayList<>();
 
         mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.cotton_polo_shirt));
@@ -218,9 +221,8 @@ public class HomeFragment extends Fragment {
 
         Call<List<NewArrivalModel>> listCall = apiService.getGentsProduct();
 
-
-
         listCall.enqueue(new Callback<List<NewArrivalModel>>() {
+
             @Override
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
                 if (response.isSuccessful()){
@@ -234,7 +236,6 @@ public class HomeFragment extends Fragment {
                     rvNewArrivalCategory.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
-
                 }
             }
 
@@ -245,12 +246,12 @@ public class HomeFragment extends Fragment {
         });
 
 
-
     }
 
     private void setBestSelling() {
 
         Call<List<NewArrivalModel>> listCall = apiService.getHeathBeauty();
+
         listCall.enqueue(new Callback<List<NewArrivalModel>>() {
             @Override
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
@@ -265,7 +266,6 @@ public class HomeFragment extends Fragment {
                     adapter.notifyDataSetChanged();
 
                 }
-
             }
 
             @Override
@@ -291,6 +291,7 @@ public class HomeFragment extends Fragment {
                     manager.setOrientation(LinearLayoutManager.HORIZONTAL);
                     rvWomensCat.setLayoutManager(manager);
                     rvWomensCat.setAdapter(adapter);
+                    progressDialog.dismiss();
                     adapter.notifyDataSetChanged();
 
                 }
@@ -301,7 +302,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
 
     }
 

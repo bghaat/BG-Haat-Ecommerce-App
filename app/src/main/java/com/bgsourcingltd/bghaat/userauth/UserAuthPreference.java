@@ -31,7 +31,7 @@ public class UserAuthPreference {
     }
 
     public String getPhoneNumber(){
-        return sharedPreferences.getString(LOGIN_STATUS,null);
+        return sharedPreferences.getString(LOGIN_STATUS,"not found number");
     }
 
 

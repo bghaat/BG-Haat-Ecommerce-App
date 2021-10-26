@@ -33,8 +33,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:endIconMode="clear_text"
-                app:helperText="Mandatory*"
-                app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/account"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -45,24 +43,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Your Name"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
 
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="11"
                 app:endIconMode="clear_text"
-                app:helperText="Mandatory*"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/call"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -71,32 +66,49 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLength="11"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
+                    android:inputType="phone"
                     android:hint="Enter your phone number"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="0dp"
                 app:endIconMode="clear_text"
-                app:helperText="Mandatory*"
+                android:hint="Email address"
+                app:startIconDrawable="@drawable/home_address"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                app:endIconMode="clear_text"
                 android:hint="Shipping Address"
-                app:helperTextTextColor="@color/red"
                 app:startIconDrawable="@drawable/home_address"
                 android:layout_margin="16dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,8 +140,7 @@
                 android:id="@+id/rg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                >
+                android:layout_marginStart="16dp">
 
                 <RadioButton
                     android:id="@+id/rg_cash_on"
@@ -147,20 +158,22 @@
                     />
             </RadioGroup>
 
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Process Order"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
 
         </LinearLayout>
 
+
+
     </ScrollView>
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_submit"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Submit"
-        android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

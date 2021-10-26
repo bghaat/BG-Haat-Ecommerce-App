@@ -27,6 +27,7 @@ import com.bgsourcingltd.bghaat.activities.ContactUsActivity;
 import com.bgsourcingltd.bghaat.activities.SearchActivity;
 import com.bgsourcingltd.bghaat.cartcounter.CartCounter;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bgsourcingltd.bghaat.userauth.UserAuthPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.onesignal.OneSignal;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private Toolbar toolbar;
     private TextView cartCounter;
+    private UserAuthPreference preference;
 
     private static final String ONESIGNAL_APP_ID = "4866250c-552e-4db2-97b4-70030ededc27";
 
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        preference = new UserAuthPreference(this);
 
         // Enable verbose OneSignal logging to debug issues if needed.
         OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
@@ -140,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Show shared preference data from login info
+        /*View view = navigationView.getHeaderView(0);
+        TextView phoneNumber = view.findViewById(R.id.tv_user_header_number);
+        phoneNumber.setText(preference.getPhoneNumber());*/
     }
 
     /*@Override

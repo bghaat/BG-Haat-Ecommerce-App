@@ -3,6 +3,8 @@ package com.bgsourcingltd.bghaat.activities;
 import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +14,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,7 +30,9 @@ import org.imaginativeworld.oopsnointernet.dialogs.pendulum.DialogPropertiesPend
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Filter;
 
 import retrofit2.Call;
@@ -36,11 +42,9 @@ import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
     private RecyclerView searchRv;
-    private EditText searchEt;
-    private List<NewArrivalModel> list = new ArrayList<>();
     private ApiService apiService;
     private AllProductAdapter adapter;
-    List<NewArrivalModel> filterList = new ArrayList<>();
+    private Toolbar toolbar;
 
 
 
@@ -50,57 +54,26 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        searchEt = findViewById(R.id.et_search_all_products);
+
         searchRv = findViewById(R.id.rv_all_product);
+        toolbar = findViewById(R.id.toolbar_search_all_product);
+
+        toolbar.setTitle("Search anything Here...");
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+
         apiService = ApiClient.getRetrofit().create(ApiService.class);
 
-        callAllProductAPI();
-
-        searchEt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                filterList.clear();
-
-                if (s.toString().isEmpty()){
-                    searchRv.setAdapter(new AllProductAdapter(list,SearchActivity.this));
-                    adapter.notifyDataSetChanged();
-                }
-                else {
-                    Filter(s.toString());
-                }
-
-            }
-        });
-
-
-    }
-
-    private void callAllProductAPI() {
         Call<List<NewArrivalModel>> listCall = apiService.getAllProduct();
 
         listCall.enqueue(new Callback<List<NewArrivalModel>>() {
             @Override
             public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
                 if (response.isSuccessful()){
-                    list = response.body();
-
-                    Toast.makeText(SearchActivity.this, ""+list.size(), Toast.LENGTH_SHORT).show();
-                    adapter = new AllProductAdapter(list,SearchActivity.this);
-                    GridLayoutManager manager = new GridLayoutManager(SearchActivity.this,2);
-                    searchRv.setLayoutManager(manager);
-                    searchRv.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
-
+                    List<NewArrivalModel> list = response.body();
+                    Collections.reverse(list);
+                    callAllProductAPI(list);
 
                 }
             }
@@ -111,21 +84,44 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void callAllProductAPI(List<NewArrivalModel> list) {
+
+        adapter = new AllProductAdapter(list,SearchActivity.this);
+        GridLayoutManager manager = new GridLayoutManager(SearchActivity.this,2);
+        searchRv.setLayoutManager(manager);
+        searchRv.setAdapter(adapter);
+        //adapter.notifyDataSetChanged();
 
     }
 
-    private void Filter(String text){
-        for (NewArrivalModel model : list){
-            if (model.getTitle().equals(text)){
-                filterList.add(model);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+        MenuItem menuItem = menu.findItem(R.id.search_product);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
             }
-        }
 
-        searchRv.setAdapter(new AllProductAdapter(filterList,SearchActivity.this));
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText.toString());
+                return false;
+            }
+        });
 
-
-
+        return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
 }

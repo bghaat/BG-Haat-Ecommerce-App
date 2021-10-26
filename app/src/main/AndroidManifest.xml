@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BGHaat">
         <activity
+            android:name=".activities.OfferActivty"
+            android:exported="false" />
+        <activity
             android:name=".activities.CustomerDetailsActivity"
             android:exported="true" />
         <activity

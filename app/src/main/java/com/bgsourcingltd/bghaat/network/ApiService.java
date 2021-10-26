@@ -40,6 +40,9 @@ public interface ApiService {
     @GET("getslider/")
     Call<List<SliderModel>> getSlider();
 
+    @GET("catproduct/?cat=flash-sale")
+    Call<List<NewArrivalModel>> getFlashSale();
+
     @FormUrlEncoded
     @POST("postdatas/")
     Call<OrderResponse> postOrder(
