@@ -34,15 +34,18 @@ import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.models.OrderResponse;
 import com.bgsourcingltd.bghaat.network.ApiClient;
 import com.bgsourcingltd.bghaat.network.ApiService;
+import com.bgsourcingltd.bghaat.userauth.UserPhoneAuth;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
+
 
 
 import org.json.JSONObject;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,6 +64,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     private AlertDialog alertDialog;
     private DialogBuilder dialogBuilder;
     private double totalPrice,deliveryAndTotalPrice;
+    private UserPhoneAuth phoneAuth;
 
     private String name,phone,address,email,city;
 
@@ -97,7 +101,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         onlineRb = findViewById(R.id.rg_online_payment);
         autoCompleteTextView = findViewById(R.id.auto_complete);
         RadioGroup radioGroup = findViewById(R.id.rg);
-
+        phoneAuth = new UserPhoneAuth(this);
         aamarPay = new AamarPay(this,STORE_ID,SIGNATURE_KEY);
         aamarPay.testMode(false);
         aamarPay.autoGenerateTransactionID(true);
@@ -136,6 +140,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
         adapterItem = new ArrayAdapter<String>(this,R.layout.list_item,item);
         autoCompleteTextView.setAdapter(adapterItem);
+        phoneEt.setText("0"+phoneAuth.getPhoneNumber());
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -163,7 +168,24 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                 address = locationEt.getText().toString();
                 email = emailEt.getText().toString();
 
-                if (cashRb.isChecked()){
+                if (name.isEmpty()){
+                    Toasty.warning(CustomerDetailsActivity.this, "Enter Name", Toast.LENGTH_LONG, true).show();
+
+                }
+                else if (phone.isEmpty() && phone.length() < 10){
+                    Toasty.warning(CustomerDetailsActivity.this, "Enter valid number", Toast.LENGTH_LONG, true).show();
+                }
+                else if (address.isEmpty()){
+                    Toasty.warning(CustomerDetailsActivity.this, "give your home address", Toast.LENGTH_LONG, true).show();
+
+                }
+                else if (email.isEmpty()){
+                    Toasty.warning(CustomerDetailsActivity.this, "give email", Toast.LENGTH_LONG, true).show();
+
+                }
+
+
+                else if (cashRb.isChecked()){
                 Log.d("list", "onCreate: " + json);
                     paymentStatus = cashRb.getText().toString();
                     Log.e("paymentStatus", "onClick: "+paymentStatus );
@@ -253,6 +275,8 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                 else if (radioGroup.getCheckedRadioButtonId() == -1){
                     Toast.makeText(CustomerDetailsActivity.this, "Select Payment Method", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
 
         });

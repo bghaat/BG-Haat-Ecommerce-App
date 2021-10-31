@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.userauth.UserAuthPreference;
+import com.bgsourcingltd.bghaat.userauth.UserPhoneAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -33,6 +34,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
     private EditText inputCode1,inputCode2,inputCode3,inputCode4,inputCode5,inputCode6;
     private String verificationId;
     private UserAuthPreference preference;
+    private UserPhoneAuth phoneAuth;
     private String number;
 
     @Override
@@ -57,6 +59,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
         inputCode6 = findViewById(R.id.inputCode6);
 
         preference = new UserAuthPreference(this);
+        phoneAuth = new UserPhoneAuth(this);
 
         setOTPInputs();
 
@@ -103,7 +106,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         //save user info
                                         preference.setLoginStatus(true);
-                                        preference.setPhoneNumber(number);
+                                        phoneAuth.setPhoneNumber(number);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                     }

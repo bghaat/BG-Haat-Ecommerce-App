@@ -28,6 +28,7 @@ import com.bgsourcingltd.bghaat.activities.SearchActivity;
 import com.bgsourcingltd.bghaat.cartcounter.CartCounter;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.userauth.UserAuthPreference;
+import com.bgsourcingltd.bghaat.userauth.UserPhoneAuth;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.onesignal.OneSignal;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView cartCounter;
     private UserAuthPreference preference;
+    private UserPhoneAuth phoneAuth;
 
     private static final String ONESIGNAL_APP_ID = "4866250c-552e-4db2-97b4-70030ededc27";
 
@@ -70,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
         preference = new UserAuthPreference(this);
+        phoneAuth = new UserPhoneAuth(this);
+
+
 
         // Enable verbose OneSignal logging to debug issues if needed.
         OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
@@ -144,9 +149,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Show shared preference data from login info
-        /*View view = navigationView.getHeaderView(0);
-        TextView phoneNumber = view.findViewById(R.id.tv_user_header_number);
-        phoneNumber.setText(preference.getPhoneNumber());*/
+        View view = navigationView.getHeaderView(0);
+        TextView phoneNumber = (TextView) view.findViewById(R.id.tv_user_header_number);
+        phoneNumber.setText("0"+phoneAuth.getPhoneNumber());
+
     }
 
     /*@Override

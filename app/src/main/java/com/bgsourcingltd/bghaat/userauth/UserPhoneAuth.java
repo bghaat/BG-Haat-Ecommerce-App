@@ -3,28 +3,23 @@ package com.bgsourcingltd.bghaat.userauth;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class UserAuthPreference {
+public class UserPhoneAuth {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    public static final String LOGIN_STATUS = "status";
+    private static final String LOGIN_STATUS = "phone";
 
-
-    public UserAuthPreference(Context context){
+    public UserPhoneAuth(Context context){
         sharedPreferences = context.getSharedPreferences("user_auth",Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
 
-    public void setLoginStatus(boolean status){
-        editor.putBoolean(LOGIN_STATUS,status);
+    public void setPhoneNumber(String phoneNumber){
+        editor.putString(LOGIN_STATUS,phoneNumber);
         editor.commit();
     }
 
-    public boolean getLoginStatus(){
-        return sharedPreferences.getBoolean(LOGIN_STATUS,false);
-
+    public String getPhoneNumber(){
+        return sharedPreferences.getString(LOGIN_STATUS,"no data");
     }
-
-
-
 }

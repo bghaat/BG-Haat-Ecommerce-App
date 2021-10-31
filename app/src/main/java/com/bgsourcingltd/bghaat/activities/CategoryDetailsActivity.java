@@ -228,6 +228,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
 
     }
     private void callKidsAPI(){
+
         progressDialog.show();
         progressDialog.setContentView(R.layout.show_dialog_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
