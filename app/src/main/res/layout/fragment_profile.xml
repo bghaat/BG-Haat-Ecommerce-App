@@ -22,7 +22,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top_background" />
+        />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Jack Willson"
-        android:textColor="#ffffff"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="jackwillson@gmail.com"
-        android:textColor="#ffffff"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -79,8 +79,8 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="120dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/top_button_background"
@@ -107,8 +107,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="120dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/top_button_background"
@@ -135,8 +135,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/layout_order"
+                android:layout_width="80dp"
+                android:layout_height="120dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/top_button_background"
@@ -145,18 +146,19 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_margin="10dp"
-                    app:srcCompat="@drawable/ic_3" />
+                    app:srcCompat="@drawable/order"
+                    android:layout_gravity="center"/>
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tv_previous_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="Payment"
-                    android:textAlignment="center"
+                    android:text="Track Order"
+                    android:layout_gravity="center"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -327,7 +329,7 @@
 
     </LinearLayout>
 
-    <Button
+    <!--<Button
         android:id="@+id/button2"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -342,7 +344,7 @@
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
+-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

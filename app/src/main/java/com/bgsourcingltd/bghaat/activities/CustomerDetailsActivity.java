@@ -121,7 +121,6 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
         json = getIntent().getStringExtra("cart");
         totalPrice = getIntent().getDoubleExtra("totalAmount",0);
-        Toast.makeText(this, ""+totalPrice, Toast.LENGTH_SHORT).show();
         Log.d("catchjson", ""+json);
         apiService = ApiClient.getRetrofit().create(ApiService.class);
 
@@ -201,9 +200,10 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                         OrderResponse orderResponse = response.body();
-                        Toast.makeText(CustomerDetailsActivity.this, "" + orderResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toasty.success(CustomerDetailsActivity.this, "Thanks For Order", Toast.LENGTH_LONG, true).show();
 
                         progressDialog.dismiss();
+                        startActivity(new Intent(CustomerDetailsActivity.this,OrderTrackingActivity.class));
                     }
 
                     @Override

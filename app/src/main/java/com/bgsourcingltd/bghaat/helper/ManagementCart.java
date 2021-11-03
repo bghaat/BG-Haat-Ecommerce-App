@@ -45,7 +45,6 @@ public class ManagementCart {
         else {
             listFood.add(item);
             cartCounter.increaseCartValue();
-            Toast.makeText(context, " "+ cartCounter.getCartValue(), Toast.LENGTH_SHORT).show();
 
         }
 

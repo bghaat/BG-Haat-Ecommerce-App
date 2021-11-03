@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BGHaat">
         <activity
+            android:name=".activities.OrderTrackingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.OfferActivty"
             android:exported="false" />
         <activity
