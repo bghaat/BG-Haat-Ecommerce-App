@@ -4,28 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.bgsourcingltd.bghaat.Interface.ChangeNumberItemsListener;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.adapters.CartListAdapter;
 import com.bgsourcingltd.bghaat.helper.ManagementCart;
-import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-
-import java.io.Serializable;
-import java.util.List;
 
 public class CartListActivity extends AppCompatActivity {
 

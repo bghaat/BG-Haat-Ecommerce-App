@@ -77,7 +77,7 @@
                 android:layout_marginTop="0dp"
                 app:endIconMode="clear_text"
                 android:hint="Email address"
-                app:startIconDrawable="@drawable/home_address"
+                app:startIconDrawable="@drawable/email"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">

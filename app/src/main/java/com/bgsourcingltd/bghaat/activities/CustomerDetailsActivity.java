@@ -276,7 +276,6 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                     Toast.makeText(CustomerDetailsActivity.this, "Select Payment Method", Toast.LENGTH_SHORT).show();
                 }
 
-
             }
 
         });
