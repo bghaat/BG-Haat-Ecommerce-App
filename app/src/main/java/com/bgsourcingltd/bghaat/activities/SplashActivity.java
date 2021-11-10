@@ -1,5 +1,6 @@
 package com.bgsourcingltd.bghaat.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,11 +9,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
-import org.imaginativeworld.oopsnointernet.dialogs.pendulum.DialogPropertiesPendulum;
-import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum;
+
+
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -25,9 +30,20 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
-
-
         logoImg = findViewById(R.id.iv_splash);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("weather")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = getString(R.string.msg_subscribed);
+                        if (!task.isSuccessful()) {
+                            msg = getString(R.string.msg_subscribe_failed);
+                        }
+
+                        Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
         goToIntroActivity();

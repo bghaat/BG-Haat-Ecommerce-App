@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,9 +22,11 @@ import android.widget.Toast;
 
 
 import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
+import com.bgsourcingltd.bghaat.activities.AllProductActivity;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.activities.ContactUsActivity;
 
+import com.bgsourcingltd.bghaat.activities.OfferActivty;
 import com.bgsourcingltd.bghaat.activities.SearchActivity;
 import com.bgsourcingltd.bghaat.cartcounter.CartCounter;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
@@ -31,11 +34,13 @@ import com.bgsourcingltd.bghaat.userauth.UserAuthPreference;
 import com.bgsourcingltd.bghaat.userauth.UserPhoneAuth;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.onesignal.OSNotificationOpenedResult;
 import com.onesignal.OneSignal;
 
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.DialogPropertiesPendulum;
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum;
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private UserAuthPreference preference;
     private UserPhoneAuth phoneAuth;
 
-    private static final String ONESIGNAL_APP_ID = "4866250c-552e-4db2-97b4-70030ededc27";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +79,6 @@ public class MainActivity extends AppCompatActivity {
         preference = new UserAuthPreference(this);
         phoneAuth = new UserPhoneAuth(this);
 
-
-
-        // Enable verbose OneSignal logging to debug issues if needed.
-        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
-
-        // OneSignal Initialization
-        OneSignal.initWithContext(this);
-        OneSignal.setAppId(ONESIGNAL_APP_ID);
 
 
         noInternetCheck();
@@ -142,6 +139,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.rate:
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
                         break;
+
+                    case R.id.allProduct:
+                        startActivity(new Intent(MainActivity.this,AllProductActivity.class));
+                        break;
+
 
                 }
                 return true;

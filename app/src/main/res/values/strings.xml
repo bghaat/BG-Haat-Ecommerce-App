@@ -46,6 +46,8 @@
     <string name="okey">Okey</string>
     <string name="title">This the title</string>
     <string name="success">Shipping Cost</string>
+    <string name="msg_subscribed">Done</string>
+    <string name="msg_subscribe_failed">failed</string>
 
 
 </resources>

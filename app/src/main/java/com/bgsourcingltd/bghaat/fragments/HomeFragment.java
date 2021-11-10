@@ -171,10 +171,6 @@ public class HomeFragment extends Fragment {
 
         Call<List<SliderModel>> listCall = apiService.getSlider();
 
-        progressDialog.show();
-        progressDialog.setContentView(R.layout.show_dialog_layout);
-        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
 
         listCall.enqueue(new Callback<List<SliderModel>>() {
             @Override
@@ -220,6 +216,10 @@ public class HomeFragment extends Fragment {
     private void setNewArrivalCategory() {
 
         Call<List<NewArrivalModel>> listCall = apiService.getGentsProduct();
+
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         listCall.enqueue(new Callback<List<NewArrivalModel>>() {
 

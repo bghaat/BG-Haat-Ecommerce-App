@@ -27,6 +27,7 @@
         <entry key="..\:/BGHaat/app/src/main/res/drawable/shopping_cart.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/title_success_background.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_all_category.xml" value="0.19814814814814816" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/activity_all_product.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_cart_list.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_category_details.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_contact_us.xml" value="0.22" />
@@ -53,6 +54,7 @@
         <entry key="..\:/BGHaat/app/src/main/res/layout/list_item.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/main_category_layout.xml" value="0.25" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/new_arrival_layout.xml" value="0.20102564102564102" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/notification.xml" value="0.33" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/show_dialog_layout.xml" value="0.33" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/slide_one.xml" value="0.1962962962962963" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/slider_item.xml" value="0.19972826086956522" />
