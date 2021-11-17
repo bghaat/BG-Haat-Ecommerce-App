@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -36,12 +37,20 @@ public class SplashActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        String msg = getString(R.string.msg_subscribed);
+                        if (getIntent() != null && getIntent().hasExtra("key1")){
+                            for (String key: getIntent().getExtras().keySet()){
+                                String value = getIntent().getExtras().getString(key);
+                                Log.d("notificationValue", "onComplete"+value+" Data "+getIntent().getExtras().getString(key));
+                                Toast.makeText(SplashActivity.this, ""+value, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        /*String msg = getString(R.string.msg_subscribed);
                         if (!task.isSuccessful()) {
                             msg = getString(R.string.msg_subscribe_failed);
                         }
 
-                        Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SplashActivity.this, msg, Toast.LENGTH_SHORT).show();*/
                     }
                 });
 

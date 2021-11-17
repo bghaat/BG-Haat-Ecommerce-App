@@ -3,13 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/BGHaat/app/src/main/res/drawable-v24/background_white.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable-v24/button_background.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable-v24/grey_bar.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable-v24/grey_btn_background.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable-v24/yellow_bar.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable-v24/yellow_btn_background.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/account.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/address.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/background_button.xml" value="0.2169230769230769" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/button_success_background.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/call.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable/card_background.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/circular_text.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable/dialog_background.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/drawable_background.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/drop_shadow.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/favorite.xml" value="0.2203125" />
@@ -17,6 +24,7 @@
         <entry key="..\:/BGHaat/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/offer_banner.xml" value="0.2203125" />
+        <entry key="..\:/BGHaat/app/src/main/res/drawable/rate.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/round_bg.xml" value="0.25" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/search_background.xml" value="0.2203125" />
         <entry key="..\:/BGHaat/app/src/main/res/drawable/search_bg.xml" value="0.25" />

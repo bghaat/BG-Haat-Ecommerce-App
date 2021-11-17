@@ -75,7 +75,7 @@ public class SendOTPActivity extends AppCompatActivity {
                                     progressBar.setVisibility(View.GONE);
                                     buttonGetOTP.setVisibility(View.VISIBLE);
                                     Log.e(TAG, "onVerificationFailed: "+e.getLocalizedMessage());
-                                    Toast.makeText(SendOTPActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SendOTPActivity.this, "Try To Another Phone Number", Toast.LENGTH_SHORT).show();
 
                                 }
 

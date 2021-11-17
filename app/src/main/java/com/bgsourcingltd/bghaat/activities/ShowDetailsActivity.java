@@ -2,11 +2,13 @@ package com.bgsourcingltd.bghaat.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,18 +18,23 @@ import com.bgsourcingltd.bghaat.helper.ManagementCart;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.wishlistpreference.WishListPref;
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class ShowDetailsActivity extends AppCompatActivity {
     private TextView addToCardBtn ;
-    private TextView titleTxt,feeTxt,descriptionTxt,numberOrderTxt;
-    private ImageView plusBtn, minusBtn, picFood,favIv;
+    private TextView titleTxt,feeTxt,descriptionTxt,numberOrderTxt,totalPriceTxt;
+    private ImageView plusBtn, minusBtn,favIv,backIv;
     private int numberOrder = 1;
     private NewArrivalModel object;
     private ManagementCart managementCart;
+    private PhotoView picFood;
+    private LinearLayout shareLayout;
 
 
     @Override
@@ -45,8 +52,28 @@ public class ShowDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 WishListPref wishListPref = new WishListPref();
                 wishListPref.addFavorite(ShowDetailsActivity.this,object);
-                Toast.makeText(ShowDetailsActivity.this, "fav clicked", Toast.LENGTH_SHORT).show();
+                Toasty.success(ShowDetailsActivity.this, "Product Add your WishList", Toast.LENGTH_LONG, true).show();
 
+            }
+        });
+
+        shareLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(android.content.Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject test");
+                i.putExtra(android.content.Intent.EXTRA_TEXT, "https://bghaat.com/");
+                startActivity(Intent.createChooser(i,"Share via"));
+            }
+        });
+
+
+
+        backIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ShowDetailsActivity.this, "Click Back Button", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -70,6 +97,9 @@ public class ShowDetailsActivity extends AppCompatActivity {
         minusBtn = findViewById(R.id.minusBtn);
         picFood = findViewById(R.id.foodPic);
         favIv = findViewById(R.id.iv_fav);
+        totalPriceTxt = findViewById(R.id.totalPriceTxt);
+        backIv = findViewById(R.id.iv_back);
+        shareLayout = findViewById(R.id.layout_share);
 
 
     }
@@ -78,15 +108,18 @@ public class ShowDetailsActivity extends AppCompatActivity {
         object = (NewArrivalModel) getIntent().getSerializableExtra("object");
         Glide.with(this).load(object.getImage()).into(picFood);
         titleTxt.setText(object.getTitle());
-        feeTxt.setText("৳" + object.getPrice());
+        feeTxt.setText("৳ "+ object.getPrice());
+        totalPriceTxt.setText("৳ "+ object.getPrice());
         descriptionTxt.setText(removeHtml(object.getDes()));
         numberOrderTxt.setText(String.valueOf(numberOrder));
 
         plusBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 numberOrder = numberOrder + 1;
                 numberOrderTxt.setText(String.valueOf(numberOrder));
+                totalPriceTxt.setText("৳ "+Math.round(numberOrder * Integer.parseInt(object.getPrice())));
             }
         });
 
@@ -97,6 +130,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
                     numberOrder = numberOrder - 1;
                 }
                 numberOrderTxt.setText(String.valueOf(numberOrder));
+                totalPriceTxt.setText("৳ "+Math.round(numberOrder * Integer.parseInt(object.getPrice())));
             }
         });
 
@@ -131,4 +165,11 @@ public class ShowDetailsActivity extends AppCompatActivity {
         return html;
 
     }
+
+    /*@Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+
+    }*/
 }

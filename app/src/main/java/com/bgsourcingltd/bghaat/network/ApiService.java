@@ -44,7 +44,7 @@ public interface ApiService {
     Call<List<NewArrivalModel>> getFlashSale();
 
     @FormUrlEncoded
-    @POST("postdatas/")
+    @POST("testapi/")
     Call<OrderResponse> postOrder(
             @Field("username") String username,
             @Field("phone") String phone,

@@ -14,7 +14,7 @@ public class NewArrivalModel implements Serializable {
     private String title;
     @SerializedName("price")
     private String price;
-    @SerializedName("regular price")
+    @SerializedName("regular_price")
     private String regularPrice;
     @SerializedName("des")
     private String des;
