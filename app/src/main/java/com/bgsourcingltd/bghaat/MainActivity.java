@@ -26,6 +26,7 @@ import com.bgsourcingltd.bghaat.activities.AllProductActivity;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.activities.ContactUsActivity;
 
+import com.bgsourcingltd.bghaat.activities.CouponActivity;
 import com.bgsourcingltd.bghaat.activities.OfferActivty;
 import com.bgsourcingltd.bghaat.activities.SearchActivity;
 import com.bgsourcingltd.bghaat.cartcounter.CartCounter;
@@ -142,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.allProduct:
                         startActivity(new Intent(MainActivity.this,AllProductActivity.class));
+                        break;
+
+                    case R.id.coupon:
+                        startActivity(new Intent(MainActivity.this, CouponActivity.class));
                         break;
 
 

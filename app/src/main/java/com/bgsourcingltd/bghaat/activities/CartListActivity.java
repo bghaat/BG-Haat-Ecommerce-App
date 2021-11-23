@@ -9,27 +9,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bgsourcingltd.bghaat.Interface.ChangeNumberItemsListener;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.adapters.CartListAdapter;
+import com.bgsourcingltd.bghaat.adapters.CouponAdapter;
+import com.bgsourcingltd.bghaat.helper.Constraint;
 import com.bgsourcingltd.bghaat.helper.ManagementCart;
+import com.bgsourcingltd.bghaat.models.CouponCodeModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import es.dmoral.toasty.Toasty;
 
 public class CartListActivity extends AppCompatActivity {
 
     private RecyclerView.Adapter adapter;
     private TextView totalFeeTxt, taxTxt, deliveryTxt, totalTxt, emptyTxt,checkOut;
+    private EditText couponEt;
     private RecyclerView recyclerViewList;
     private ManagementCart managementCart;
     private double tax;
     private ScrollView scrollView;
     private Gson gson;
     private double total;
+    private Button applyBtn;
     //private List<NewArrivalModel> orders;
 
 
@@ -43,6 +53,8 @@ public class CartListActivity extends AppCompatActivity {
         initList();
         calculateCard();
 
+
+
         //orders = managementCart.getListCard();
         gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -50,6 +62,16 @@ public class CartListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkOutButtonClicked();
+            }
+        });
+
+        applyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String orginCode = couponEt.getText().toString();
+
+                    Toast.makeText(CartListActivity.this, ""+ Constraint.couponCode, Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -100,6 +122,8 @@ public class CartListActivity extends AppCompatActivity {
         emptyTxt = findViewById(R.id.emptyTxt);
         scrollView = findViewById(R.id.scrollView4);
         checkOut = findViewById(R.id.btn_checkOut);
+        couponEt = findViewById(R.id.et_coupon);
+        applyBtn = findViewById(R.id.btn_apply);
     }
 
     private void checkOutButtonClicked(){

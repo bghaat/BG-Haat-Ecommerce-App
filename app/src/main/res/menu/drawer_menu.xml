@@ -29,5 +29,11 @@
         android:title="@string/rate_us"
         android:icon="@drawable/rate"/>
 
+    <item
+        android:id="@+id/coupon"
+        android:title="Coupon"
+        android:icon="@drawable/ic_coupon"
+        />
+
 
 </menu>

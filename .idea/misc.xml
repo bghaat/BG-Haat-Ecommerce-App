@@ -39,6 +39,7 @@
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_cart_list.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_category_details.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_contact_us.xml" value="0.22" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/activity_coupon.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_customer_details.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_offer_activty.xml" value="0.20416666666666666" />
@@ -46,11 +47,13 @@
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_search.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_send_otpactivity.xml" value="0.25" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_show_details.xml" value="0.22" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/activity_splash.xml" value="0.1925925925925926" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/activity_verify_otpactivity.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/all_product_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/best_selling_layout.xml" value="0.20102564102564102" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/cat_all_layout.xml" value="0.17685185185185184" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/cat_details_layout.xml" value="0.2" />
+        <entry key="..\:/BGHaat/app/src/main/res/layout/coupon_item_layout.xml" value="0.25" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/custom_dailog_internet.xml" value="0.22" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/flash_sale_item.xml" value="0.20416666666666666" />
         <entry key="..\:/BGHaat/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
