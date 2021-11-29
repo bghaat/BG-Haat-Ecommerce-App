@@ -45,6 +45,8 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponCode
         holder.expiredDate.setText(codeModelList.get(position).getExpiredDate());
 
         Constraint.couponCode = codeModelList.get(position).getCouponCode();
+        Constraint.couponDate = codeModelList.get(position).getExpiredDate();
+        Constraint.couponAmount = codeModelList.get(position).getAmount();
 
     }
 

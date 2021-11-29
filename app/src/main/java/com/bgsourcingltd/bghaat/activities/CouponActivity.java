@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -32,12 +33,14 @@ public class CouponActivity extends AppCompatActivity {
     public static List<CouponCodeModel> list;
     CouponAdapter adapter;
     DatabaseReference databaseReference;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon);
 
+        progressDialog = new ProgressDialog(this);
         couponTb = findViewById(R.id.toolbar_coupon);
         couponRv = findViewById(R.id.rv_coupon);
         couponRv.setLayoutManager(new LinearLayoutManager(this));
@@ -51,6 +54,10 @@ public class CouponActivity extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance("https://bg-haat-e5629-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("user");
 
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -63,6 +70,7 @@ public class CouponActivity extends AppCompatActivity {
                 adapter = new CouponAdapter(CouponActivity.this,list);
                 couponRv.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                progressDialog.dismiss();
             }
 
             @Override

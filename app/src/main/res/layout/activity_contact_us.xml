@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:gravity="center_horizontal"
     tools:context=".activities.ContactUsActivity">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,9 +17,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent=".5" />
+            app:layout_constraintGuide_percent=".4" />
 
-        <ImageView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_contact_us"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/iv_location"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -28,7 +35,7 @@
             app:layout_constraintBottom_toBottomOf="@id/gl_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_contact_us" />
 
         <ImageView
             android:id="@+id/iv_address"
@@ -86,6 +93,7 @@
             app:layout_constraintTop_toBottomOf="@id/iv_call" />
 
         <TextView
+            android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -96,6 +104,67 @@
             app:layout_constraintStart_toEndOf="@id/iv_email"
             app:layout_constraintStart_toStartOf="@id/tv_call"
             app:layout_constraintTop_toBottomOf="@id/tv_call" />
+
+        <TextView
+            android:id="@+id/tv_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Follow Us"
+            app:layout_constraintTop_toBottomOf="@id/tv_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_facebook"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/facebook"
+            app:layout_constraintTop_toBottomOf="@id/tv_follow"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="80dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_whatsapp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/whatsapp"
+            app:layout_constraintStart_toEndOf="@id/iv_facebook"
+            app:layout_constraintTop_toTopOf="@id/iv_facebook"
+            android:layout_marginStart="8dp"/>
+
+        <ImageView
+            android:id="@+id/iv_instagram"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/instagram"
+            app:layout_constraintStart_toEndOf="@id/iv_whatsapp"
+            app:layout_constraintTop_toTopOf="@id/iv_whatsapp"
+            android:layout_marginStart="8dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_youtube"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/youtube"
+            app:layout_constraintStart_toEndOf="@id/iv_instagram"
+            app:layout_constraintTop_toTopOf="@id/iv_instagram"
+            android:layout_marginStart="8dp"/>
+
+        <ImageView
+            android:id="@+id/iv_twitter"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/twitter"
+            app:layout_constraintTop_toTopOf="@id/iv_youtube"
+            app:layout_constraintStart_toEndOf="@id/iv_youtube"
+            android:layout_marginStart="8dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,9 @@ import com.bgsourcingltd.bghaat.models.CouponCodeModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import es.dmoral.toasty.Toasty;
 
 public class CartListActivity extends AppCompatActivity {
@@ -40,6 +44,7 @@ public class CartListActivity extends AppCompatActivity {
     private Gson gson;
     private double total;
     private Button applyBtn;
+    private boolean appliedAlready = true;
     //private List<NewArrivalModel> orders;
 
 
@@ -69,8 +74,24 @@ public class CartListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String orginCode = couponEt.getText().toString();
+                Calendar calendar = Calendar.getInstance();
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                String getCurrentDateTime = sdf.format(calendar.getTime());
+                String getMyTime = Constraint.couponDate;
 
-                    Toast.makeText(CartListActivity.this, ""+ Constraint.couponCode, Toast.LENGTH_SHORT).show();
+                if (getCurrentDateTime.compareTo(getMyTime) < 0) {
+                    if (appliedAlready) {
+                        total = total - Double.parseDouble(Constraint.couponAmount);
+                        totalTxt.setText("৳" + total);
+                        appliedAlready = false;
+                        applyBtn.setVisibility(View.GONE);
+                    }
+                    Toast.makeText(CartListActivity.this, "Date valid", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    Toast.makeText(CartListActivity.this, "Date Is not valid", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

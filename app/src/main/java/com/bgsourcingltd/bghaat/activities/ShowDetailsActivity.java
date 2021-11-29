@@ -1,6 +1,7 @@
 package com.bgsourcingltd.bghaat.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -23,24 +24,27 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
 public class ShowDetailsActivity extends AppCompatActivity {
     private TextView addToCardBtn ;
     private TextView titleTxt,feeTxt,descriptionTxt,numberOrderTxt,totalPriceTxt;
-    private ImageView plusBtn, minusBtn,favIv,backIv;
+    private ImageView plusBtn, minusBtn,favIv;
     private int numberOrder = 1;
     private NewArrivalModel object;
     private ManagementCart managementCart;
     private PhotoView picFood;
     private LinearLayout shareLayout;
+    private Toolbar product_details_toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_details);
+
 
 
         managementCart = new ManagementCart(this);
@@ -70,12 +74,6 @@ public class ShowDetailsActivity extends AppCompatActivity {
 
 
 
-        backIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ShowDetailsActivity.this, "Click Back Button", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
@@ -98,8 +96,12 @@ public class ShowDetailsActivity extends AppCompatActivity {
         picFood = findViewById(R.id.foodPic);
         favIv = findViewById(R.id.iv_fav);
         totalPriceTxt = findViewById(R.id.totalPriceTxt);
-        backIv = findViewById(R.id.iv_back);
         shareLayout = findViewById(R.id.layout_share);
+        product_details_toolbar = findViewById(R.id.toolbar_product_details);
+
+        product_details_toolbar.setTitle("Product Details");
+        setSupportActionBar(product_details_toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
     }
@@ -162,14 +164,15 @@ public class ShowDetailsActivity extends AppCompatActivity {
         html = html.replaceAll("(.*?)\\>"," ");
         html = html.replaceAll("&nbsp"," ");
         html = html.replaceAll("&amp"," ");
+        html = html.replaceAll(";","");
         return html;
 
     }
 
-    /*@Override
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
 
-    }*/
+    }
 }

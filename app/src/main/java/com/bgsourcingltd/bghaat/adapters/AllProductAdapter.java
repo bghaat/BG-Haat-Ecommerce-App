@@ -50,6 +50,7 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Al
 
         holder.productTitle.setText(list.get(position).getTitle());
         holder.productPrice.setText(list.get(position).getPrice()+" ৳");
+        holder.productStrikeTv.setText(list.get(position).getRegularPrice());
 
         Glide.with(context).load(list.get(position).
                 getImage()).
@@ -98,6 +99,7 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Al
             return filterResults;
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
 
