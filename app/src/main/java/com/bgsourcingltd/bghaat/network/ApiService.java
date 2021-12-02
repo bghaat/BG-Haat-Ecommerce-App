@@ -12,6 +12,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -58,5 +59,9 @@ public interface ApiService {
 
 
     );
+
+    @POST("serachproduct/")
+    Call<List<NewArrivalModel>> getSearch(
+            @Query("query") String search);
 
 }

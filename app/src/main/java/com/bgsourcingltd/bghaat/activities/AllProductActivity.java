@@ -87,7 +87,7 @@ public class AllProductActivity extends AppCompatActivity {
 
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu,menu);
         MenuItem menuItem = menu.findItem(R.id.search_product);
@@ -107,7 +107,7 @@ public class AllProductActivity extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
     @Override
     public boolean onSupportNavigateUp() {

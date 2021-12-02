@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -40,11 +41,18 @@ import com.bgsourcingltd.bghaat.adapters.TopBrandsAdapter;
 import com.bgsourcingltd.bghaat.adapters.WomensAdapter;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bgsourcingltd.bghaat.models.OfferModel;
 import com.bgsourcingltd.bghaat.models.SliderModel;
 import com.bgsourcingltd.bghaat.models.TopBrandsModel;
 import com.bgsourcingltd.bghaat.network.ApiClient;
 import com.bgsourcingltd.bghaat.network.ApiService;
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -63,13 +71,15 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
 
     SliderView sliderView;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
+    DatabaseReference databaseReference;
     private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling,rvWomensCat,rvTopBrands;
     private Context context;
     private ProgressDialog progressDialog;
     private ApiService apiService;
 
-    private TextView mainCatTv,newArrivalTv,healthBeautyTv,womensViewAllTv;
+    private TextView mainCatTv,newArrivalTv,healthBeautyTv,womensViewAllTv,offerDateTv,offerTitle;
+    private ImageView offerIv;
     private ConstraintLayout offerLayout;
 
 
@@ -107,9 +117,14 @@ public class HomeFragment extends Fragment {
         womensViewAllTv = view.findViewById(R.id.tv_womens_fasion_view_all);
         offerLayout = view.findViewById(R.id.cv_offer);
         progressDialog = new ProgressDialog(context);
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
+        offerDateTv = view.findViewById(R.id.tv_offer_date);
+        offerTitle = view.findViewById(R.id.tv_percent_off);
+        offerIv = view.findViewById(R.id.iv_flash_sale);
 
 
         apiService = ApiClient.getRetrofit().create(ApiService.class);
+        databaseReference = FirebaseDatabase.getInstance("https://bg-haat-e5629-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("offer");
 
 
         setSlider();
@@ -117,10 +132,19 @@ public class HomeFragment extends Fragment {
         setMainCategory();
         setBestSelling();
         setWomensFasion();
+        setOffer();
 
 
         //setTopBrands();
         //click view all category
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                setNewArrivalCategory();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         mainCatTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,6 +241,7 @@ public class HomeFragment extends Fragment {
 
         Call<List<NewArrivalModel>> listCall = apiService.getGentsProduct();
 
+        swipeRefreshLayout.setRefreshing(false);
         progressDialog.show();
         progressDialog.setContentView(R.layout.show_dialog_layout);
         progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -235,6 +260,7 @@ public class HomeFragment extends Fragment {
                     rvNewArrivalCategory.setLayoutManager(manager);
                     rvNewArrivalCategory.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
 
                 }
             }
@@ -265,6 +291,7 @@ public class HomeFragment extends Fragment {
                     rvBestSelling.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
+
                 }
             }
 
@@ -291,7 +318,7 @@ public class HomeFragment extends Fragment {
                     manager.setOrientation(LinearLayoutManager.HORIZONTAL);
                     rvWomensCat.setLayoutManager(manager);
                     rvWomensCat.setAdapter(adapter);
-                    progressDialog.dismiss();
+
                     adapter.notifyDataSetChanged();
 
                 }
@@ -303,6 +330,30 @@ public class HomeFragment extends Fragment {
             }
         });
 
+    }
+
+    private void setOffer(){
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    OfferModel offerModel = dataSnapshot.getValue(OfferModel.class);
+
+                    offerDateTv.setText(offerModel.getDate());
+                    offerTitle.setText(offerModel.getTitle());
+
+                    //Glide.with(context).load(offerModel.getImageUrl()).into(offerIv);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     /*private void setTopBrands() {
