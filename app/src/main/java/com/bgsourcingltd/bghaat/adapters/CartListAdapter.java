@@ -1,12 +1,15 @@
 package com.bgsourcingltd.bghaat.adapters;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -80,6 +83,34 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
             }
         });
 
+        holder.deleteIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(v.getContext())
+                        .setIcon(R.drawable.ic_baseline_delete_forever_24)
+                        .setTitle("Delete")
+                        .setMessage("Do you want to delete this item")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                managementCart.DeleteItem(newArrivalModelArrayList, position, new ChangeNumberItemsListener() {
+                                    @Override
+                                    public void changed() {
+                                        notifyDataSetChanged();
+                                        changeNumberItemsListener.changed();
+                                    }
+                                });
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        
+                    }
+                }).show();
+            }
+        });
+
     }
 
     @Override
@@ -89,7 +120,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView title, feeEachItem;
-        ImageView pic, plusItem, minusItem;
+        ImageView pic, plusItem, minusItem,deleteIv;
         TextView totalEachItem, num;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
@@ -102,6 +133,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
             num = itemView.findViewById(R.id.numberItemTxt);
             plusItem = itemView.findViewById(R.id.plusCardBtn);
             minusItem = itemView.findViewById(R.id.minusCardBtn);
+            deleteIv = itemView.findViewById(R.id.iv_delete);
         }
     }
 }

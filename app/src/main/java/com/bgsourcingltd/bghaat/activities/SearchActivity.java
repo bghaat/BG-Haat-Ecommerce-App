@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView searchRv;
     private ProgressDialog progressDialog;
     private ImageView searchBackIv;
+    private TextView noFoundTv;
 
 
 
@@ -50,6 +52,7 @@ public class SearchActivity extends AppCompatActivity {
         apiService = ApiClient.getRetrofit().create(ApiService.class);
         progressDialog = new ProgressDialog(this);
         searchBackIv = findViewById(R.id.iv_back);
+        noFoundTv = findViewById(R.id.tv_no_product_found);
 
 
 
@@ -64,17 +67,31 @@ public class SearchActivity extends AppCompatActivity {
                 Call<List<NewArrivalModel>> listCall = apiService.getSearch(searchInput);
                 listCall.enqueue(new Callback<List<NewArrivalModel>>() {
 
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
                         list = response.body();
-                        SearchAdapter adapter = new SearchAdapter(list,SearchActivity.this);
-                        GridLayoutManager manager = new GridLayoutManager(SearchActivity.this,2);
-                        searchRv.setLayoutManager(manager);
-                        searchRv.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                        progressDialog.dismiss();
+                        if (list.isEmpty()){
+                            noFoundTv.setVisibility(View.VISIBLE);
+                            searchRv.setVisibility(View.GONE);
+                            progressDialog.dismiss();
+                            hideKeyBoared();
 
-                        hideKeyBoared();
+                        }
+                        else {
+
+                            noFoundTv.setVisibility(View.GONE);
+                            searchRv.setVisibility(View.VISIBLE);
+                            SearchAdapter adapter = new SearchAdapter(list, SearchActivity.this);
+                            GridLayoutManager manager = new GridLayoutManager(SearchActivity.this, 2);
+                            searchRv.setLayoutManager(manager);
+                            searchRv.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                            progressDialog.dismiss();
+
+                            hideKeyBoared();
+
+                        }
 
                     }
 
@@ -87,6 +104,7 @@ public class SearchActivity extends AppCompatActivity {
             }
 
             return false;
+
         });
 
 

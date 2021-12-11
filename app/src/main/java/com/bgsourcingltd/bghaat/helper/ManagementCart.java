@@ -63,17 +63,22 @@ public class ManagementCart {
     }
 
     public void MinusNumberFood(ArrayList<NewArrivalModel> listfood, int position, ChangeNumberItemsListener changeNumberItemsListener){
-        if (listfood.get(position).getNumberInCart() == 1) {
+        if (listfood.get(position).getNumberInCart() >= 2) {
             //Here check value is zero or not
-            listfood.remove(position);
-
-            cartCounter.decreaseCartValue();
-
-        } else {
+            //listfood.remove(position);
             listfood.get(position).setNumberInCart(listfood.get(position).getNumberInCart() - 1);
+
+            //cartCounter.decreaseCartValue();
 
         }
         tinyDB.putListObject("CardList", listfood);
+        changeNumberItemsListener.changed();
+    }
+
+    public void DeleteItem(ArrayList<NewArrivalModel> modelsItem, int position, ChangeNumberItemsListener changeNumberItemsListener){
+        modelsItem.remove(position);
+
+        tinyDB.putListObject("CardList", modelsItem);
         changeNumberItemsListener.changed();
     }
 

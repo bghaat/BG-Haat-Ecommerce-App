@@ -315,9 +315,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="Description"
                     android:textColor="#686868"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center|start"/>
 

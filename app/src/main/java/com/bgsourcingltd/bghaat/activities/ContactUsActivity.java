@@ -9,15 +9,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.R;
 
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
+
 public class ContactUsActivity extends AppCompatActivity {
 
     private Toolbar toolbarContact;
-    private ImageView whatsAppIv,facebookIv;
+    private ImageView whatsAppIv,facebookIv,instagramIv,youTubeIv,twitter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,9 @@ public class ContactUsActivity extends AppCompatActivity {
         toolbarContact = findViewById(R.id.toolbar_contact_us);
         whatsAppIv = findViewById(R.id.iv_whatsapp);
         facebookIv = findViewById(R.id.iv_facebook);
+        instagramIv = findViewById(R.id.iv_instagram);
+        youTubeIv = findViewById(R.id.iv_youtube);
+        twitter = findViewById(R.id.iv_twitter);
 
         toolbarContact.setTitle("Contact Us");
         setSupportActionBar(toolbarContact);
@@ -56,6 +62,27 @@ public class ContactUsActivity extends AppCompatActivity {
 
                     startActivity(intent);
 
+            }
+        });
+
+        instagramIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toasty.info(ContactUsActivity.this,"Coming soon", Toast.LENGTH_SHORT,true).show();
+            }
+        });
+
+        youTubeIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toasty.info(ContactUsActivity.this,"Coming Soon",Toast.LENGTH_SHORT,true).show();
+            }
+        });
+
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toasty.info(ContactUsActivity.this,"Coming Soon",Toast.LENGTH_SHORT,true).show();
             }
         });
 
