@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.Interface.DeleteWishListListener;
@@ -34,6 +35,7 @@ public class WishListFragment extends Fragment {
     WishListAdapter adapter;
     WishListPref wishListPref;
     List<NewArrivalModel> list;
+    private TextView emptyWishListTv;
 
 
     public WishListFragment() {
@@ -59,15 +61,20 @@ public class WishListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        list = new ArrayList<>();
-        wishListRv = view.findViewById(R.id.rv_wish_list);
-        wishListPref = new WishListPref();
 
+        wishListRv = view.findViewById(R.id.rv_wish_list);
+        emptyWishListTv = view.findViewById(R.id.tv_empty_wishlist);
+
+
+        wishListPref = new WishListPref();
         list = wishListPref.getFavorites(context);
-        if (list == null){
-            Toast.makeText(context, "empty wish list", Toast.LENGTH_SHORT).show();
+
+        //list = wishListPref.getFavorites(context);
+        if (list.isEmpty()){
+            emptyWishListTv.setVisibility(View.VISIBLE);
         }
         else {
+            emptyWishListTv.setVisibility(View.GONE);
             adapter = new WishListAdapter(list, context);
             LinearLayoutManager manager = new LinearLayoutManager(context);
             wishListRv.setLayoutManager(manager);
@@ -75,7 +82,6 @@ public class WishListFragment extends Fragment {
             adapter.notifyDataSetChanged();
         }
     }
-
 
 
 }

@@ -1340,6 +1340,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Intent intent = new Intent(CustomerDetailsActivity.this,OrderTrackingActivity.class);
                         startActivity(intent);
+
                     }
 
                     @Override

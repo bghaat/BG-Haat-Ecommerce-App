@@ -161,7 +161,7 @@
      android:layout_width="18dp"
      android:layout_height="18dp"
      android:layout_marginStart="30dp"
-     android:background="@drawable/shape_status_completed"
+     android:background="@drawable/shape_status_remaining"
      app:layout_constraintTop_toTopOf="@id/img_order_comfirm"
      app:layout_constraintBottom_toBottomOf="@id/img_order_comfirm"
      app:layout_constraintStart_toStartOf="parent"
@@ -226,7 +226,7 @@
      android:layout_width="18dp"
      android:layout_height="18dp"
      android:layout_marginStart="30dp"
-     android:background="@drawable/shape_status_current"
+     android:background="@drawable/shape_status_remaining"
      app:layout_constraintBottom_toBottomOf="@id/iv_order_process"
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toTopOf="@id/iv_order_process"/>
@@ -282,7 +282,7 @@
      android:layout_height="0dp"
      android:layout_marginTop="4dp"
      android:layout_marginBottom="4dp"
-     android:background="#4caf50"
+     android:background="@color/colorDivider"
      app:layout_constraintBottom_toTopOf="@id/viewOrderProcessed"
      app:layout_constraintEnd_toEndOf="@id/viewOrderConfirm"
      app:layout_constraintStart_toStartOf="@id/viewOrderConfirm"
@@ -295,7 +295,6 @@
      android:layout_width="18dp"
      android:layout_height="18dp"
      android:layout_marginStart="30dp"
-     android:alpha="0.5"
      android:background="@drawable/shape_status_remaining"
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toTopOf="@id/iv_order_ready"
@@ -311,7 +310,6 @@
      app:layout_constraintStart_toEndOf="@id/viewOrderReady"
      android:layout_marginTop="40dp"
      android:layout_marginStart="20dp"
-     android:alpha="0.5"
      />
 
  <View
@@ -337,7 +335,6 @@
      android:textSize="16sp"
      android:textStyle="bold"
      android:textColor="@color/black"
-     android:alpha="0.5"
      />
 
  <TextView

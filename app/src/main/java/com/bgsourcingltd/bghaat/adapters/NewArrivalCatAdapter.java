@@ -50,6 +50,7 @@ public class NewArrivalCatAdapter extends RecyclerView.Adapter<NewArrivalCatAdap
 
         Glide.with(context).
                 load(newArrivalModelList.get(position).getImage()).
+                placeholder(R.drawable.progress_dialog).
                 into(holder.productIv);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

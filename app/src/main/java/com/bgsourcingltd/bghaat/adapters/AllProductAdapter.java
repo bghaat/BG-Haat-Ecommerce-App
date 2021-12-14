@@ -50,8 +50,8 @@ public class AllProductAdapter extends RecyclerView.Adapter<AllProductAdapter.Al
         holder.productPrice.setText(list.get(position).getPrice()+" ৳");
         holder.productStrikeTv.setText(list.get(position).getRegularPrice());
 
-        Glide.with(context).load(list.get(position).
-                getImage()).
+        Glide.with(context).load(list.get(position).getImage()).
+                placeholder(R.drawable.progress_dialog).
                 into(holder.productIv);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

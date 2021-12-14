@@ -51,7 +51,6 @@ public class WishListPref {
         if (favorites != null) {
             favorites.remove(model);
             saveFavorites(context, favorites);
-            Toast.makeText(context, "remove", Toast.LENGTH_SHORT).show();
         }
     }
 

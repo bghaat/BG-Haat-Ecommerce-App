@@ -51,8 +51,8 @@ public class CatDetailsAdapter extends RecyclerView.Adapter<CatDetailsAdapter.Ca
         holder.productPrice.setText(catList.get(position).getPrice()+" ৳");
         holder.productStrikeTv.setText(catList.get(position).getRegularPrice());
 
-        Glide.with(context).load(catList.get(position).
-                getImage()).
+        Glide.with(context).load(catList.get(position).getImage()).
+                placeholder(R.drawable.progress_dialog).
                 into(holder.productIv);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

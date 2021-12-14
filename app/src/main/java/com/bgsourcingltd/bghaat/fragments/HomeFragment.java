@@ -2,52 +2,40 @@ package com.bgsourcingltd.bghaat.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
-import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.activities.CategoryDetailsActivity;
 import com.bgsourcingltd.bghaat.activities.OfferActivty;
 import com.bgsourcingltd.bghaat.adapters.BestSellingCatAdapter;
+import com.bgsourcingltd.bghaat.adapters.GroceryAdapter;
 import com.bgsourcingltd.bghaat.adapters.MainCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.NewArrivalCatAdapter;
 import com.bgsourcingltd.bghaat.adapters.SliderAdapter;
-import com.bgsourcingltd.bghaat.adapters.TopBrandsAdapter;
 import com.bgsourcingltd.bghaat.adapters.WomensAdapter;
 import com.bgsourcingltd.bghaat.models.MainCategoryModel;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.models.OfferModel;
 import com.bgsourcingltd.bghaat.models.SliderModel;
-import com.bgsourcingltd.bghaat.models.TopBrandsModel;
 import com.bgsourcingltd.bghaat.network.ApiClient;
 import com.bgsourcingltd.bghaat.network.ApiService;
-import com.bumptech.glide.Glide;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -73,12 +61,12 @@ public class HomeFragment extends Fragment {
     SliderView sliderView;
     private SwipeRefreshLayout swipeRefreshLayout;
     DatabaseReference databaseReference;
-    private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling,rvWomensCat,rvTopBrands;
+    private RecyclerView rvMainCategory,rvNewArrivalCategory,rvBestSelling,rvWomensCat,rvGrocery;
     private Context context;
     private ProgressDialog progressDialog;
     private ApiService apiService;
 
-    private TextView mainCatTv,newArrivalTv,healthBeautyTv,womensViewAllTv,offerDateTv,offerTitle;
+    private TextView mainCatTv,newArrivalTv,healthBeautyTv,womensViewAllTv,offerDateTv,offerTitle,groceryViewAll;
     private ImageView offerIv;
     private ConstraintLayout offerLayout;
 
@@ -110,7 +98,7 @@ public class HomeFragment extends Fragment {
         rvNewArrivalCategory = view.findViewById(R.id.rv_new_arrival);
         rvBestSelling = view.findViewById(R.id.rv_best_selling);
         rvWomensCat = view.findViewById(R.id.rv_womens_fashion);
-        //rvTopBrands = view.findViewById(R.id.rv_top_brands);
+        rvGrocery = view.findViewById(R.id.rv_grocery);
         mainCatTv =  view.findViewById(R.id.tv_main_cat_viewAll);
         newArrivalTv = view.findViewById(R.id.tv_new_arrival_viewall);
         healthBeautyTv = view.findViewById(R.id.tv_best_selling_view_all);
@@ -121,6 +109,8 @@ public class HomeFragment extends Fragment {
         offerDateTv = view.findViewById(R.id.tv_offer_date);
         offerTitle = view.findViewById(R.id.tv_percent_off);
         offerIv = view.findViewById(R.id.iv_flash_sale);
+        groceryViewAll = view.findViewById(R.id.tv_grocery_view_all);
+
 
 
         apiService = ApiClient.getRetrofit().create(ApiService.class);
@@ -133,10 +123,8 @@ public class HomeFragment extends Fragment {
         setBestSelling();
         setWomensFasion();
         setOffer();
+        setGrocery();
 
-
-        //setTopBrands();
-        //click view all category
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -185,6 +173,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, OfferActivty.class);
+                startActivity(intent);
+            }
+        });
+
+        groceryViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CategoryDetailsActivity.class);
+                intent.putExtra("catName","Grocery");
                 startActivity(intent);
             }
         });
@@ -356,24 +353,30 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    /*private void setTopBrands() {
-        progressDialog.show();
-        progressDialog.setContentView(R.layout.show_dialog_layout);
-        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+    private void setGrocery(){
 
-        List<TopBrandsModel> topBrandsModelList = new ArrayList<>();
-        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
-        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
-        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
-        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
-        topBrandsModelList.add(new TopBrandsModel("ACI",R.drawable.logo));
+        Call<List<NewArrivalModel>> listCall = apiService.getGroceryProduct();
 
-        TopBrandsAdapter adapter = new TopBrandsAdapter(topBrandsModelList,context);
-        LinearLayoutManager manager = new LinearLayoutManager(context);
-        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rvTopBrands.setLayoutManager(manager);
-        rvTopBrands.setAdapter(adapter);
-        progressDialog.dismiss();
+        listCall.enqueue(new Callback<List<NewArrivalModel>>() {
+            @Override
+            public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
+                List<NewArrivalModel> list = response.body();
+                Collections.reverse(list);
 
-    }*/
+                GroceryAdapter adapter = new GroceryAdapter(list,context);
+                GridLayoutManager manager = new GridLayoutManager(context,2);
+                rvGrocery.setLayoutManager(manager);
+                rvGrocery.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<NewArrivalModel>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
 }

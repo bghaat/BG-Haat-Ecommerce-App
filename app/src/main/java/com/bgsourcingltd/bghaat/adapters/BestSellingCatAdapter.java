@@ -50,6 +50,7 @@ public class BestSellingCatAdapter extends RecyclerView.Adapter<BestSellingCatAd
 
         Glide.with(context).
                 load(modelList.get(position).getImage()).
+                placeholder(R.drawable.progress_dialog).
                 into(holder.productIv);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

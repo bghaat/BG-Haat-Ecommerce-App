@@ -35,19 +35,19 @@
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="#373b54"
-        android:singleLine="true"
+        android:maxLines="1"
         app:layout_constraintStart_toEndOf="@+id/picCard"
         app:layout_constraintTop_toTopOf="@+id/picCard"/>
 
     <ImageView
         android:id="@+id/iv_delete"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_baseline_delete_forever_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_wishList_product_title"
-        app:layout_constraintBottom_toBottomOf="@id/tv_wishList_product_title"
+        app:layout_constraintTop_toTopOf="@id/tv_price_wish_list"
+        app:layout_constraintBottom_toBottomOf="@id/tv_price_wish_list"
         />
 
     <TextView
@@ -56,8 +56,8 @@
         android:layout_height="wrap_content"
         android:singleLine="true"
         app:layout_constraintTop_toBottomOf="@id/tv_wishList_product_title"
-        app:layout_constraintStart_toStartOf="@id/tv_wishList_product_title"
-        app:layout_constraintEnd_toEndOf="@id/tv_wishList_product_title"
+        app:layout_constraintStart_toEndOf="@id/picCard"
+        app:layout_constraintEnd_toEndOf="@id/iv_delete"
         android:layout_marginTop="24dp"
         android:text="৳"
         android:textColor="@color/yellow"

@@ -20,39 +20,39 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
-    private List<NewArrivalModel> list;
+public class GroceryAdapter extends RecyclerView.Adapter<GroceryAdapter.TopBrandsViewHolder> {
+
+    private List<NewArrivalModel> groceryList;
     private Context context;
 
-    public SearchAdapter(List<NewArrivalModel> list, Context context) {
-        this.list = list;
+    public GroceryAdapter(List<NewArrivalModel> groceryList, Context context) {
+        this.groceryList = groceryList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.search_item_layout,parent,false);
-
-        return new SearchViewHolder(itemView);
+    public TopBrandsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.top_brands_layout,parent,false);
+        return new TopBrandsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SearchViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull TopBrandsViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.productTitleTv.setText(list.get(position).getTitle());
-        holder.productPriceTv.setText(list.get(position).getPrice()+ "৳");
-        holder.productStrikeTv.setText(list.get(position).getRegularPrice());
+        holder.productTitleTv.setText(groceryList.get(position).getTitle());
+        holder.productPriceTv.setText(groceryList.get(position).getPrice()+ "৳");
+        holder.productStrikeTv.setText(groceryList.get(position).getRegularPrice());
 
         Glide.with(context).
-                load(list.get(position).getImage()).
+                load(groceryList.get(position).getImage()).
                 placeholder(R.drawable.progress_dialog).
                 into(holder.productIv);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewArrivalModel object = list.get(position);
+                NewArrivalModel object = groceryList.get(position);
                 Intent intent = new Intent(context, ShowDetailsActivity.class);
                 intent.putExtra("object",object);
                 context.startActivity(intent);
@@ -64,24 +64,24 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return (groceryList.size() > 20 ? 20 : groceryList.size());
     }
 
-    public static class SearchViewHolder extends RecyclerView.ViewHolder{
-
+    public class TopBrandsViewHolder extends RecyclerView.ViewHolder{
         ImageView productIv;
         TextView productTitleTv;
         TextView productPriceTv,productStrikeTv;
 
-        public SearchViewHolder(@NonNull View itemView) {
+        public TopBrandsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            productIv = itemView.findViewById(R.id.iv_product_search);
-            productTitleTv = itemView.findViewById(R.id.tv_product_name_search);
-            productPriceTv = itemView.findViewById(R.id.tv_price_search);
-            productStrikeTv = itemView.findViewById(R.id.tv_strike_search);
+            productIv = itemView.findViewById(R.id.iv_product_grocery);
+            productTitleTv = itemView.findViewById(R.id.tv_product_name_grocery);
+            productPriceTv = itemView.findViewById(R.id.tv_price_grocery);
+            productStrikeTv = itemView.findViewById(R.id.tv_strike_grocery);
 
             productStrikeTv.setPaintFlags(productStrikeTv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
         }
     }
 }
