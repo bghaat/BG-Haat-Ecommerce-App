@@ -1,6 +1,7 @@
 package com.bgsourcingltd.bghaat.network;
 
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
+import com.bgsourcingltd.bghaat.models.OrderNumberModel;
 import com.bgsourcingltd.bghaat.models.OrderResponse;
 import com.bgsourcingltd.bghaat.models.SliderModel;
 
@@ -63,5 +64,8 @@ public interface ApiService {
     @POST("serachproduct/")
     Call<List<NewArrivalModel>> getSearch(
             @Query("query") String search);
+
+    @GET("orderstatus/")
+    Call<List<OrderNumberModel>> getOrderNumber();
 
 }
