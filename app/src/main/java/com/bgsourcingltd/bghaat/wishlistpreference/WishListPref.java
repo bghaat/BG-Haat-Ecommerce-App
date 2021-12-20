@@ -14,58 +14,58 @@ import java.util.List;
 
 
 public class WishListPref {
-    public static final String PREFS_NAME = "PRODUCT_APP";
-    public static final String FAVORITES = "Product_Favorite";
+    public static final String PREFS_NAME = "WORD_APP";
+    public static final String FAVORITES = "Words_Favorite";
 
 
-    // This four methods are used for maintaining favorites.
+    public WishListPref(){
+
+    }
+
+    //save to sharedPreference
     public void saveFavorites(Context context, List<NewArrivalModel> favorites) {
         SharedPreferences settings;
         SharedPreferences.Editor editor;
 
-        settings = context.getSharedPreferences(PREFS_NAME,
-                Context.MODE_PRIVATE);
+        settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         editor = settings.edit();
 
         Gson gson = new Gson();
         String jsonFavorites = gson.toJson(favorites);
 
         editor.putString(FAVORITES, jsonFavorites);
-
-
-        editor.apply();
+        editor.commit();
     }
 
-    public void addFavorite(Context context, NewArrivalModel product) {
-        SharedPreferences.Editor editor;
+    //add to sharedPreference
+    public void addFavorite(Context context, NewArrivalModel word) {
         ArrayList<NewArrivalModel> favorites = getFavorites(context);
         if (favorites == null)
             favorites = new ArrayList<NewArrivalModel>();
-        favorites.add(product);
+        favorites.add(word);
         saveFavorites(context, favorites);
-
     }
 
-    public void removeFavorite(Context context, NewArrivalModel model) {
+
+    public void removeFavorite(Context context, NewArrivalModel word) {
         ArrayList<NewArrivalModel> favorites = getFavorites(context);
         if (favorites != null) {
-            favorites.remove(model);
+            favorites.remove(word);
             saveFavorites(context, favorites);
         }
     }
 
+    //get all newArrival from sharedPreference
     public ArrayList<NewArrivalModel> getFavorites(Context context) {
         SharedPreferences settings;
         List<NewArrivalModel> favorites;
 
-        settings = context.getSharedPreferences(PREFS_NAME,
-                Context.MODE_PRIVATE);
+        settings = context.getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
 
         if (settings.contains(FAVORITES)) {
             String jsonFavorites = settings.getString(FAVORITES, null);
             Gson gson = new Gson();
-            NewArrivalModel[] favoriteItems = gson.fromJson(jsonFavorites,
-                    NewArrivalModel[].class);
+            NewArrivalModel[] favoriteItems = gson.fromJson(jsonFavorites,	NewArrivalModel[].class);
 
             favorites = Arrays.asList(favoriteItems);
             favorites = new ArrayList<NewArrivalModel>(favorites);

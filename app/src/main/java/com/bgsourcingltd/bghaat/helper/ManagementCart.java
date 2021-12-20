@@ -1,15 +1,12 @@
 package com.bgsourcingltd.bghaat.helper;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 
 import com.bgsourcingltd.bghaat.Interface.ChangeNumberItemsListener;
 import com.bgsourcingltd.bghaat.cartcounter.CartCounter;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
-import com.google.android.material.snackbar.Snackbar;
+
 
 import java.util.ArrayList;
 
@@ -80,6 +77,8 @@ public class ManagementCart {
 
         tinyDB.putListObject("CardList", modelsItem);
         changeNumberItemsListener.changed();
+
+        cartCounter.decreaseCartValue();
     }
 
     public Double getTotalFee(){

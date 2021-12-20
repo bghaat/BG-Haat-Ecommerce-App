@@ -56,7 +56,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 WishListPref wishListPref = new WishListPref();
                 wishListPref.addFavorite(ShowDetailsActivity.this,object);
-                Toasty.success(ShowDetailsActivity.this, "Product Add your WishList", Toast.LENGTH_LONG, true).show();
+                Toasty.success(ShowDetailsActivity.this, "Product Add your WishList", Toast.LENGTH_SHORT, true).show();
 
             }
         });

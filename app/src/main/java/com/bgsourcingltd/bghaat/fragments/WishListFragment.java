@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,18 +35,24 @@ public class WishListFragment extends Fragment {
     private RecyclerView wishListRv;
     WishListAdapter adapter;
     WishListPref wishListPref;
-    List<NewArrivalModel> list;
     private TextView emptyWishListTv;
+    private ImageView emptyIv;
+    List<NewArrivalModel> wishList;
+
 
 
     public WishListFragment() {
         // Required empty public constructor
+
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
-        this.context = context;
         super.onAttach(context);
+        this.context = context;
+
+
+
     }
 
     @Override
@@ -58,24 +65,28 @@ public class WishListFragment extends Fragment {
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
-
-
 
         wishListRv = view.findViewById(R.id.rv_wish_list);
         emptyWishListTv = view.findViewById(R.id.tv_empty_wishlist);
+        emptyIv = view.findViewById(R.id.iv_empty_wish_list);
 
-
+        wishList = new ArrayList<>();
         wishListPref = new WishListPref();
-        list = wishListPref.getFavorites(context);
+        wishList = wishListPref.getFavorites(context);
+
+
 
         //list = wishListPref.getFavorites(context);
-        if (list.isEmpty()){
+        if (wishList == null){
             emptyWishListTv.setVisibility(View.VISIBLE);
+            emptyIv.setVisibility(View.VISIBLE);
         }
         else {
+            emptyIv.setVisibility(View.GONE);
             emptyWishListTv.setVisibility(View.GONE);
-            adapter = new WishListAdapter(list, context);
+            adapter = new WishListAdapter(wishList, context);
             LinearLayoutManager manager = new LinearLayoutManager(context);
             wishListRv.setLayoutManager(manager);
             wishListRv.setAdapter(adapter);

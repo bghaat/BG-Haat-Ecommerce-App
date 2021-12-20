@@ -33,7 +33,8 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
     public WishListAdapter(List<NewArrivalModel> modelList, Context context) {
         this.modelList = modelList;
         this.context = context;
-        this.wishListPref = new WishListPref();
+        wishListPref = new WishListPref();
+
 
     }
 
@@ -70,9 +71,14 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-                modelList.remove(position);
-                wishListPref.saveFavorites(context,modelList);
+                NewArrivalModel object = modelList.get(position);
+                /*wishListPref.removeFavorite(context,object);
+                notifyDataSetChanged();*/
+
+                modelList.remove(object);
                 notifyDataSetChanged();
+                wishListPref.saveFavorites(context,modelList);
+
 
             }
         });
@@ -92,7 +98,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
         public WishListViewHolder(@NonNull View itemView) {
             super(itemView);
             productIv = itemView.findViewById(R.id.picCard);
-            deleteIv = itemView.findViewById(R.id.iv_delete);
+            deleteIv = itemView.findViewById(R.id.iv_delete_wish_list);
             productTitle = itemView.findViewById(R.id.tv_wishList_product_title);
             productPrice = itemView.findViewById(R.id.tv_price_wish_list);
 

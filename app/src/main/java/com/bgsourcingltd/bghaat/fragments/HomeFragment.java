@@ -71,6 +71,7 @@ public class HomeFragment extends Fragment {
     private ConstraintLayout offerLayout;
 
 
+
     public HomeFragment() {
         // Required empty public constructor
     }

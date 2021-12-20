@@ -11,13 +11,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <ImageView
+        android:id="@+id/iv_empty_wish_list"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/wishlist"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_empty_wishlist"/>
+
     <TextView
         android:id="@+id/tv_empty_wishlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Empty WishList..Add Item"
+        android:text="Your Wishlist Is Empty"
+        android:textColor="@color/yellow"
+        android:textStyle="bold"
         android:textSize="20sp"
         android:visibility="gone"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

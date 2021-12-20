@@ -19,11 +19,21 @@ import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.activities.OrderTrackingActivity;
+import com.bgsourcingltd.bghaat.models.RecordOrderModel;
+import com.bgsourcingltd.bghaat.network.ApiClient;
+import com.bgsourcingltd.bghaat.network.ApiService;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ProfileFragment extends Fragment {
     private LinearLayout layout;
     private Context context;
+    private ApiService apiService;
 
 
     public ProfileFragment() {
@@ -49,6 +59,7 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         layout = view.findViewById(R.id.layout_order);
+        apiService = ApiClient.getRetrofit().create(ApiService.class);
 
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +88,22 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         String inputOrderValue = orderNoEt.getText().toString();
+
+                        Call<List<RecordOrderModel>> listCall = apiService.getOrderRecord(inputOrderValue);
+                        listCall.enqueue(new Callback<List<RecordOrderModel>>() {
+                            @Override
+                            public void onResponse(Call<List<RecordOrderModel>> call, Response<List<RecordOrderModel>> response) {
+                                List<RecordOrderModel> recordList = response.body();
+                                Intent intent = new Intent(context,OrderTrackingActivity.class);
+                                intent.putExtra("status",recordList.get(0).getPost_status());
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<RecordOrderModel>> call, Throwable t) {
+
+                            }
+                        });
                         alertDialog.dismiss();
 
                     }

@@ -3,6 +3,7 @@ package com.bgsourcingltd.bghaat.network;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.models.OrderNumberModel;
 import com.bgsourcingltd.bghaat.models.OrderResponse;
+import com.bgsourcingltd.bghaat.models.RecordOrderModel;
 import com.bgsourcingltd.bghaat.models.SliderModel;
 
 import java.util.List;
@@ -65,7 +66,12 @@ public interface ApiService {
     Call<List<NewArrivalModel>> getSearch(
             @Query("query") String search);
 
+    @POST("record_order/")
+    Call<List<RecordOrderModel>> getOrderRecord(@Query("order_id") String orderId);
+
     @GET("orderstatus/")
     Call<List<OrderNumberModel>> getOrderNumber();
+
+
 
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.MainActivity;
 import com.bgsourcingltd.bghaat.R;
@@ -28,7 +29,7 @@ import retrofit2.Response;
 public class OrderTrackingActivity extends AppCompatActivity {
     private TextView estimatedDate,orderId;
     private Button continueShopingBtn;
-    private View orderConfirm;
+    private View orderConfirm,orderProcess,orderCompleted;
     private ApiService apiService;
 
     @Override
@@ -39,11 +40,16 @@ public class OrderTrackingActivity extends AppCompatActivity {
         estimatedDate = findViewById(R.id.tv_dates);
         continueShopingBtn = findViewById(R.id.btn_contunue_shoping);
         orderConfirm = findViewById(R.id.viewOrderConfirm);
+        orderProcess = findViewById(R.id.viewOrderProcessed);
         orderId = findViewById(R.id.tv_order_id);
+        orderCompleted = findViewById(R.id.viewOrderReady);
 
         apiService = ApiClient.getRetrofit().create(ApiService.class);
 
         getOrderId();
+
+        String orderStatus = getIntent().getStringExtra("status");
+        Toast.makeText(this, ""+orderStatus, Toast.LENGTH_SHORT).show();
 
 
         SimpleDateFormat dateFormat= new SimpleDateFormat("EEEE dd.MM.yyyy");
@@ -54,8 +60,14 @@ public class OrderTrackingActivity extends AppCompatActivity {
 
         estimatedDate.setText(toDate);
 
-        orderConfirm.setBackground(ContextCompat.getDrawable(this,R.drawable.shape_status_completed));
 
+        if(orderStatus.equals("wc-processing")){
+            orderProcess.setBackground(ContextCompat.getDrawable(this,R.drawable.shape_status_completed));
+        }
+
+        else if (orderStatus.equals("wc-completed")){
+            orderCompleted.setBackground(ContextCompat.getDrawable(this,R.drawable.shape_status_completed));
+        }
 
         continueShopingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
