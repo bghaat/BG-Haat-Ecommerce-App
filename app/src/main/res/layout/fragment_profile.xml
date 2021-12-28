@@ -13,16 +13,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -35,7 +25,7 @@
         app:srcCompat="@drawable/user" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -49,15 +39,15 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_user_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="bghaat@gmail.com"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_user_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_user_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -70,7 +60,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_email">
 
 
         <LinearLayout
@@ -103,7 +93,8 @@
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -131,7 +122,8 @@
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -158,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:text="Track Order"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -176,12 +168,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Password:"
+                android:text="Address:"
                 android:textColor="#5917e1"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tv_change"
+                android:id="@+id/tv_address_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -210,7 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Mobile:"
+                android:text="Phone No:"
                 android:textColor="#5917e1"
                 android:textSize="18sp" />
 
@@ -225,39 +217,9 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:alpha="0.5"
-            android:background="#585858" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_tel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Tell:"
-                android:textColor="#5917e1"
-                android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv_tel_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="123-123-1234"
-                android:textAlignment="viewEnd"
-                android:textColor="#5b5b5b"
-                android:textSize="18sp" />
-        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView3"
@@ -267,70 +229,11 @@
             android:alpha="0.5"
             android:background="#585858" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Address:"
-                android:textColor="#5917e1"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tv_address_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="NY-Street 22- no74"
-                android:textAlignment="viewEnd"
-                android:textColor="#5b5b5b"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:alpha="0.5"
-            android:background="#585858" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PostalCode:"
-                android:textColor="#5917e1"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="9998887775"
-                android:textAlignment="viewEnd"
-                android:textColor="#5b5b5b"
-                android:textSize="18sp" />
-        </LinearLayout>
-
 
     </LinearLayout>
 
-    <!--<Button
-        android:id="@+id/button2"
+    <Button
+        android:id="@+id/btn_edite_profile"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="@drawable/button_background"
@@ -344,7 +247,6 @@
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
--->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

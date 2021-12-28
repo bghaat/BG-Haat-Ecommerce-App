@@ -5,6 +5,7 @@ import com.bgsourcingltd.bghaat.models.OrderNumberModel;
 import com.bgsourcingltd.bghaat.models.OrderResponse;
 import com.bgsourcingltd.bghaat.models.RecordOrderModel;
 import com.bgsourcingltd.bghaat.models.SliderModel;
+import com.bgsourcingltd.bghaat.models.UserModel;
 
 import java.util.List;
 
@@ -62,6 +63,15 @@ public interface ApiService {
 
     );
 
+    @FormUrlEncoded
+    @POST("usersprofile/")
+    Call<OrderResponse> postProfile(
+            @Field("username") String username,
+            @Field("phone") String phone,
+            @Field("email") String email,
+            @Field("address") String address
+    );
+
     @POST("serachproduct/")
     Call<List<NewArrivalModel>> getSearch(
             @Query("query") String search);
@@ -71,6 +81,11 @@ public interface ApiService {
 
     @GET("orderstatus/")
     Call<List<OrderNumberModel>> getOrderNumber();
+
+    @POST("getuserprofile/")
+    Call<List<UserModel>> getCurrentUser(@Query("phone") String phone);
+
+
 
 
 

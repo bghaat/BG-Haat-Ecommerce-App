@@ -1,12 +1,15 @@
 package com.bgsourcingltd.bghaat.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.activities.CategoryDetailsActivity;
+import com.bgsourcingltd.bghaat.activities.OfferActivty;
 import com.bgsourcingltd.bghaat.models.SliderModel;
 import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
@@ -38,6 +41,12 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.Holder> {
                 load(sliderModelList.get(position).getImage()).
                 into(viewHolder.imageView);
 
+        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, OfferActivty.class));
+            }
+        });
     }
 
     @Override

@@ -24,6 +24,7 @@ import com.bgsourcingltd.bghaat.adapters.CouponAdapter;
 import com.bgsourcingltd.bghaat.helper.Constraint;
 import com.bgsourcingltd.bghaat.helper.ManagementCart;
 import com.bgsourcingltd.bghaat.models.CouponCodeModel;
+import com.bgsourcingltd.bghaat.userauth.CouponAuth;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -45,6 +46,7 @@ public class CartListActivity extends AppCompatActivity {
     private double total;
     private Button applyBtn;
     private boolean appliedAlready = true;
+    private CouponAuth couponAuth;
     //private List<NewArrivalModel> orders;
 
 
@@ -60,6 +62,7 @@ public class CartListActivity extends AppCompatActivity {
 
 
 
+        couponAuth = new CouponAuth(CartListActivity.this);
         //orders = managementCart.getListCard();
         gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -79,14 +82,18 @@ public class CartListActivity extends AppCompatActivity {
                 String getCurrentDateTime = sdf.format(calendar.getTime());
                 String getMyTime = Constraint.couponDate;
 
+
+
                 if (getCurrentDateTime.compareTo(getMyTime) < 0) {
-                    if (appliedAlready) {
+                    if (couponAuth.getCouponValue()) {
                         total = total - Double.parseDouble(Constraint.couponAmount);
                         totalTxt.setText("৳" + total);
-                        appliedAlready = false;
-                        applyBtn.setVisibility(View.GONE);
+                        Toasty.info(CartListActivity.this, "You Have Got Discount", Toast.LENGTH_SHORT, true).show();
+
                     }
-                    Toast.makeText(CartListActivity.this, "Date valid", Toast.LENGTH_SHORT).show();
+                    else {
+                        Toasty.info(CartListActivity.this, "You Already Used Coupon Code", Toast.LENGTH_SHORT, true).show();
+                    }
 
                 }
                 else {
@@ -154,6 +161,7 @@ public class CartListActivity extends AppCompatActivity {
         intent.putExtra("cart",json);
         intent.putExtra("totalAmount",total);
         Log.d("json", "json "+json);
+        couponAuth.setCouponValue(false);
         startActivity(intent);
 
     }

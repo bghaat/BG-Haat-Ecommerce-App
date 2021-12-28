@@ -1,6 +1,7 @@
 package com.bgsourcingltd.bghaat.fragments;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +16,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.R;
 import com.bgsourcingltd.bghaat.activities.OrderTrackingActivity;
+import com.bgsourcingltd.bghaat.activities.UpdateProfileActivity;
 import com.bgsourcingltd.bghaat.models.RecordOrderModel;
+import com.bgsourcingltd.bghaat.models.UserModel;
 import com.bgsourcingltd.bghaat.network.ApiClient;
 import com.bgsourcingltd.bghaat.network.ApiService;
+import com.bgsourcingltd.bghaat.userauth.UserPhoneAuth;
 
 import java.util.List;
 
@@ -34,6 +39,10 @@ public class ProfileFragment extends Fragment {
     private LinearLayout layout;
     private Context context;
     private ApiService apiService;
+    private Button updateProfileBtn;
+    private UserPhoneAuth userPhoneAuth;
+    private ProgressDialog progressDialog;
+    private TextView userNameTv,userEmailTv,userAddressTv, userPhoneTv;
 
 
     public ProfileFragment() {
@@ -59,7 +68,38 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         layout = view.findViewById(R.id.layout_order);
+        updateProfileBtn = view.findViewById(R.id.btn_edite_profile);
         apiService = ApiClient.getRetrofit().create(ApiService.class);
+        userPhoneAuth = new UserPhoneAuth(context);
+        progressDialog = new ProgressDialog(context);
+        userNameTv = view.findViewById(R.id.tv_user_name);
+        userEmailTv = view.findViewById(R.id.tv_user_email);
+        userAddressTv = view.findViewById(R.id.tv_address_value);
+        userPhoneTv = view.findViewById(R.id.tv_mobile_no);
+
+        Call<List<UserModel>> listCall = apiService.getCurrentUser(userPhoneAuth.getPhoneNumber());
+
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        listCall.enqueue(new Callback<List<UserModel>>() {
+            @Override
+            public void onResponse(Call<List<UserModel>> call, Response<List<UserModel>> response) {
+                List<UserModel> userModelList = response.body();
+                userNameTv.setText(userModelList.get(0).getName());
+                userEmailTv.setText(userModelList.get(0).getEmail());
+                userAddressTv.setText(userModelList.get(0).getAddress());
+                userPhoneTv.setText(userModelList.get(0).getPhone());
+
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<List<UserModel>> call, Throwable t) {
+
+            }
+        });
 
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +135,7 @@ public class ProfileFragment extends Fragment {
                             public void onResponse(Call<List<RecordOrderModel>> call, Response<List<RecordOrderModel>> response) {
                                 List<RecordOrderModel> recordList = response.body();
                                 Intent intent = new Intent(context,OrderTrackingActivity.class);
-                                intent.putExtra("status",recordList.get(0).getPost_status());
+                                intent.putExtra("flag",recordList.get(0).getPost_status());
                                 startActivity(intent);
                             }
 
@@ -112,5 +152,15 @@ public class ProfileFragment extends Fragment {
                 //startActivity(new Intent(context, OrderTrackingActivity.class));
             }
         });
+
+
+        updateProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                context.startActivity(new Intent(context, UpdateProfileActivity.class));
+            }
+        });
+
     }
 }

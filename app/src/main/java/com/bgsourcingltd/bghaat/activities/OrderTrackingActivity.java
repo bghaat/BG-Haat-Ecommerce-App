@@ -31,6 +31,7 @@ public class OrderTrackingActivity extends AppCompatActivity {
     private Button continueShopingBtn;
     private View orderConfirm,orderProcess,orderCompleted;
     private ApiService apiService;
+    private String orderStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,16 @@ public class OrderTrackingActivity extends AppCompatActivity {
 
         apiService = ApiClient.getRetrofit().create(ApiService.class);
 
-        getOrderId();
 
-        String orderStatus = getIntent().getStringExtra("status");
-        Toast.makeText(this, ""+orderStatus, Toast.LENGTH_SHORT).show();
+
+        orderStatus = getIntent().getStringExtra("flag");
+        if (orderStatus.equals("Customer")){
+            getOrderId();
+        }
+
+        else {
+            trackOrder();
+        }
 
 
         SimpleDateFormat dateFormat= new SimpleDateFormat("EEEE dd.MM.yyyy");
@@ -61,13 +68,7 @@ public class OrderTrackingActivity extends AppCompatActivity {
         estimatedDate.setText(toDate);
 
 
-        if(orderStatus.equals("wc-processing")){
-            orderProcess.setBackground(ContextCompat.getDrawable(this,R.drawable.shape_status_completed));
-        }
 
-        else if (orderStatus.equals("wc-completed")){
-            orderCompleted.setBackground(ContextCompat.getDrawable(this,R.drawable.shape_status_completed));
-        }
 
         continueShopingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +78,17 @@ public class OrderTrackingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void trackOrder() {
+
+        if(orderStatus.equals("wc-processing")){
+            orderProcess.setBackground(ContextCompat.getDrawable(this,R.drawable.shape_status_completed));
+        }
+
+        /*else if (orderStatus.equals("wc-completed")){
+            orderCompleted.setBackground(ContextCompat.getDrawable(this,R.drawable.shape_status_completed));
+        }*/
     }
 
     private void getOrderId() {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,9 +36,10 @@ public class WishListFragment extends Fragment {
     private RecyclerView wishListRv;
     WishListAdapter adapter;
     WishListPref wishListPref;
-    private TextView emptyWishListTv;
+    private TextView emptyWishListTv,clearAllTv;
     private ImageView emptyIv;
     List<NewArrivalModel> wishList;
+    private ConstraintLayout containerLayout;
 
 
 
@@ -55,6 +57,7 @@ public class WishListFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,12 +74,22 @@ public class WishListFragment extends Fragment {
         wishListRv = view.findViewById(R.id.rv_wish_list);
         emptyWishListTv = view.findViewById(R.id.tv_empty_wishlist);
         emptyIv = view.findViewById(R.id.iv_empty_wish_list);
+        clearAllTv = view.findViewById(R.id.tv_clear_all_wishlist);
+        containerLayout = view.findViewById(R.id.cl_container);
 
         wishList = new ArrayList<>();
         wishListPref = new WishListPref();
         wishList = wishListPref.getFavorites(context);
 
 
+        clearAllTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                wishListPref.removeFavorite(context);
+
+            }
+        });
 
         //list = wishListPref.getFavorites(context);
         if (wishList == null){
@@ -92,7 +105,6 @@ public class WishListFragment extends Fragment {
             wishListRv.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
+
     }
-
-
 }

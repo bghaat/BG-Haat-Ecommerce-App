@@ -67,13 +67,13 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
             }
         });
 
-        holder.deleteIv.setOnClickListener(new View.OnClickListener() {
+        /*holder.deleteIv.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 NewArrivalModel object = modelList.get(position);
-                /*wishListPref.removeFavorite(context,object);
-                notifyDataSetChanged();*/
+                *//*wishListPref.removeFavorite(context,object);
+                notifyDataSetChanged();*//*
 
                 modelList.remove(object);
                 notifyDataSetChanged();
@@ -81,7 +81,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.WishLi
 
 
             }
-        });
+        });*/
     }
 
     @Override

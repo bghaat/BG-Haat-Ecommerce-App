@@ -47,12 +47,16 @@ public class WishListPref {
     }
 
 
-    public void removeFavorite(Context context, NewArrivalModel word) {
-        ArrayList<NewArrivalModel> favorites = getFavorites(context);
+    public void removeFavorite(Context context) {
+        /*ArrayList<NewArrivalModel> favorites = getFavorites(context);
         if (favorites != null) {
             favorites.remove(word);
             saveFavorites(context, favorites);
-        }
+        }*/
+
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
+        editor.clear();
+        editor.commit();
     }
 
     //get all newArrival from sharedPreference

@@ -1339,6 +1339,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
                         Intent intent = new Intent(CustomerDetailsActivity.this,OrderTrackingActivity.class);
+                        intent.putExtra("flag","Customer");
                         startActivity(intent);
 
                     }

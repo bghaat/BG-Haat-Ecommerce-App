@@ -9,8 +9,8 @@
     <string name="otp_verification">OTP Verification</string>
     <string name="we_will_send_you_an_one_time_password_on_this_number">We will send you an One Time Password on this number</string>
     <string name="enter_mobile_number">Enter Mobile Number</string>
-    <string name="_880">+880-</string>
-    <string name="_1834462681">1834462681</string>
+    <string name="_880">+88-</string>
+    <string name="_1834462681">01834462681</string>
     <string name="get_otp">Get otp</string>
     <string name="didn_t_receive_the_otp">Didn\'t receive the OTP?</string>
     <string name="resend_otp">Resend OTP</string>
