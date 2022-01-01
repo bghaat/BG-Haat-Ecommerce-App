@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         //Show shared preference data from login info
         View view = navigationView.getHeaderView(0);
         TextView phoneNumber = (TextView) view.findViewById(R.id.tv_user_header_number);
-        phoneNumber.setText("0"+phoneAuth.getPhoneNumber());
+        phoneNumber.setText(phoneAuth.getPhoneNumber());
 
     }
 

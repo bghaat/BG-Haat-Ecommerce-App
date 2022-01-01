@@ -34,6 +34,7 @@ import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.models.OrderResponse;
 import com.bgsourcingltd.bghaat.network.ApiClient;
 import com.bgsourcingltd.bghaat.network.ApiService;
+import com.bgsourcingltd.bghaat.userauth.CouponAuth;
 import com.bgsourcingltd.bghaat.userauth.UserPhoneAuth;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -66,6 +67,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     private DialogBuilder dialogBuilder;
     private double totalPrice,deliveryAndTotalPrice;
     private UserPhoneAuth phoneAuth;
+    private CouponAuth couponAuth;
 
     private String name,phone,address,email,city;
 
@@ -108,6 +110,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         aamarPay = new AamarPay(this,STORE_ID,SIGNATURE_KEY);
         aamarPay.testMode(false);
         aamarPay.autoGenerateTransactionID(true);
+        couponAuth = new CouponAuth(this);
 
 
 
@@ -142,7 +145,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
         adapterItem = new ArrayAdapter<String>(this,R.layout.list_item,item);
         autoCompleteTextView.setAdapter(adapterItem);
-        phoneEt.setText("0"+phoneAuth.getPhoneNumber());
+        phoneEt.setText(phoneAuth.getPhoneNumber());
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -1336,6 +1339,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                     public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                         OrderResponse orderResponse = response.body();
                         Toasty.success(CustomerDetailsActivity.this, "Thanks For Order", Toast.LENGTH_LONG, true).show();
+                        couponAuth.setCouponValue(false);
 
                         progressDialog.dismiss();
                         Intent intent = new Intent(CustomerDetailsActivity.this,OrderTrackingActivity.class);

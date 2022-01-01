@@ -85,12 +85,13 @@ public class CartListActivity extends AppCompatActivity {
 
 
                 if (getCurrentDateTime.compareTo(getMyTime) < 0) {
-                    if (couponAuth.getCouponValue()) {
+                    if (orginCode.equals(Constraint.couponCode)) {
                         total = total - Double.parseDouble(Constraint.couponAmount);
                         totalTxt.setText("৳" + total);
-                        Toasty.info(CartListActivity.this, "You Have Got Discount", Toast.LENGTH_SHORT, true).show();
+
 
                     }
+
                     else {
                         Toasty.info(CartListActivity.this, "You Already Used Coupon Code", Toast.LENGTH_SHORT, true).show();
                     }
@@ -161,7 +162,6 @@ public class CartListActivity extends AppCompatActivity {
         intent.putExtra("cart",json);
         intent.putExtra("totalAmount",total);
         Log.d("json", "json "+json);
-        couponAuth.setCouponValue(false);
         startActivity(intent);
 
     }

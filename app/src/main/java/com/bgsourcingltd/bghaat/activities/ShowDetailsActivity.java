@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +38,11 @@ public class ShowDetailsActivity extends AppCompatActivity {
     private NewArrivalModel object;
     private ManagementCart managementCart;
     private PhotoView picFood;
-    private LinearLayout shareLayout;
+    private LinearLayout shareLayout,sizeLayout;
     private Toolbar product_details_toolbar;
+    private String [] size = {"S","M","L","XL"};
+
+
 
 
     @Override
@@ -50,6 +55,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
         managementCart = new ManagementCart(this);
         initView();
         getBundle();
+
 
         favIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +104,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
         totalPriceTxt = findViewById(R.id.totalPriceTxt);
         shareLayout = findViewById(R.id.layout_share);
         product_details_toolbar = findViewById(R.id.toolbar_product_details);
+        sizeLayout = findViewById(R.id.layout_size);
 
         product_details_toolbar.setTitle("Product Details");
         setSupportActionBar(product_details_toolbar);
@@ -114,6 +121,21 @@ public class ShowDetailsActivity extends AppCompatActivity {
         totalPriceTxt.setText("৳ "+ object.getPrice());
         descriptionTxt.setText(removeHtml(object.getDes()));
         numberOrderTxt.setText(String.valueOf(numberOrder));
+
+       /* RadioGroup r = new RadioGroup(this);
+        r.setOrientation(RadioGroup.HORIZONTAL);
+        RadioGroup.LayoutParams rl;
+        RadioButton r1 = new RadioButton(this);
+        for (int i = 0; i<size.length; i++){
+
+            r1.setText(size[i]);
+            rl = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT,RadioGroup.LayoutParams.MATCH_PARENT);
+            r.addView(r1,rl);
+
+
+        }
+        sizeLayout.addView(r);*/
+
 
         plusBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
