@@ -118,10 +118,10 @@ public class HomeFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance("https://bg-haat-e5629-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("offer");
 
 
+        setGentsCategory();
         setSlider();
-        setNewArrivalCategory();
         setMainCategory();
-        setBestSelling();
+        setHealthBeauty();
         setWomensFasion();
         setOffer();
         setGrocery();
@@ -130,7 +130,7 @@ public class HomeFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                setNewArrivalCategory();
+                setGentsCategory();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -205,6 +205,7 @@ public class HomeFragment extends Fragment {
                 sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
                 sliderView.startAutoCycle();
 
+
             }
 
             @Override
@@ -220,12 +221,12 @@ public class HomeFragment extends Fragment {
 
         List<MainCategoryModel> mainCategoryModelList = new ArrayList<>();
 
-        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.cotton_polo_shirt));
+        mainCategoryModelList.add(new MainCategoryModel("Gents",R.drawable.gents));
         mainCategoryModelList.add(new MainCategoryModel("Women",R.drawable.women));
         mainCategoryModelList.add(new MainCategoryModel("Grocery",R.drawable.grocery));
         mainCategoryModelList.add(new MainCategoryModel("Kids",R.drawable.kids));
-        mainCategoryModelList.add(new MainCategoryModel("Electronics",R.drawable.device));
-        mainCategoryModelList.add(new MainCategoryModel("Health & Beauty",R.drawable.women));
+        mainCategoryModelList.add(new MainCategoryModel("Electronics",R.drawable.electronic_devices));
+        mainCategoryModelList.add(new MainCategoryModel("Health & Beauty",R.drawable.healthandbeauty));
 
         MainCatAdapter adapter = new MainCatAdapter(context,mainCategoryModelList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
@@ -235,7 +236,7 @@ public class HomeFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    private void setNewArrivalCategory() {
+    private void setGentsCategory() {
 
         Call<List<NewArrivalModel>> listCall = apiService.getGentsProduct();
 
@@ -258,6 +259,7 @@ public class HomeFragment extends Fragment {
                     rvNewArrivalCategory.setLayoutManager(manager);
                     rvNewArrivalCategory.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
+
                     progressDialog.dismiss();
 
                 }
@@ -272,7 +274,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void setBestSelling() {
+    private void setHealthBeauty() {
 
         Call<List<NewArrivalModel>> listCall = apiService.getHeathBeauty();
 

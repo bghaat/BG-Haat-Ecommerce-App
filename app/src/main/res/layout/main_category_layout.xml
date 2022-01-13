@@ -9,8 +9,7 @@
     android:elevation="6dp"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
-    android:focusable="true"
-    >
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +20,8 @@
             android:id="@+id/iv_main_cat_raw"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/men"
+            android:src="@drawable/gents"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:layout_marginStart="5dp"
             android:textStyle="bold"/>
 

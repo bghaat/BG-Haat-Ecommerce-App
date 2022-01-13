@@ -23,7 +23,10 @@ import com.bgsourcingltd.bghaat.adapters.SearchAdapter;
 import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.network.ApiClient;
 import com.bgsourcingltd.bghaat.network.ApiService;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,6 +42,9 @@ public class SearchActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private ImageView searchBackIv;
     private TextView noFoundTv;
+    private ChipGroup searchChipGroup;
+    private Chip tShirt,hoodies,watch,ladies,kids;
+    private String searchInput = "";
 
 
 
@@ -53,53 +59,63 @@ public class SearchActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         searchBackIv = findViewById(R.id.iv_back);
         noFoundTv = findViewById(R.id.tv_no_product_found);
+        searchChipGroup = findViewById(R.id.search_chip_group);
+        tShirt = findViewById(R.id.chip_tshirt);
+        hoodies = findViewById(R.id.chip_hoodies);
+        watch = findViewById(R.id.chip_watch);
+        ladies = findViewById(R.id.chip_ladies);
+        kids = findViewById(R.id.chip_kids);
 
+        tShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchInput = tShirt.getText().toString();
+                callSearchApi(searchInput);
+
+            }
+        });
+
+        hoodies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchInput = hoodies.getText().toString();
+                callSearchApi(searchInput);
+            }
+        });
+
+        watch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchInput = watch.getText().toString();
+                callSearchApi(searchInput);
+            }
+        });
+
+        ladies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchInput = ladies.getText().toString().trim();
+                callSearchApi(searchInput);
+            }
+        });
+
+        kids.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchInput = kids.getText().toString();
+                callSearchApi(searchInput);
+            }
+        });
 
 
         searchRt.setOnEditorActionListener((v, actionId, event) -> {
 
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                String searchInput = searchRt.getText().toString();
+                searchInput = searchRt.getText().toString();
 
-                progressDialog.show();
-                progressDialog.setContentView(R.layout.show_dialog_layout);
-                progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                Call<List<NewArrivalModel>> listCall = apiService.getSearch(searchInput);
-                listCall.enqueue(new Callback<List<NewArrivalModel>>() {
+                callSearchApi(searchInput);
 
-                    @SuppressLint("NotifyDataSetChanged")
-                    @Override
-                    public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
-                        list = response.body();
-                        if (list.isEmpty()){
-                            noFoundTv.setVisibility(View.VISIBLE);
-                            searchRv.setVisibility(View.GONE);
-                            progressDialog.dismiss();
-                            hideKeyBoared();
 
-                        }
-                        else {
-
-                            noFoundTv.setVisibility(View.GONE);
-                            searchRv.setVisibility(View.VISIBLE);
-                            SearchAdapter adapter = new SearchAdapter(list, SearchActivity.this);
-                            GridLayoutManager manager = new GridLayoutManager(SearchActivity.this, 2);
-                            searchRv.setLayoutManager(manager);
-                            searchRv.setAdapter(adapter);
-                            adapter.notifyDataSetChanged();
-                            progressDialog.dismiss();
-
-                            hideKeyBoared();
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<NewArrivalModel>> call, Throwable t) {
-
-                    }
-                });
                 return true;
             }
 
@@ -115,6 +131,50 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void callSearchApi(String searchString){
+
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.show_dialog_layout);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        Call<List<NewArrivalModel>> listCall = apiService.getSearch(searchString);
+        listCall.enqueue(new Callback<List<NewArrivalModel>>() {
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onResponse(Call<List<NewArrivalModel>> call, Response<List<NewArrivalModel>> response) {
+                list = response.body();
+                if (list.isEmpty()){
+                    noFoundTv.setVisibility(View.VISIBLE);
+                    searchRv.setVisibility(View.GONE);
+                    progressDialog.dismiss();
+                    hideKeyBoared();
+
+                }
+                else {
+
+                    noFoundTv.setVisibility(View.GONE);
+                    searchRv.setVisibility(View.VISIBLE);
+                    Collections.reverse(list);
+                    SearchAdapter adapter = new SearchAdapter(list, SearchActivity.this);
+                    GridLayoutManager manager = new GridLayoutManager(SearchActivity.this, 2);
+                    searchRv.setLayoutManager(manager);
+                    searchRv.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
+
+                    hideKeyBoared();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<NewArrivalModel>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void hideKeyBoared(){

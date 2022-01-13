@@ -39,11 +39,68 @@
         android:inputType="text"
         android:background="@drawable/top_button_background"/>
 
+    <HorizontalScrollView
+        android:id="@+id/chip_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toBottomOf="@id/et_search">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/search_chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_tshirt"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="Polo T-Shirt"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_hoodies"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="Hoodies"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_watch"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="Watch"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_ladies"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="Ladies"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_kids"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:text="Kids"/>
+
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/et_search"
+        app:layout_constraintTop_toBottomOf="@id/chip_scroll"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

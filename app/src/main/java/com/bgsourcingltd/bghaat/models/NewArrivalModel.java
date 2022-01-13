@@ -1,8 +1,10 @@
 package com.bgsourcingltd.bghaat.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class NewArrivalModel implements Serializable {
 
@@ -18,15 +20,22 @@ public class NewArrivalModel implements Serializable {
     private String regularPrice;
     @SerializedName("des")
     private String des;
+    @SerializedName("attachment_ids")
+    private List<String> variationsImage;
+    @SerializedName("product_attr")
+    private product_attr productAttr;
+
     private int numberInCart;
 
-    public NewArrivalModel(String image, String title, String price, String des,String regularPrice,String id) {
+    public NewArrivalModel(String image, String title, String price, String des, String regularPrice, String id, List<String> variationsImage, product_attr productAttr) {
         this.image = image;
         this.title = title;
         this.price = price;
         this.des = des;
         this.regularPrice = regularPrice;
         this.id = id;
+        this.variationsImage = variationsImage;
+        this.productAttr = productAttr;
 
     }
 
@@ -42,7 +51,7 @@ public class NewArrivalModel implements Serializable {
         return image;
     }
 
-    public void setImage(String imageUrl) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -93,5 +102,22 @@ public class NewArrivalModel implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    public List<String> getVariationsImage() {
+        return variationsImage;
+    }
+
+    public void setVariationsImage(List<String> variationsImage) {
+        this.variationsImage = variationsImage;
+    }
+
+    public product_attr getProductAttr() {
+        return productAttr;
+    }
+
+    public void setProductAttr(product_attr productAttr) {
+        this.productAttr = productAttr;
     }
 }
