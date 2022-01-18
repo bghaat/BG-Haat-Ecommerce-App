@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bgsourcingltd.bghaat.Interface.ImageVariationsInterface;
@@ -25,11 +26,15 @@ public class ProductVariationAdapter extends RecyclerView.Adapter<ProductVariati
     private Context context;
     private ImageVariationsInterface imageVariationsInterface;
 
+    private static int lastClickedPosition = 0;
+    private int selectedItem;
+
 
     public ProductVariationAdapter(List<String> variationsImageList, Context context,ImageVariationsInterface imageVariationsInterface) {
         this.variationsImageList = variationsImageList;
         this.context = context;
         this.imageVariationsInterface = imageVariationsInterface;
+        selectedItem = -1;
     }
 
     @NonNull
@@ -43,12 +48,27 @@ public class ProductVariationAdapter extends RecyclerView.Adapter<ProductVariati
     public void onBindViewHolder(@NonNull VariationsViewHolder holder, @SuppressLint("RecyclerView") int position) {
             Glide.with(context).load(variationsImageList.get(position)).into(holder.productVariationImage);
 
+
+        holder.productVariationsCv.setCardBackgroundColor(context.getResources().getColor(R.color.white, context.getTheme()));
+
+        if (selectedItem == position){
+            holder.productVariationsCv.setCardBackgroundColor(context.getResources().getColor(R.color.colorDivider, context.getTheme()));
+        }
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                        String imageUrl = variationsImageList.get(position);
-                        imageVariationsInterface.onItemClick(imageUrl);
+                    int previousItem = selectedItem;
+                    selectedItem = position;
+
+                    notifyItemChanged(previousItem);
+                    notifyItemChanged(position);
+
+
+                    String imageUrl = variationsImageList.get(position);
+                    imageVariationsInterface.onItemClick(imageUrl);
+
                 }
             });
 
@@ -62,11 +82,13 @@ public class ProductVariationAdapter extends RecyclerView.Adapter<ProductVariati
 
     public static class VariationsViewHolder extends RecyclerView.ViewHolder{
         ImageView productVariationImage;
+        CardView productVariationsCv;
 
         public VariationsViewHolder(@NonNull View itemView) {
             super(itemView);
 
             productVariationImage = itemView.findViewById(R.id.iv_product_variation);
+            productVariationsCv = itemView.findViewById(R.id.card_view_product_variation);
 
         }
     }

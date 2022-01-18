@@ -84,6 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+                android:nestedScrollingEnabled="false"
                 app:layout_constraintStart_toStartOf="@id/tv_main_category"
                 app:layout_constraintTop_toBottomOf="@id/tv_main_category" />
 
@@ -126,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_new_arrival"
-                />
+                android:nestedScrollingEnabled="false"/>
 
             <TextView
                 android:id="@+id/tv_best_selling"
@@ -168,7 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_best_selling"
-                />
+                android:nestedScrollingEnabled="false"/>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -279,7 +280,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tv_womens_fasion"
-                />
+                android:nestedScrollingEnabled="false"/>
 
 
             <TextView
@@ -303,7 +304,6 @@
                 android:layout_height="match_parent"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/tv_grocery"
-
                 />
 
             <TextView

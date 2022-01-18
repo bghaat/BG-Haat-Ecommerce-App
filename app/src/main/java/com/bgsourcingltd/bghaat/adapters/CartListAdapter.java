@@ -105,7 +105,6 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        
                     }
                 }).show();
             }

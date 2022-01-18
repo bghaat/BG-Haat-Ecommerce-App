@@ -18,10 +18,15 @@
         android:id="@+id/iv_back"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:src="@drawable/arrow_back"
+        android:src="@drawable/ic_back"
+        android:backgroundTint="@color/purple_700"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_back"
+        android:padding="3dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/et_search"
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/purple_700"
         />
 
     <EditText

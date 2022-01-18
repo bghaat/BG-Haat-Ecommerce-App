@@ -87,6 +87,10 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onResponse(Call<List<UserModel>> call, Response<List<UserModel>> response) {
                 List<UserModel> userModelList = response.body();
+                if (userModelList.isEmpty()){
+                    progressDialog.dismiss();
+                    return;
+                }
                 userNameTv.setText(userModelList.get(0).getName());
                 userEmailTv.setText(userModelList.get(0).getEmail());
                 userAddressTv.setText(userModelList.get(0).getAddress());

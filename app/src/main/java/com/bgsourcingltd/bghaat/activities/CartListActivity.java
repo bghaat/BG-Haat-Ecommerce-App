@@ -77,30 +77,30 @@ public class CartListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String orginCode = couponEt.getText().toString();
-                Calendar calendar = Calendar.getInstance();
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                String getCurrentDateTime = sdf.format(calendar.getTime());
-                String getMyTime = Constraint.couponDate;
+                if (!orginCode.isEmpty()) {
 
+                    Calendar calendar = Calendar.getInstance();
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                    String getCurrentDateTime = sdf.format(calendar.getTime());
+                    String getMyTime = Constraint.couponDate;
 
+                    if (getCurrentDateTime.compareTo(getMyTime) < 0) {
+                        if (orginCode.equals(Constraint.couponCode)) {
+                            total = total - Double.parseDouble(Constraint.couponAmount);
+                            totalTxt.setText("৳" + total);
 
-                if (getCurrentDateTime.compareTo(getMyTime) < 0) {
-                    if (orginCode.equals(Constraint.couponCode)) {
-                        total = total - Double.parseDouble(Constraint.couponAmount);
-                        totalTxt.setText("৳" + total);
+                        } else {
+                            Toasty.info(CartListActivity.this, "You Already Used Coupon Code", Toast.LENGTH_SHORT, true).show();
+                        }
 
-
-                    }
-
-                    else {
-                        Toasty.info(CartListActivity.this, "You Already Used Coupon Code", Toast.LENGTH_SHORT, true).show();
+                    } else {
+                        Toast.makeText(CartListActivity.this, "Date Is not valid", Toast.LENGTH_SHORT).show();
                     }
 
                 }
                 else {
-                    Toast.makeText(CartListActivity.this, "Date Is not valid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartListActivity.this, "No Input", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 

@@ -84,6 +84,8 @@ public class WishListFragment extends Fragment {
             public void onClick(View v) {
 
                 wishListPref.removeFavorite(context);
+                wishList.clear();
+                adapter.notifyDataSetChanged();
 
             }
         });

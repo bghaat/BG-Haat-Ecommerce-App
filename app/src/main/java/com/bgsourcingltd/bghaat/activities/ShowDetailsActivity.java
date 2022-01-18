@@ -46,7 +46,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
     private int numberOrder = 1;
     private NewArrivalModel object;
     private ManagementCart managementCart;
-    private ImageView picFood,backIv;
+    private ImageView picFood;
     private LinearLayout shareLayout,sizeLayout;
     private List<String> stringList;
     private RadioGroup radioGroup;
@@ -56,12 +56,14 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
     private String imageUrl;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_details);
 
 
+        stringList = new ArrayList<>();
         statusTransparent();
 
         managementCart = new ManagementCart(this);
@@ -90,6 +92,15 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
             }
         });
 
+        picFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShowDetailsActivity.this,ProductImageActivity.class);
+                intent.putExtra("image",imageUrl);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -107,19 +118,10 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
         totalPriceTxt = findViewById(R.id.totalPriceTxt);
         shareLayout = findViewById(R.id.layout_share);
         sizeLayout = findViewById(R.id.layout_size);
-        backIv = findViewById(R.id.iv_back_product_details);
         radioGroup = new RadioGroup(this);
         radioGroup.setOrientation(LinearLayout.HORIZONTAL);
         radioGroup.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         productVariationsRv = findViewById(R.id.rv_variation_image);
-        stringList = new ArrayList<>();
-
-        backIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
 
 
 
@@ -128,13 +130,13 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void getBundle() {
         object = (NewArrivalModel) getIntent().getSerializableExtra("object");
-        Glide.with(this).load(object.getImage()).into(picFood);
+        imageUrl = object.getImage();
+        Glide.with(this).load(imageUrl).into(picFood);
         titleTxt.setText(object.getTitle());
         feeTxt.setText("৳ "+ object.getPrice());
         totalPriceTxt.setText("৳ "+ object.getPrice());
         descriptionTxt.setText(removeHtml(object.getDes()));
         numberOrderTxt.setText(String.valueOf(numberOrder));
-
 
 
 
@@ -146,36 +148,43 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
         adapter.notifyDataSetChanged();
 
 
-        if (!Objects.isNull(object.getProductAttr())) {
+        if (object.getProductAttr() != null) {
+
             stringList = object.getProductAttr().getSize();
-            RadioGroup.LayoutParams layoutParams;
+
+            if (stringList != null && !stringList.isEmpty()) {
+                RadioGroup.LayoutParams layoutParams;
 
 
-            for (int i = 0; i < stringList.size(); i++) {
-                radioButton = new RadioButton(this);
-                radioButton.setText(stringList.get(i));
-                radioButton.setPadding(10, 0, 0, 0);
+                for (int i = 0; i < stringList.size(); i++) {
+                    radioButton = new RadioButton(this);
+                    radioButton.setText(stringList.get(i));
+                    radioButton.setPadding(10, 0, 0, 0);
 
-                layoutParams = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.MATCH_PARENT);
-                layoutParams.setMargins(0, 10, 0, 0);
-                radioGroup.addView(radioButton, layoutParams);
+                    layoutParams = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.MATCH_PARENT);
+                    layoutParams.setMargins(0, 10, 0, 0);
+                    radioGroup.addView(radioButton, layoutParams);
+
+                }
+                sizeLayout.addView(radioGroup);
+
+
+                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        RadioButton checkRadioButton = radioGroup.findViewById(checkedId);
+                        int checkRadioButtonId = radioGroup.indexOfChild(checkRadioButton);
+                        checkedRadioButtonText = checkRadioButton.getText().toString();
+
+                        Toast.makeText(ShowDetailsActivity.this, "" + checkedRadioButtonText, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
-            sizeLayout.addView(radioGroup);
         }
-
-
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton checkRadioButton = radioGroup.findViewById(checkedId);
-                int checkRadioButtonId = radioGroup.indexOfChild(checkRadioButton);
-                checkedRadioButtonText = checkRadioButton.getText().toString();
-
-                Toast.makeText(ShowDetailsActivity.this, ""+checkedRadioButtonText, Toast.LENGTH_SHORT).show();
+            else {
+                return;
             }
-        });
 
 
 

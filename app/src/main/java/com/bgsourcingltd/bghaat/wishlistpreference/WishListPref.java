@@ -1,6 +1,7 @@
 package com.bgsourcingltd.bghaat.wishlistpreference;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
@@ -57,6 +58,7 @@ public class WishListPref {
         SharedPreferences.Editor editor = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
         editor.clear();
         editor.commit();
+
     }
 
     //get all newArrival from sharedPreference

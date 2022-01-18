@@ -118,11 +118,12 @@ public class HomeFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance("https://bg-haat-e5629-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("offer");
 
 
-        setGentsCategory();
+
         setSlider();
+        setGentsCategory();
+        setWomensFasion();
         setMainCategory();
         setHealthBeauty();
-        setWomensFasion();
         setOffer();
         setGrocery();
 
