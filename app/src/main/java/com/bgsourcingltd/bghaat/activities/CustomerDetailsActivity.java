@@ -1345,6 +1345,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                         Intent intent = new Intent(CustomerDetailsActivity.this,OrderTrackingActivity.class);
                         intent.putExtra("flag","Customer");
                         startActivity(intent);
+                        CustomerDetailsActivity.this.finish();
 
                     }
 
@@ -1366,9 +1367,9 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                     aamarPay.initPGW(new AamarPay.onInitListener() {
                         @Override
                         public void onInitFailure(Boolean error, String message) {
-                            Log.d("TEST_IF", message);
+                            Log.d("TEST_IF", "Currently We are accept only Cash On Delivery");
                             dialogBuilder.dismissDialog();
-                            dialogBuilder.errorPopUp(message);
+                            dialogBuilder.errorPopUp("Currently We are accepting only Cash On Delivery");
                         }
                         @Override
                         public void onPaymentSuccess(JSONObject jsonObject) {

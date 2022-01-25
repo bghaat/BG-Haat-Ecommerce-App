@@ -64,7 +64,6 @@ public class CouponActivity extends AppCompatActivity {
                 for (DataSnapshot ds : snapshot.getChildren()){
                     CouponCodeModel model = ds.getValue(CouponCodeModel.class);
                     list.add(model);
-
                 }
 
                 adapter = new CouponAdapter(CouponActivity.this,list);

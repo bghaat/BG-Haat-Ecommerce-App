@@ -19,8 +19,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 
 
-
-
 public class SplashActivity extends AppCompatActivity {
     private ImageView logoImg;
 
@@ -56,7 +54,6 @@ public class SplashActivity extends AppCompatActivity {
 
 
         goToIntroActivity();
-
 
     }
 

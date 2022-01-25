@@ -6,14 +6,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bgsourcingltd.bghaat.R;
-import com.bgsourcingltd.bghaat.helper.Constraint;
 import com.bgsourcingltd.bghaat.models.CouponCodeModel;
 
 import java.util.List;
@@ -44,9 +42,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponCode
         holder.couponAmount.setText(codeModelList.get(position).getAmount());
         holder.expiredDate.setText(codeModelList.get(position).getExpiredDate());
 
-        Constraint.couponCode = codeModelList.get(position).getCouponCode();
-        Constraint.couponDate = codeModelList.get(position).getExpiredDate();
-        Constraint.couponAmount = codeModelList.get(position).getAmount();
+
 
     }
 

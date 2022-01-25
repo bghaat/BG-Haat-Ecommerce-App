@@ -80,7 +80,6 @@ public class HomeFragment extends Fragment {
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
         this.context = context;
-
     }
 
     @Override
@@ -113,20 +112,18 @@ public class HomeFragment extends Fragment {
         groceryViewAll = view.findViewById(R.id.tv_grocery_view_all);
 
 
-
         apiService = ApiClient.getRetrofit().create(ApiService.class);
+
         databaseReference = FirebaseDatabase.getInstance("https://bg-haat-e5629-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("offer");
 
 
-
         setSlider();
-        setGentsCategory();
         setWomensFasion();
         setMainCategory();
         setHealthBeauty();
         setOffer();
         setGrocery();
-
+        setGentsCategory();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -235,6 +232,8 @@ public class HomeFragment extends Fragment {
         rvMainCategory.setLayoutManager(linearLayoutManager);
         rvMainCategory.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+
     }
 
     private void setGentsCategory() {

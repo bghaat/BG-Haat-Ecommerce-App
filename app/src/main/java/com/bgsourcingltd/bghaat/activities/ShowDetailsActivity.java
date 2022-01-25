@@ -40,7 +40,7 @@ import java.util.Objects;
 import es.dmoral.toasty.Toasty;
 
 public class ShowDetailsActivity extends AppCompatActivity implements ImageVariationsInterface {
-    private TextView addToCardBtn ;
+    private TextView addToCardBtn,sizeTv;
     private TextView titleTxt,feeTxt,descriptionTxt,numberOrderTxt,totalPriceTxt;
     private ImageView plusBtn, minusBtn,favIv;
     private int numberOrder = 1;
@@ -54,6 +54,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
     private String checkedRadioButtonText = "";
     private RecyclerView productVariationsRv;
     private String imageUrl;
+    private View bottomView;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -87,7 +88,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
                 Intent i=new Intent(android.content.Intent.ACTION_SEND);
                 i.setType("text/plain");
                 i.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject test");
-                i.putExtra(android.content.Intent.EXTRA_TEXT, "https://bghaat.com/");
+                i.putExtra(android.content.Intent.EXTRA_TEXT, object.getUrl());
                 startActivity(Intent.createChooser(i,"Share via"));
             }
         });
@@ -122,6 +123,8 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
         radioGroup.setOrientation(LinearLayout.HORIZONTAL);
         radioGroup.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         productVariationsRv = findViewById(R.id.rv_variation_image);
+        sizeTv = findViewById(R.id.tv_size);
+        bottomView = findViewById(R.id.bottom_view);
 
 
 
@@ -153,6 +156,9 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
             stringList = object.getProductAttr().getSize();
 
             if (stringList != null && !stringList.isEmpty()) {
+                sizeTv.setVisibility(View.VISIBLE);
+                sizeLayout.setVisibility(View.VISIBLE);
+                bottomView.setVisibility(View.VISIBLE);
                 RadioGroup.LayoutParams layoutParams;
 
 
@@ -181,10 +187,9 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
                 });
 
             }
+
+
         }
-            else {
-                return;
-            }
 
 
 

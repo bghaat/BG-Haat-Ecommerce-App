@@ -12,6 +12,8 @@ public class NewArrivalModel implements Serializable {
     private String id;
     @SerializedName("image")
     private String image;
+    @SerializedName("url")
+    private String url;
     @SerializedName("title")
     private String title;
     @SerializedName("price")
@@ -27,7 +29,7 @@ public class NewArrivalModel implements Serializable {
 
     private int numberInCart;
 
-    public NewArrivalModel(String image, String title, String price, String des, String regularPrice, String id, List<String> variationsImage, product_attr productAttr) {
+    public NewArrivalModel(String image,String url, String title, String price, String des, String regularPrice, String id, List<String> variationsImage, product_attr productAttr) {
         this.image = image;
         this.title = title;
         this.price = price;
@@ -36,6 +38,7 @@ public class NewArrivalModel implements Serializable {
         this.id = id;
         this.variationsImage = variationsImage;
         this.productAttr = productAttr;
+        this.url = url;
 
     }
 
@@ -104,6 +107,13 @@ public class NewArrivalModel implements Serializable {
         this.id = id;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public List<String> getVariationsImage() {
         return variationsImage;
