@@ -182,7 +182,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
                         int checkRadioButtonId = radioGroup.indexOfChild(checkRadioButton);
                         checkedRadioButtonText = checkRadioButton.getText().toString();
 
-                        Toast.makeText(ShowDetailsActivity.this, "" + checkedRadioButtonText, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ShowDetailsActivity.this, "" + checkedRadioButtonText, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -221,6 +221,7 @@ public class ShowDetailsActivity extends AppCompatActivity implements ImageVaria
                     object.setImage(imageUrl);
                 }
                 object.setNumberInCart(numberOrder);
+                object.setSize(checkedRadioButtonText);
                 //object.setImage(imageUrl);
                 managementCart.insertFood(object);
 

@@ -88,7 +88,7 @@ public class CartListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String orginalCode = couponEt.getText().toString();
-                if (!orginalCode.isEmpty()){
+                if (!orginalCode.isEmpty() && couponAuth.getCouponValue()){
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -108,41 +108,8 @@ public class CartListActivity extends AppCompatActivity {
                     });
                 }
                 else {
-                    Toasty.error(CartListActivity.this, "Empty Input", Toast.LENGTH_SHORT, true).show();
+                    Toasty.error(CartListActivity.this, "Invalid Input", Toast.LENGTH_SHORT, true).show();
                 }
-
-
-
-              /*  String orginCode = couponEt.getText().toString();
-                if (!orginCode.isEmpty()) {
-
-
-
-                    Calendar calendar = Calendar.getInstance();
-                    @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                    String getCurrentDateTime = sdf.format(calendar.getTime());
-                    String getMyTime = couponExpiredDate;
-
-
-                    if (getCurrentDateTime.compareTo(couponExpiredDate) < 0) {
-
-                        if (orginCode.equals(couponCode)) {
-                            total = total - Double.parseDouble(amount);
-                            totalTxt.setText("৳" + total);
-                            Toasty.info(CartListActivity.this, "Applied Successfully", Toast.LENGTH_SHORT, true).show();
-
-                        } else {
-                            Toasty.info(CartListActivity.this, "You Already Used Coupon Code", Toast.LENGTH_SHORT, true).show();
-                        }
-
-                    } else {
-                        Toast.makeText(CartListActivity.this, "Date Is not valid", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-                else {
-                    Toast.makeText(CartListActivity.this, "No Input", Toast.LENGTH_SHORT).show();
-                }*/
             }
         });
 
@@ -153,7 +120,6 @@ public class CartListActivity extends AppCompatActivity {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         getCurrentDateTime = sdf.format(calendar.getTime());
 
-        Toast.makeText(this, ""+getCurrentDateTime, Toast.LENGTH_SHORT).show();
     }
 
     private void initList() {
@@ -221,6 +187,7 @@ public class CartListActivity extends AppCompatActivity {
         if (getCurrentDateTime.compareTo(couponDate) < 0 && originalCode.equals(couponCode)) {
             total = total - Double.parseDouble(amount);
             totalTxt.setText("৳" + total);
+            couponAuth.setCouponValue(false);
             Toasty.info(CartListActivity.this, "Congregation You have got discount "+ amount + "TK", Toast.LENGTH_LONG, true).show();
         }
     }

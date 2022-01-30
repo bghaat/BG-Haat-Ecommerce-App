@@ -1339,7 +1339,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                     public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                         OrderResponse orderResponse = response.body();
                         Toasty.success(CustomerDetailsActivity.this, "Thanks For Order", Toast.LENGTH_LONG, true).show();
-                        couponAuth.setCouponValue(false);
+
 
                         progressDialog.dismiss();
                         Intent intent = new Intent(CustomerDetailsActivity.this,OrderTrackingActivity.class);

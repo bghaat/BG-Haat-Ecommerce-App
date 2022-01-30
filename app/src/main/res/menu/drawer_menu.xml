@@ -7,10 +7,7 @@
         android:title="@string/all_category"
         android:icon="@drawable/ic_baseline_category_24"/>
 
-    <item
-        android:id="@+id/allProduct"
-        android:title="All product"
-        android:icon="@drawable/ic_baseline_unfold_more_24"/>
+
 
 
     <item

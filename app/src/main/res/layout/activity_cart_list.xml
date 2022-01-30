@@ -180,7 +180,6 @@
 
 
 
-
             <TextView
                 android:id="@+id/btn_checkOut"
                 android:layout_width="match_parent"

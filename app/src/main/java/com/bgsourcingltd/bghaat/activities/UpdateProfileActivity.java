@@ -73,7 +73,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                             OrderResponse orderResponse = response.body();
-                            Toast.makeText(UpdateProfileActivity.this, "" + orderResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toasty.success(UpdateProfileActivity.this, "Update Profile Successfully", Toast.LENGTH_LONG, true).show();
+                            UpdateProfileActivity.this.finish();
                         }
 
                         @Override

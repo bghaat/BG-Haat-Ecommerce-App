@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bgsourcingltd.bghaat.R;
+import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.activities.OrderTrackingActivity;
 import com.bgsourcingltd.bghaat.activities.UpdateProfileActivity;
 import com.bgsourcingltd.bghaat.models.RecordOrderModel;
@@ -30,6 +31,7 @@ import com.bgsourcingltd.bghaat.userauth.UserPhoneAuth;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,7 +91,7 @@ public class ProfileFragment extends Fragment {
                 List<UserModel> userModelList = response.body();
                 if (userModelList.isEmpty()){
                     progressDialog.dismiss();
-                    return;
+                    Toasty.info(context,"Update Profile", Toast.LENGTH_LONG, true).show();
                 }
                 userNameTv.setText(userModelList.get(0).getName());
                 userEmailTv.setText(userModelList.get(0).getEmail());

@@ -13,38 +13,27 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.bgsourcingltd.bghaat.activities.AllCategoryActivity;
-import com.bgsourcingltd.bghaat.activities.AllProductActivity;
 import com.bgsourcingltd.bghaat.activities.CartListActivity;
 import com.bgsourcingltd.bghaat.activities.ContactUsActivity;
 
 import com.bgsourcingltd.bghaat.activities.CouponActivity;
-import com.bgsourcingltd.bghaat.activities.OfferActivty;
 import com.bgsourcingltd.bghaat.activities.SearchActivity;
 import com.bgsourcingltd.bghaat.cartcounter.CartCounter;
-import com.bgsourcingltd.bghaat.models.NewArrivalModel;
 import com.bgsourcingltd.bghaat.userauth.UserAuthPreference;
 import com.bgsourcingltd.bghaat.userauth.UserPhoneAuth;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.onesignal.OSNotificationOpenedResult;
-import com.onesignal.OneSignal;
 
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.DialogPropertiesPendulum;
 import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum;
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -141,9 +130,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
                         break;
 
-                    case R.id.allProduct:
-                        startActivity(new Intent(MainActivity.this,AllProductActivity.class));
-                        break;
 
                     case R.id.coupon:
                         startActivity(new Intent(MainActivity.this, CouponActivity.class));

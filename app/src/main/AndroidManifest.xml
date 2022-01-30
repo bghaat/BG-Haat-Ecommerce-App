@@ -24,9 +24,6 @@
             android:name=".activities.CouponActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AllProductActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.OrderTrackingActivity"
             android:exported="false" />
         <activity

@@ -28,6 +28,7 @@ public class NewArrivalModel implements Serializable {
     private product_attr productAttr;
 
     private int numberInCart;
+    private String size;
 
     public NewArrivalModel(String image,String url, String title, String price, String des, String regularPrice, String id, List<String> variationsImage, product_attr productAttr) {
         this.image = image;
@@ -42,12 +43,13 @@ public class NewArrivalModel implements Serializable {
 
     }
 
-    public NewArrivalModel(String image, String title, String price, int numberInCart,String des) {
+    public NewArrivalModel(String image, String title, String price, int numberInCart,String des,String size) {
         this.image = image;
         this.title = title;
         this.price = price;
         this.numberInCart = numberInCart;
         this.des = des;
+        this.size = size;
     }
 
     public String getImage() {
@@ -129,5 +131,13 @@ public class NewArrivalModel implements Serializable {
 
     public void setProductAttr(product_attr productAttr) {
         this.productAttr = productAttr;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }

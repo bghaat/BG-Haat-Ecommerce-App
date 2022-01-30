@@ -86,7 +86,4 @@ public interface ApiService {
     Call<List<UserModel>> getCurrentUser(@Query("phone") String phone);
 
 
-
-
-
 }
